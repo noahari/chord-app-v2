@@ -1,12 +1,12 @@
 # chord-app-v2
 
-Chordy:
+### Chordy:
 
 | Name             | Purpose                                              |
 |:----------------:|:----------------------------------------------------:|
 | toString()       | returns a properly formatted chord in string form    |
 
-ChordChart:
+### ChordChart:
 
 | Name             | Purpose                                              |
 |:----------------:|:----------------------------------------------------:|
