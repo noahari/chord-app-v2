@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+import org.jfugue.player.Player;
+
+public class ChordChart {
+
+    private ArrayList<Chordy> chordList;
+
+    private String tempo = "";
+
+    public ArrayList<Chordy> getChordList() {
+        return chordList;
+    }
+
+    public String getTempo() {
+        return tempo;
+    }
+
+    public ChordChart() {
+        this.chordList = new ArrayList<Chordy>();
+    }
+
+    public ChordChart(String tempo) {
+        this.chordList = new ArrayList<Chordy>();
+        this.tempo = tempo;
+    }
+
+    public ChordChart(ArrayList<Chordy> chordList) {
+        this.chordList = chordList;
+    }
+
+    public ChordChart(ArrayList<Chordy> chordList, String tempo) {
+        this.chordList = chordList;
+        this.tempo = tempo;
+    }
+
+    public void insertChord(Chordy chord) {
+        chordList.add(chord);
+    }
+
+    public String toString() {
+        String retString;
+
+        retString = tempo;
+
+        for(Chordy chord : chordList) {
+            retString += " " + chord.toString();
+        }
+
+        return retString;
+    }
+
+    public void play() {
+        Player player = new Player();
+        player.play(this.toString());
+    }
+
+}
