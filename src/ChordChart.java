@@ -47,6 +47,10 @@ public class ChordChart {
         chordList.add(chord);
     }
 
+    public Chordy getChord(int index) {
+        return chordList.get(index);
+    }
+
     public String toString() {
         String retString;
 
