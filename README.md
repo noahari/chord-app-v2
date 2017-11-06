@@ -30,9 +30,14 @@ play() | plays the ChordChart!
 *todo: setTempo()* | *setter for Tempo*
 *todo: playAt* | *begin playing ChordChart from a particular place*
 
-Aidan:
+###### Aidan:
   Hmmm... what is the best way to give these *todo* methods parameters?
   They all require a particular place in the array.
   On one hand, we could just give an index for the array (simplest to program).
   However, in the long run it might be easier to use a different system.
   Might depend on how the GUI is implemented.
+ 
+ Also, for playAt, might be a good idea to have methods that work for it.
+ Because design patterns / refactoring / whatever.
+ toStringAt, and/or getChordListAt
+ Could potentially be useful for it to take 2 indexes, beginning and end.
