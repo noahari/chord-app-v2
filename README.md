@@ -11,7 +11,7 @@ getExtension() | getter for Extension
 getDuration() | getter for Duration
 setRoot(String root) | setter for Root
 setExtension(String extension) | setter for Extension
-setDuration(String duration)* | setter for Duration
+setDuration(String duration) | setter for Duration
 
 ### ChordChart:
 
@@ -28,6 +28,7 @@ play() | plays the ChordChart!
 *todo: restChord* | *replace a particular chord with a rest (use Chordy.toRest() and getChord)*
 *todo: setChordList()* | *setter for ChordList*
 *todo: setTempo()* | *setter for Tempo*
+*todo: playAt* | *begin playing ChordChart from a particular place*
 
 Aidan:
   Hmmm... what is the best way to give these *todo* methods parameters?
