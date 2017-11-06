@@ -7,6 +7,7 @@ public class ChordChart {
 
     private String tempo = "";
 
+    //<editor-fold desc="Getters and Setters">
     public ArrayList<Chordy> getChordList() {
         return chordList;
     }
@@ -14,6 +15,15 @@ public class ChordChart {
     public String getTempo() {
         return tempo;
     }
+
+    public void setChordList(ArrayList<Chordy> chordList) {
+        this.chordList = chordList;
+    }
+
+    public void setTempo(String tempo) {
+        this.tempo = tempo;
+    }
+    //</editor-fold>
 
     public ChordChart() {
         this.chordList = new ArrayList<Chordy>();
