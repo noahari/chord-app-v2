@@ -51,6 +51,10 @@ public class ChordChart {
         return chordList.get(index);
     }
 
+    public void restChord(int index) {
+        getChord(index).toRest();
+    }
+
     public String toString() {
         String retString;
 

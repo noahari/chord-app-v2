@@ -8,8 +8,13 @@ public class Test {
         chordChart.insertChord(new Chordy("D", "min7", "q"));
         chordChart.insertChord(new Chordy("G", "dom7", "q"));
         chordChart.insertChord(new Resty("q"));
+
         chordChart.insertChord(new Chordy("C", "maj7", "q"));
+        chordChart.insertChord(new Chordy("D", "min7", "q"));
+        chordChart.insertChord(new Chordy("G", "dom7", "q"));
         chordChart.insertChord(new Resty("w")); // note how it still cuts off sharply at the end...
+
+        chordChart.restChord(5);
 
         chordChart.play();
     }
