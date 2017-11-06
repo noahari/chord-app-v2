@@ -26,4 +26,4 @@ Aidan:
   They all require a particular place in the array.
   On one hand, we could just give an index for the array (simplest to program).
   However, in the long run it might be easier to use a different system.
-  Might depends on how the GUI is implemented.
+  Might depend on how the GUI is implemented.
