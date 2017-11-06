@@ -28,7 +28,7 @@ play() | plays the ChordChart!
 *todo: restChord* | *replace a particular chord with a rest (use Chordy.toRest() and getChord)*
 *todo: setChordList()* | *setter for ChordList*
 *todo: setTempo()* | *setter for Tempo*
-*todo: playAt*^†^ | *begin playing ChordChart from a particular place*
+*todo: playAt* | *begin playing ChordChart from a particular place*
 
 ###### Aidan:
   Hmmm... what is the best way to give these *todo* methods parameters?
@@ -37,7 +37,7 @@ play() | plays the ChordChart!
   However, in the long run it might be easier to use a different system.
   Might depend on how the GUI is implemented.
  
-^†^Also, for playAt, might be a good idea to have methods that work for it.
+ Also, for playAt, might be a good idea to have methods that work for it.
  Because design patterns / refactoring / whatever.
  toStringAt, and/or getChordListAt.
  Could potentially be useful for it to take 2 indexes, beginning and end.
