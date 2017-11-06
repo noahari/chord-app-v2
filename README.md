@@ -6,12 +6,12 @@ Name | Purpose
 :---:|:---:
 toString() | returns a properly formatted chord in string form
 toRest() | turns the chord into a rest
-*todo: getRoot()* | *getter for Root*
-*todo: getExtension()* | *getter for Extension*
-*todo: getDuration()* | *getter for Duration*
-*todo: setRoot(String root)* | *setter for Root*
-*todo: setExtension(String extension)* | *setter for Extension*
-*todo: setDuration(String duration)* | *setter for Duration*
+getRoot() | getter for Root
+getExtension() | getter for Extension
+getDuration() | getter for Duration
+setRoot(String root) | setter for Root
+setExtension(String extension) | setter for Extension
+setDuration(String duration)* | setter for Duration
 
 ### ChordChart:
 
