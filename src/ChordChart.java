@@ -55,6 +55,10 @@ public class ChordChart {
         getChord(index).toRest();
     }
 
+    public void delChord(int index) {
+        chordList.remove(index);
+    }
+
     public String toString() {
         String retString;
 
