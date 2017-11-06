@@ -3,7 +3,7 @@
 ### Chordy:
 
 Name | Purpose
-:---:|:---:
+ --- | --- 
 toString() | returns a properly formatted chord in string form
 toRest() | turns the chord into a rest
 getRoot() | getter for Root
@@ -16,7 +16,7 @@ setDuration(String duration) | setter for Duration
 ### ChordChart:
 
 Name | Purpose
-:---:|:---:
+ --- | --- 
 getChordList() | returns the array of chords in ChordChart
 getTempo() | returns the tempo (as a string)
 setChordList(ArrayList<Chordy> chordList) | setter for ChordList
