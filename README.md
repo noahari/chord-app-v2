@@ -6,6 +6,9 @@ Name | Purpose
 :---:|:---:
 toString() | returns a properly formatted chord in string form
 toRest() | turns the chord into a rest
+*todo: getRoot* | *getter for Root*
+*todo: getExtension* | *getter for Extension*
+*todo: getDuration* | *getter for Duration*
 
 ### ChordChart:
 
