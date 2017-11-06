@@ -13,5 +13,10 @@ public class Chordy {
     public String toString() {
         return root + extension + duration;
     }
+    
+    public void toRest() {
+        this.root = "R";
+        this.extension = "";
+    }
 
 }
