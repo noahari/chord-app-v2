@@ -6,9 +6,12 @@ Name | Purpose
 :---:|:---:
 toString() | returns a properly formatted chord in string form
 toRest() | turns the chord into a rest
-*todo: getRoot* | *getter for Root*
-*todo: getExtension* | *getter for Extension*
-*todo: getDuration* | *getter for Duration*
+*todo: getRoot()* | *getter for Root*
+*todo: getExtension()* | *getter for Extension*
+*todo: getDuration()* | *getter for Duration*
+*todo: setRoot(String root)* | *setter for Root*
+*todo: setExtension(String extension)* | *setter for Extension*
+*todo: setDuration(String duration)* | *setter for Duration*
 
 ### ChordChart:
 
@@ -23,6 +26,8 @@ play() | plays the ChordChart!
 *todo: delChord* | *delete a chord from a particular place*
 *todo: getChord* | *return a particular chord*
 *todo: restChord* | *replace a particular chord with a rest (use Chordy.toRest() and getChord)*
+*todo: setChordList()* | *setter for ChordList*
+*todo: setTempo()* | *setter for Tempo*
 
 Aidan:
   Hmmm... what is the best way to give these *todo* methods parameters?
