@@ -11,6 +11,11 @@ public class ChordChart {
     public ArrayList<Chordy> getChordList() {
         return chordList;
     }
+    public ArrayList<Chordy> getChordList(int index) {
+        ArrayList<Chordy> retList = chordList;
+        retList.subList(0, index-1).clear();
+        return retList;
+    }
 
     public String getTempo() {
         return tempo;
@@ -73,10 +78,26 @@ public class ChordChart {
 
         return retString;
     }
+    public String toString(int index) {
+        String retString;
+
+        retString = tempo;
+
+        for(Chordy chord : getChordList(index)) {
+            retString += " " + chord.toString();
+        }
+
+        return retString;
+    }
 
     public void play() {
         Player player = new Player();
         player.play(this.toString());
+    }
+
+    public void play(int index) {
+        Player player = new Player();
+        player.play(this.toString(index));
     }
 
 }
