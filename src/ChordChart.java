@@ -46,6 +46,9 @@ public class ChordChart {
     public void insertChord(Chordy chord) {
         chordList.add(chord);
     }
+    public void insertChord(int index, Chordy chord) {
+        chordList.add(index, chord);
+    }
 
     public Chordy getChord(int index) {
         return chordList.get(index);

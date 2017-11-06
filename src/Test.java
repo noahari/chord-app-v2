@@ -12,14 +12,17 @@ public class Test {
         chordChart.insertChord(new Chordy("C", "maj7", "q"));
         chordChart.insertChord(new Chordy("D", "min7", "q")); // rested
 
-        chordChart.insertChord(new Chordy("G", "dom7", "q"));
+        // chord inserted here
         chordChart.insertChord(new Chordy("B", "dom9", "q")); // deleted
         chordChart.insertChord(new Chordy("C", "maj7", "q"));
 
         chordChart.insertChord(new Resty("w")); // note how it still cuts off sharply at the end...
 
         chordChart.restChord(5);
+        chordChart.insertChord(6, new Chordy("G", "dom7", "q"));
         chordChart.delChord(7);
+
+        // Should play: C D G r C r G C
 
         chordChart.play();
     }
