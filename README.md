@@ -39,5 +39,5 @@ play() | plays the ChordChart!
  
  Also, for playAt, might be a good idea to have methods that work for it.
  Because design patterns / refactoring / whatever.
- toStringAt, and/or getChordListAt
+ toStringAt, and/or getChordListAt.
  Could potentially be useful for it to take 2 indexes, beginning and end.
