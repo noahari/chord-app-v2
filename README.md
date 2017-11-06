@@ -18,17 +18,19 @@ setDuration(String duration) | setter for Duration
 Name | Purpose
  --- | --- 
 getChordList() | returns the array of chords in ChordChart
+getChordList(int index) | returns chordList starting from index
 getTempo() | returns the tempo (as a string)
 setChordList(ArrayList<Chordy> chordList) | setter for ChordList
 setTempo(String tempo) | setter for Tempo
 insertChord(Chordy chord) | adds a chord to the end of the chart
 insertChord(int index, Chordy chord) | adds a chord to a particular place
 toString() | returns a string properly formatted for JFugue to play
+toString(int index) | returns the string starting at index
 play() | plays the ChordChart!
+play(int index) | plays the ChordChart starting at index
 delChord(int index) | delete a chord from a particular place
 getChord(int index) | return a particular chord
 restChord(int index) | replace a particular chord with a rest
-*todo: playAt* | *begin playing ChordChart from a particular place*
 
 ###### Aidan:
   Hmmm... what is the best way to give these *todo* methods parameters?
