@@ -17,9 +17,8 @@
         <dependency>
             <groupId>jfugue</groupId>
             <artifactId>jfugue</artifactId>
-            <scope>system</scope>
             <version>5.0.9</version>
-            <systemPath>${basedir}/lib/jfugue-5.0.9.jar</systemPath>
+            <scope> compile </scope>
         </dependency>
     </dependencies>
     <build>
@@ -56,6 +55,9 @@
             </plugin>
         </plugins>
     </build>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 
 
