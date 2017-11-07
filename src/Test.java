@@ -23,7 +23,9 @@ public class Test {
         chordChart.delChord(7);
 
         // Should play: C D G r C r G C
-
+        chordChart.setTempo(99);
+        chordChart.incTempo();
+        System.out.println("Tempo: " + chordChart.getTempo());
         chordChart.play();
         chordChart.play(6); // sounds nice and glitchy
     }
