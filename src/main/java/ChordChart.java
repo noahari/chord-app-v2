@@ -1,5 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import org.jfugue.player.Player;
+import org.jfugue.pattern.Pattern;
+import org.jfugue.midi.*;
+import java.io.File;
 
 public class ChordChart {
 
@@ -70,6 +74,21 @@ public class ChordChart {
 
     public void delChord(int index) {
         chordList.remove(index);
+    }
+
+    public void toFile(){
+        String pat = "";
+        for(Chordy chord:getChordList()){
+            pat += "" + chord.toString();
+        }
+        Pattern p = new Pattern(pat);
+        try {
+            MidiFileManager.savePatternToMidi(p, new File("./src/main/resources/midi_test.midi"));
+        }
+        catch(IOException ioe){
+            System.out.println("Error");
+            ioe.printStackTrace();
+        }
     }
 
     public String toString() {
