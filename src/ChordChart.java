@@ -5,7 +5,7 @@ public class ChordChart {
 
     private ArrayList<Chordy> chordList;
 
-    private String tempo = "";
+    private int tempo = 120;
 
     //<editor-fold desc="Getters and Setters">
     public ArrayList<Chordy> getChordList() {
@@ -17,7 +17,7 @@ public class ChordChart {
         return retList;
     }
 
-    public String getTempo() {
+    public int getTempo() {
         return tempo;
     }
 
@@ -25,7 +25,7 @@ public class ChordChart {
         this.chordList = chordList;
     }
 
-    public void setTempo(String tempo) {
+    public void setTempo(int tempo) {
         this.tempo = tempo;
     }
     //</editor-fold>
@@ -34,7 +34,7 @@ public class ChordChart {
         this.chordList = new ArrayList<Chordy>();
     }
 
-    public ChordChart(String tempo) {
+    public ChordChart(int tempo) {
         this.chordList = new ArrayList<Chordy>();
         this.tempo = tempo;
     }
@@ -43,10 +43,15 @@ public class ChordChart {
         this.chordList = chordList;
     }
 
-    public ChordChart(ArrayList<Chordy> chordList, String tempo) {
+    public ChordChart(ArrayList<Chordy> chordList, int tempo) {
         this.chordList = chordList;
         this.tempo = tempo;
     }
+
+    public void incTempo() {
+        tempo++;
+    }
+    public void decTempo() { tempo--; }
 
     public void insertChord(Chordy chord) {
         chordList.add(chord);
@@ -70,7 +75,7 @@ public class ChordChart {
     public String toString() {
         String retString;
 
-        retString = tempo;
+        retString = "T" + tempo + " ";
 
         for(Chordy chord : chordList) {
             retString += " " + chord.toString();
@@ -81,7 +86,7 @@ public class ChordChart {
     public String toString(int index) {
         String retString;
 
-        retString = tempo;
+        retString = "T" + tempo + " ";
 
         for(Chordy chord : getChordList(index)) {
             retString += " " + chord.toString();

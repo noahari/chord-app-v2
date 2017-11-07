@@ -18,13 +18,15 @@ public class Test {
 
         chordChart.insertChord(new Resty("w")); // note how it still cuts off sharply at the end...
 
-        chordChart.restChord(6);
-        chordChart.insertChord(7, new Chordy("G", "dom7", "q"));
-        chordChart.delChord(8);
+        chordChart.restChord(5);
+        chordChart.insertChord(6, new Chordy("G", "dom7", "q"));
+        chordChart.delChord(7);
 
         // Should play: C D G r C r G C
-
+        chordChart.setTempo(99);
+        chordChart.incTempo();
+        System.out.println("Tempo: " + chordChart.getTempo());
         chordChart.play();
-        chordChart.play(7); // sounds nice and glitchy
+        chordChart.play(6); // sounds nice and glitchy
     }
 }
