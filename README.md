@@ -46,5 +46,6 @@ restChord(int index) | replace a particular chord with a rest
  - is it useful to represent `root` as an `int`?
    that way, we can just `root++` instead of trying to turn `"C"` into `"D"`.
    and an octave is just `root+12`. seems very useful. but its certainly harder to look at for us.
+   
    we should investigate JFugue; there could be a class for this `Root root = new Root("C")`.
    Also consider applying this type of thinking to `duration`.
