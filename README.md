@@ -14,6 +14,7 @@ setExtension(String extension) | setter for Extension
 setDuration(String duration) | setter for Duration
 
 #### ideas *see below "Things to consider"*:
+Name | Purpose
  --- | --- 
 incRoot() | increments `root` (i.e. from "C" to "D")
 incOct() | increments octave of `root` (i.e. from "C5" to "C6")
