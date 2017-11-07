@@ -42,5 +42,5 @@ restChord(int index) | replace a particular chord with a rest
  - Should `tempo` be an `int`?  I feel like that will ultimately be easier to use.
    It means we need to do a little extra work in the `toString` method,
    but overall it will be easier to manipulate the tempo outside of the class.
-   Helpful for using constructor, `get`/`set``Tempo`, and potential methods like `incTempo`, `doubleTempo`.
+   Helpful for using constructor, `get`/`set` `Tempo`, and potential methods like `incTempo`, `doubleTempo`.
  - How can we make the piano not clip out at the end of playing? Adding a rest doesn't work.
