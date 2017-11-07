@@ -13,7 +13,7 @@ setRoot(String root) | setter for Root
 setExtension(String extension) | setter for Extension
 setDuration(String duration) | setter for Duration
 
-#### ideas *see below "Things to consider"*:
+#### ideas: (*see below "Things to consider"*)
 Name | Purpose
  --- | --- 
 incRoot() | increments `root` (i.e. from "C" to "D")
