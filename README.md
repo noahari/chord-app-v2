@@ -45,6 +45,7 @@ play(int index) | plays the ChordChart starting at index
 delChord(int index) | delete a chord from a particular place
 getChord(int index) | return a particular chord
 restChord(int index) | replace a particular chord with a rest
+toFile() | outputs a midi file of a ChordChart
 
 ##### Things to consider
  - is `(int index)` a good way of setting up parameters?
