@@ -13,6 +13,13 @@ setRoot(String root) | setter for Root
 setExtension(String extension) | setter for Extension
 setDuration(String duration) | setter for Duration
 
+#### ideas *see below "Things to consider"*:
+ --- | --- 
+incRoot() | increments `root` (i.e. from "C" to "D")
+incOct() | increments octave of `root` (i.e. from "C5" to "C6")
+decRoot() | decrements `root` (i.e. from "D" to "C")
+decOct() | decrements octave of `root` (i.e. from "C6" to "C5")
+
 ### ChordChart:
 
 Name | Purpose
