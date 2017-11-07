@@ -22,6 +22,7 @@ getChordList(int index) | returns chordList starting from index
 getTempo() | returns the tempo (as a string)
 setChordList(ArrayList<Chordy> chordList) | setter for ChordList
 setTempo(String tempo) | setter for Tempo
+incTempo() | increments tempo by 1
 insertChord(Chordy chord) | adds a chord to the end of the chart
 insertChord(int index, Chordy chord) | adds a chord to a particular place
 toString() | returns a string properly formatted for JFugue to play
