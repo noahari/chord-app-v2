@@ -59,3 +59,11 @@ restChord(int index) | replace a particular chord with a rest
    
    we should investigate JFugue; there could be a class for this `Root root = new Root("C")`.
    Also consider applying this type of thinking to `duration`.
+        -I did not apply this type of thinking to duration for the time being,
+         but it should be easy enough to refactor if we implement any sort of methods
+         to translate between string and int for these things
+         
+  - We may also want to consider that in order to change octave as a separate action from changing
+     the note, that is to say not just indicating C5 to C6 being a note change, we will likely need to
+     add an octave component to Chordy. This would be easy but would require checking all existing code
+     to make sure it doesn't break anything.
