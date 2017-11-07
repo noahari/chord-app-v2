@@ -12,6 +12,8 @@ getDuration() | getter for Duration
 setRoot(String root) | setter for Root
 setExtension(String extension) | setter for Extension
 setDuration(String duration) | setter for Duration
+shrinkChordy() | shortens a chordy by exactly one jfugue duration interval
+growChordy() | lengthens a chordy by exactly one jfugue duration interval
 
 ### ChordChart:
 

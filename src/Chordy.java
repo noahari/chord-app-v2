@@ -15,6 +15,62 @@ public class Chordy {
         this.extension = "";
     }
 
+    public void shrinkChordy(){
+        switch (this.duration){
+            case "w":
+                this.duration = "h";
+                break;
+            case "h":
+                this.duration = "q";
+                break;
+            case "q":
+                this.duration = "i";
+                break;
+            case "i":
+                this.duration = "s";
+                break;
+            case "s":
+                this.duration = "t";
+                break;
+            case "t":
+                this.duration = "x";
+                break;
+            case "x":
+                this.duration = "o";
+                break;
+            case "o":
+                break;
+        }
+    }
+
+    public void growChordy(){
+        switch (this.duration){
+            case "o":
+                this.duration = "x";
+                break;
+            case "x":
+                this.duration = "t";
+                break;
+            case "t":
+                this.duration = "s";
+                break;
+            case "s":
+                this.duration = "i";
+                break;
+            case "i":
+                this.duration = "q";
+                break;
+            case "q":
+                this.duration = "h";
+                break;
+            case "h":
+                this.duration = "w";
+                break;
+            case "w":
+                break;
+        }
+    }
+
     //<editor-fold desc="Getters and Setters">
     public String getRoot(){
         return root;
