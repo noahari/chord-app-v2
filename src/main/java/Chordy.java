@@ -71,6 +71,35 @@ public class Chordy {
         }
     }
 
+    public void incOct(){
+        this.root = this.detNote() + Integer.toString(this.detOct() + 1);
+    }
+
+    public void decOct(){
+        this.root = this.detNote() + Integer.toString(this.detOct() - 1);
+    }
+
+    //helper function that detects the octave and returns it as an integer
+    public int detOct(){
+        //the initial if clause exists to catch the insance a chord is registered without an octave listed
+        //i.e. this.root = "C" is in the default octave and is read as "C5"
+        //therefore it returns 5 to prevent a parseInt exception
+        if(this.getRoot().replaceAll("[^\\d.]","").equals("")){
+            return 5;
+        }
+        //parses the int if the string is not empty
+        else {
+            return Integer.parseInt(this.getRoot().replaceAll("[^\\d.]",""));
+        }
+    }
+
+    //helper function to detect the note of a chordy
+    public String detNote(){
+        return this.getRoot().replaceAll("/[0-9]", "");
+    }
+
+
+
     //<editor-fold desc="Getters and Setters">
     public String getRoot(){
         return root;
