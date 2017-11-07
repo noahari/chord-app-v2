@@ -41,8 +41,11 @@ restChord(int index) | replace a particular chord with a rest
    Even if its harder to program, its ultimately easier to use when making the GUI.
    We don't need to change it now, but its something to think about before implementing GUI.
  - is it useful to have `play(int start, int end)`?  Also applies to `toString` and `getChordList`.
- - Should `tempo` be an `int`?  I feel like that will ultimately be easier to use.
-   It means we need to do a little extra work in the `toString` method,
-   but overall it will be easier to manipulate the tempo outside of the class.
-   Helpful for using constructor, `get`/`set` `Tempo`, and potential methods like `incTempo`, `doubleTempo`.
+ - I think there is a `Tempo` class.  Should `tempo` be of type `Tempo`?
  - How can we make the piano not clip out at the end of playing? Adding a rest doesn't work.
+ - is it useful to represent `root` as an `int`?
+   that way, we can just `root++` instead of trying to turn `"C"` into `"D"`.
+   and an octave is just `root+12`. seems very useful. but its certainly harder to look at for us.
+   we should investigate JFugue; there could be a class for this `Root root = new Root("C")`.
+   
+   Also consider applying this type of thinking to `duration`.
