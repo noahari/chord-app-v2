@@ -51,6 +51,7 @@ public class ChordChart {
     public void incTempo() {
         tempo++;
     }
+    public void decTempo() { tempo--; }
 
     public void insertChord(Chordy chord) {
         chordList.add(chord);
