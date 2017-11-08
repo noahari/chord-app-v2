@@ -12,8 +12,8 @@ getDuration() | getter for Duration
 setRoot(String root) | setter for Root
 setExtension(String extension) | setter for Extension
 setDuration(String duration) | setter for Duration
-shrinkChordy() | shortens a chordy by exactly one jfugue duration interval
-growChordy() | lengthens a chordy by exactly one jfugue duration interval
+decDur() | shortens a chordy by exactly one jfugue duration interval
+incDur() | lengthens a chordy by exactly one jfugue duration interval
 incOct() | increments octave of `root` (i.e. from "C5" to "C6")
 decOct() | decrements octave of `root` (i.e. from "C6" to "C5")
 detNote() | detects the note of a chordy and returns it as a String
