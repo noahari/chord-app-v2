@@ -21,10 +21,10 @@ detOct() | detects the octave of a chordy and returns it as an int
 incRoot() | increments `root` (i.e. from "C" to "D")
 decRoot() | decrements `root` (i.e. from "D" to "C")
 
-#### ideas: (*see below "Things to consider"*)
+#### ideas: (*see below "Things to consider", and please add things*)
 Name | Purpose
  --- | --- 
-
+Method Name | Method Purpose
 
 ### ChordChart:
 
