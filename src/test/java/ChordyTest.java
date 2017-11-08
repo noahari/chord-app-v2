@@ -72,4 +72,14 @@ public class ChordyTest {
         assertEquals("B4", sChord.getRoot());
     }
 
+    @Test
+    public void incRoot() throws Exception {
+        //test chordy
+        Chordy sChord = new Chordy("B", "maj7", "o");
+
+        sChord.incRoot();
+
+        assertEquals("C6", sChord.getRoot());
+    }
+
 }
