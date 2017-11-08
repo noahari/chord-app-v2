@@ -76,6 +76,12 @@ public class ChordChart {
         chordList.remove(index);
     }
 
+    public void moveChord(int presentIndex, int futureIndex) {
+        this.insertChord(futureIndex, this.getChord(presentIndex));
+        this.delChord(presentIndex);
+
+    }
+
     public void toFile(){
         String pat = "";
         for(Chordy chord:getChordList()){
