@@ -15,7 +15,7 @@ public class Chordy {
         this.extension = "";
     }
 
-    public void shrinkChordy(){
+    public void decDur(){
         switch (this.duration){
             case "w":
                 this.duration = "h";
@@ -43,7 +43,7 @@ public class Chordy {
         }
     }
 
-    public void growChordy(){
+    public void incDur(){
         switch (this.duration){
             case "o":
                 this.duration = "x";
@@ -81,7 +81,7 @@ public class Chordy {
 
     //helper function that detects the octave and returns it as an integer
     public int detOct(){
-        //the initial if clause exists to catch the insance a chord is registered without an octave listed
+        //the initial if clause exists to catch the instance a chord is registered without an octave listed
         //i.e. this.root = "C" is in the default octave and is read as "C5"
         //therefore it returns 5 to prevent a parseInt exception
         if(this.getRoot().replaceAll("[^\\d.]","").equals("")){
