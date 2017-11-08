@@ -95,10 +95,63 @@ public class Chordy {
 
     //helper function to detect the note of a chordy
     public String detNote(){
-        return this.getRoot().replaceAll("/[0-9]", "");
+        return this.getRoot().replaceAll("[\\d]", "");
     }
 
 
+    public void incRoot() {
+        switch (this.detNote()) {
+            case "C":
+                this.root = "D" + this.detOct();
+                break;
+            case "D":
+                this.root = "E" + this.detOct();
+                break;
+            case "E":
+                this.root = "F" + this.detOct();
+                break;
+            case "F":
+                this.root = "G" + this.detOct();
+                break;
+            case "G":
+                this.root = "A" + this.detOct();
+                break;
+            case "A":
+                this.root = "B" + this.detOct();
+                break;
+            case "B":
+                this.root = "C" + this.detOct();
+                this.incOct();
+                break;
+        }
+    }
+
+    public void decRoot() {
+        switch (this.detNote()) {
+            case "B":
+                this.root = "A" + this.detOct();
+                break;
+            case "A":
+                this.root = "G" + this.detOct();
+                break;
+            case "G":
+                this.root = "F" + this.detOct();
+                break;
+            case "F":
+                this.root = "E" + this.detOct();
+                break;
+            case "E":
+                this.root = "D" + this.detOct();
+                break;
+            case "D":
+                this.root = "C" + this.detOct();
+                break;
+            case "C":
+                this.root = "B" + this.detOct();
+                this.decOct();
+                break;
+        }
+    }
 
     //<editor-fold desc="Getters and Setters">
     public String getRoot(){

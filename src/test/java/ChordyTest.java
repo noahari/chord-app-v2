@@ -29,7 +29,7 @@ public class ChordyTest {
     @Test
     public void detNote(){
         //test chordy
-        Chordy sChord = new Chordy("C", "maj7", "o");
+        Chordy sChord = new Chordy("C5", "maj7", "o");
 
         assertEquals("C", sChord.detNote());
     }
@@ -45,7 +45,7 @@ public class ChordyTest {
     @Test
     public void incOct() throws Exception {
         //test chordy
-        Chordy sChord = new Chordy("C", "maj7", "o");
+        Chordy sChord = new Chordy("C5", "maj7", "o");
 
         sChord.incOct();
 
@@ -60,6 +60,16 @@ public class ChordyTest {
         sChord.decOct();
 
         assertEquals("C4", sChord.getRoot());
+    }
+
+    @Test
+    public void decRoot() throws Exception {
+        //test chordy
+        Chordy sChord = new Chordy("C", "maj7", "o");
+
+        sChord.decRoot();
+
+        assertEquals("B4", sChord.getRoot());
     }
 
 }

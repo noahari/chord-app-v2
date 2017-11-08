@@ -18,12 +18,13 @@ incOct() | increments octave of `root` (i.e. from "C5" to "C6")
 decOct() | decrements octave of `root` (i.e. from "C6" to "C5")
 detNote() | detects the note of a chordy and returns it as a String
 detOct() | detects the octave of a chordy and returns it as an int
+incRoot() | increments `root` (i.e. from "C" to "D")
+decRoot() | decrements `root` (i.e. from "D" to "C")
 
 #### ideas: (*see below "Things to consider"*)
 Name | Purpose
  --- | --- 
-incRoot() | increments `root` (i.e. from "C" to "D")
-decRoot() | decrements `root` (i.e. from "D" to "C")
+
 
 ### ChordChart:
 
