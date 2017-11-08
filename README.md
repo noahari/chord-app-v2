@@ -47,7 +47,7 @@ delChord(int index) | delete a chord from a particular place
 getChord(int index) | return a particular chord
 restChord(int index) | replace a particular chord with a rest
 toFile() | outputs a midi file of a ChordChart
-moveChord() | adds a chord to the ChordList at new index position <br> then deletes the one at the old index position, *untested*
+moveChord() <br> *untested* | adds a chord to the ChordList at new index position <br> then deletes the one at the old index position
 
 ##### Things to consider
  - is `(int index)` a good way of setting up parameters?
