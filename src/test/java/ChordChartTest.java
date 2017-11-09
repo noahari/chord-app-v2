@@ -14,7 +14,7 @@ public class ChordChartTest {
 
         chordChart.insertChord(insertChord);
 
-        ArrayList<Chordy> testArray = new ArrayList<Chordy>();
+        ArrayList<Chordy> testArray = new ArrayList<>();
 
         testArray.add(insertChord);
 

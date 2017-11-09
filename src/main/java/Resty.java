@@ -1,4 +1,4 @@
-public class Resty extends Chordy {
+class Resty extends Chordy {
     public Resty(String duration) {
         super("R","",duration);
     }
