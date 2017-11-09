@@ -61,6 +61,8 @@ moveChord() <br> *untested* | adds a chord to the ChordList at new index positio
  - is it useful to represent `root` as an `int`?
    that way, we can just `root++` instead of trying to turn `"C"` into `"D"`.
    and an octave is just `root+12`. seems very useful. but its certainly harder to look at for us.
+ - Abstract a MusicalEvent class to be held in the ChordChart's ArrayList, that way we can include Chordy, Tempos, Keys, 
+   etc. in one object that can easily be printed one after the other
    
    we should investigate JFugue; there could be a class for this `Root root = new Root("C")`.
    Also consider applying this type of thinking to `duration`.
