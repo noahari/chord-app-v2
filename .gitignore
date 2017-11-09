@@ -1,5 +1,5 @@
 # our own things:
-./src/main/resources/midi_test.midi
+src/main/resources/midi_test.midi
 
 # Compiled class file
 *.class
