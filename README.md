@@ -61,6 +61,16 @@ moveChord() <br> *untested* | adds a chord to the ChordList at new index positio
  - is it useful to represent `root` as an `int`?
    that way, we can just `root++` instead of trying to turn `"C"` into `"D"`.
    and an octave is just `root+12`. seems very useful. but its certainly harder to look at for us.
+ - Abstract a `MusicalEvent` class to be held in the `ChordChart` `ArrayList`, that way we can include
+   `Chordy`, Tempos, Keys, etc. in one object that can easily be printed one after the other.
+     - **Aidan:**
+     - I see a potential issue here: it seems to me like it would be much harder to implement methods like
+       `restChord` and others that call methods of `Chordy`.  *(Pretty sure you can't just call methods of
+       a subclass of an abstract class for an array of that abstract class, that would break pretty easily)*.
+     - do we want to include this type of functionality?  This may be too complicated for
+       the product we intend to make, since its supposed to be simple and easy to use.
+     - while it is possible to check to see if the method is operating on a `Chordy` and call
+       an error if not, I don't really like that solution
    
    we should investigate JFugue; there could be a class for this `Root root = new Root("C")`.
    Also consider applying this type of thinking to `duration`.
