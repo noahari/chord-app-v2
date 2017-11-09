@@ -83,7 +83,7 @@ public class ChordChart {
     }
 
     public void toFile(){
-        String pat = "";
+        String pat = "T" + tempo + " ";
         for(Chordy chord:getChordList()){
             pat += "" + chord.toString();
         }
