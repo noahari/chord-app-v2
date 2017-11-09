@@ -36,6 +36,7 @@ hs_err_pid*
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml # added by Aidan
+.idea/checkstyle-idea.xml # added by Noah
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
