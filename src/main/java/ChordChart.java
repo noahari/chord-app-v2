@@ -15,7 +15,7 @@ public class ChordChart {
     public ArrayList<Chordy> getChordList() {
         return chordList;
     }
-    public ArrayList<Chordy> getChordList(int index) {
+    private ArrayList<Chordy> getChordList(int index) {
         ArrayList<Chordy> retList = chordList;
         retList.subList(0, index-1).clear();
         return retList;
@@ -35,11 +35,11 @@ public class ChordChart {
     //</editor-fold>
 
     public ChordChart() {
-        this.chordList = new ArrayList<Chordy>();
+        this.chordList = new ArrayList<>();
     }
 
     public ChordChart(int tempo) {
-        this.chordList = new ArrayList<Chordy>();
+        this.chordList = new ArrayList<>();
         this.tempo = tempo;
     }
 
@@ -64,7 +64,7 @@ public class ChordChart {
         chordList.add(index, chord);
     }
 
-    public Chordy getChord(int index) {
+    private Chordy getChord(int index) {
         return chordList.get(index);
     }
 
@@ -108,7 +108,7 @@ public class ChordChart {
 
         return retString;
     }
-    public String toString(int index) {
+    private String toString(int index) {
         String retString;
 
         retString = "T" + tempo + " ";

@@ -1,8 +1,8 @@
-public class Chordy {
+class Chordy {
 
-    String root;
-    String extension;
-    String duration;
+    private String root;
+    private String extension;
+    private String duration;
 
     public Chordy(String root, String extension, String duration) {
         this.root = root;
@@ -95,7 +95,7 @@ public class Chordy {
 
     //helper function to detect the note of a chordy
     public String detNote(){
-        return this.getRoot().replaceAll("[\\d]", "");
+        return this.getRoot().replaceAll("[\\d.]", "");
     }
 
 
