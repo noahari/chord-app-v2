@@ -63,7 +63,7 @@ moveChord() <br> *untested* | adds a chord to the ChordList at new index positio
    and an octave is just `root+12`. seems very useful. but its certainly harder to look at for us.
  - Abstract a `MusicalEvent` class to be held in the `ChordChart` `ArrayList`, that way we can include
    `Chordy`, Tempos, Keys, etc. in one object that can easily be printed one after the other.
-     **Aidan:**
+     - **Aidan:**
      - I see a potential issue here: it seems to me like it would be much harder to implement methods like
        `restChord` and others that call methods of `Chordy`.  *(Pretty sure you can't just call methods of
        a subclass of an abstract class for an array of that abstract class, that would break pretty easily)*.
