@@ -77,7 +77,6 @@ class Chordy {
 
     public void decOct(){
         if(this.detOct() == 0){
-            this.root = this.detNote() + Integer.toString(this.detOct());
         }
         else {
             this.root = this.detNote() + Integer.toString(this.detOct() - 1);
