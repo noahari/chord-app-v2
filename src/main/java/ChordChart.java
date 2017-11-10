@@ -87,7 +87,7 @@ public class ChordChart {
         for(Chordy chord:getChordList()){
             pat += "" + chord.toString();
         }
-        Pattern p = new Pattern(pat);
+        Pattern p = new Pattern(pat); // shouldn't `pat` just be `this.toString()`?
         try {
             MidiFileManager.savePatternToMidi(p, new File(path+"/yourMidi.midi"));
         }
