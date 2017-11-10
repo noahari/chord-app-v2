@@ -76,7 +76,12 @@ class Chordy {
     }
 
     public void decOct(){
-        this.root = this.detNote() + Integer.toString(this.detOct() - 1);
+        if(this.detOct() == 0){
+        }
+        else {
+            this.root = this.detNote() + Integer.toString(this.detOct() - 1);
+        }
+
     }
 
     //helper function that detects the octave and returns it as an integer
