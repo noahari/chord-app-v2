@@ -82,14 +82,14 @@ public class ChordChart {
 
     }
 
-    public void toFile(){
+    public void toFile(String path){
         String pat = "T" + tempo + " ";
         for(Chordy chord:getChordList()){
             pat += "" + chord.toString();
         }
         Pattern p = new Pattern(pat);
         try {
-            MidiFileManager.savePatternToMidi(p, new File("./src/main/resources/midi_test.midi"));
+            MidiFileManager.savePatternToMidi(p, new File(path+"/yourMidi.midi"));
         }
         catch(IOException ioe){
             System.out.println("Error");

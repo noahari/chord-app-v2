@@ -9,7 +9,8 @@ class Test {
         chordChart.insertChord(new Chordy("G", "dom7", "q"));
         chordChart.insertChord(new Resty("q"));
 
-        chordChart.toFile();
+        String home = System.getProperty("user.home");
+        chordChart.toFile(home+"/Downloads");
 
         chordChart.insertChord(new Chordy("C", "maj7", "q"));
         chordChart.insertChord(new Chordy("D", "min7", "q"));
