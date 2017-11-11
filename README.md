@@ -71,6 +71,14 @@ moveChord() <br> *untested* | adds a chord to the ChordList at new index positio
        the product we intend to make, since its supposed to be simple and easy to use.
      - while it is possible to check to see if the method is operating on a `Chordy` and call
        an error if not, I don't really like that solution
+     -**Andrew:**
+     - In that case, another alternative would be to center everything around the chord list itself
+     - i.e. if you want a tempo change before the 4th chord you can say something like `chordChart.addTempo("140", 4)`
+       and then we would just need to make sure that ChordChart.toString() will print out the appropriate changes (or maybe
+       alter Chordy to accomodate)
+     - I personally think this feature isn't too complicated (though I totally understand your point). I think the actual
+       UI can still be easy to use while bearing some of these features so that chordCharts can be more dynamic, but we can
+       talk more about this when we meet next
    
    we should investigate JFugue; there could be a class for this `Root root = new Root("C")`.
    Also consider applying this type of thinking to `duration`.
