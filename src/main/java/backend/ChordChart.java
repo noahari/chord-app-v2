@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.jfugue.player.Player;
 import org.jfugue.pattern.Pattern;
 import org.jfugue.midi.*;
+import org.jfugue.theory.*;
 import java.io.File;
 
 public class ChordChart {
@@ -17,6 +18,7 @@ public class ChordChart {
     public ArrayList<Chordy> getChordList() {
         return chordList;
     }
+
     private ArrayList<Chordy> getChordList(int index) {
         ArrayList<Chordy> retList = chordList;
         retList.subList(0, index-1).clear();
@@ -36,6 +38,7 @@ public class ChordChart {
     }
     //</editor-fold>
 
+    //CONSTRUCTORS
     public ChordChart() {
         this.chordList = new ArrayList<>();
     }
@@ -71,8 +74,9 @@ public class ChordChart {
     }
 
     public void restChord(int index) {
-        getChord(index).toRest();
-    }
+        for(Note n: getChord(index).getNotes())
+           n.createRest(n.getDuration());
+     }
 
     public void delChord(int index) {
         chordList.remove(index);

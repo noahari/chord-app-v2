@@ -1,20 +1,14 @@
 package backend;
+import org.jfugue.theory.*;
 
-class Chordy {
+class Chordy extends Chord {
 
-    private String root;
-    private String extension;
     private String duration;
 
     public Chordy(String root, String extension, String duration) {
-        this.root = root;
-        this.extension = extension;
+        super(root + extension + duration);
+        if(!this.getRoot().isOctaveExplicitlySet()) getRoot().setOctaveExplicitlySet(true);
         this.duration = duration;
-    }
-
-    public void toRest() {
-        this.root = "R";
-        this.extension = "";
     }
 
     public void decDur(){
@@ -74,111 +68,46 @@ class Chordy {
     }
 
     public void incOct(){
-        this.root = this.detNote() + Integer.toString(this.detOct() + 1);
+        if(this.getRoot().getValue() <= 115) this.getRoot().changeValue(12);
+
+    }
+
+    public void incOct(int n){
+        if(this.getRoot().getValue()+ (12* n) <= 127) this.getRoot().changeValue(12*n);
     }
 
     public void decOct(){
-        if(this.detOct() == 0){
-        }
-        else {
-            this.root = this.detNote() + Integer.toString(this.detOct() - 1);
-        }
-
+        if(this.getRoot().getValue() >= 12) this.getRoot().changeValue(-12);
     }
 
-    //helper function that detects the octave and returns it as an integer
-    public int detOct(){
-        //the initial if clause exists to catch the instance a chord is registered without an octave listed
-        //i.e. this.root = "C" is in the default octave and is read as "C5"
-        //therefore it returns 5 to prevent a parseInt exception
-        if(this.getRoot().replaceAll("[^\\d.]","").equals("")){
-            return 5;
-        }
-        //parses the int if the string is not empty
-        else {
-            return Integer.parseInt(this.getRoot().replaceAll("[^\\d.]",""));
-        }
+    public void decOct(int n){
+        if(this.getRoot().getValue()- (12 * n) >= 0) this.getRoot().changeValue(-12*n);
     }
 
-    //helper function to detect the note of a chordy
+    //Returns the octave of the chord
+    public int getOct(){
+        return Byte.toUnsignedInt(this.getRoot().getOctave());
+    }
+
+    //helper function to detect the note of a chordy without its octave
     public String detNote(){
-        return this.getRoot().replaceAll("[\\d.]", "");
+        return this.getRoot().toStringWithoutDuration().replaceAll("[\\d.]", "");
     }
 
-
+    //Raises chord by 1 half step
     public void incRoot() {
-        switch (this.detNote()) {
-            case "C":
-                this.root = "D" + this.detOct();
-                break;
-            case "D":
-                this.root = "E" + this.detOct();
-                break;
-            case "E":
-                this.root = "F" + this.detOct();
-                break;
-            case "F":
-                this.root = "G" + this.detOct();
-                break;
-            case "G":
-                this.root = "A" + this.detOct();
-                break;
-            case "A":
-                this.root = "B" + this.detOct();
-                break;
-            case "B":
-                this.root = "C" + this.detOct();
-                this.incOct();
-                break;
-        }
+        if(this.getRoot().getValue() <= 126) this.getRoot().changeValue(1);
     }
 
+    //Lowers chord by 1 half step
     public void decRoot() {
-        switch (this.detNote()) {
-            case "B":
-                this.root = "A" + this.detOct();
-                break;
-            case "A":
-                this.root = "G" + this.detOct();
-                break;
-            case "G":
-                this.root = "F" + this.detOct();
-                break;
-            case "F":
-                this.root = "E" + this.detOct();
-                break;
-            case "E":
-                this.root = "D" + this.detOct();
-                break;
-            case "D":
-                this.root = "C" + this.detOct();
-                break;
-            case "C":
-                this.root = "B" + this.detOct();
-                this.decOct();
-                break;
-        }
+        if(this.getRoot().getValue() >= 1) this.getRoot().changeValue(-1);
     }
 
     //<editor-fold desc="Getters and Setters">
-    public String getRoot(){
-        return root;
-    }
-
-    public String getExtension() {
-        return extension;
-    }
 
     public String getDuration() {
         return duration;
-    }
-
-    public void setRoot(String root) {
-        this.root = root;
-    }
-
-    public void setExtension(String extension) {
-        this.extension = extension;
     }
 
     public void setDuration(String duration) {
@@ -186,8 +115,5 @@ class Chordy {
     }
     //</editor-fold>
 
-    public String toString() {
-        return root + extension + duration;
-    }
 
 }
