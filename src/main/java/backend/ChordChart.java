@@ -75,7 +75,7 @@ public class ChordChart {
 
     public void restChord(int index) {
         for(Note n: getChord(index).getNotes())
-           n.createRest(n.getDuration());
+           n = Note.createRest(n.getDuration());
      }
 
     public void delChord(int index) {
@@ -85,7 +85,6 @@ public class ChordChart {
     public void moveChord(int presentIndex, int futureIndex) {
         this.insertChord(futureIndex, this.getChord(presentIndex));
         this.delChord(presentIndex);
-
     }
 
     public void toFile(String path){
