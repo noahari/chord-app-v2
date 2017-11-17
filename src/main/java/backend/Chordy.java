@@ -6,7 +6,7 @@ class Chordy extends Chord {
     private String duration;
 
     public Chordy(String root, String extension, String duration) {
-        super(root + extension + duration);
+        super(root + extension);
         if(!this.getRoot().isOctaveExplicitlySet()) getRoot().setOctaveExplicitlySet(true);
         this.duration = duration;
     }
@@ -115,5 +115,8 @@ class Chordy extends Chord {
     }
     //</editor-fold>
 
+    public String toString() {
+        return super.toString() + duration;
+    }
 
 }

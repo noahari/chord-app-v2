@@ -106,7 +106,7 @@ public class ChordChart {
     public String toString() {
         String retString;
 
-        retString = "T" + tempo + " ";
+        retString = "T" + tempo;
 
         for(Chordy chord : chordList) {
             retString += " " + chord.toString();
@@ -117,7 +117,7 @@ public class ChordChart {
     private String toString(int index) {
         String retString;
 
-        retString = "T" + tempo + " ";
+        retString = "T" + tempo;
 
         for(Chordy chord : getChordList(index)) {
             retString += " " + chord.toString();

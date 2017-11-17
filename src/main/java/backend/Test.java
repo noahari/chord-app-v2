@@ -24,7 +24,12 @@ class Test {
 
         chordChart.insertChord(d);
 
-        chordChart.play();
+        chordChart.play(2);
+
+        Chordy blah = new Chordy("C5", "maj7", "q");
+        System.out.println(blah.toString());
+        blah.setDuration("w");
+        System.out.println(blah.toString());
 
 
 //        chordChart.insertChord(new Chordy("C", "maj7", "q"));
