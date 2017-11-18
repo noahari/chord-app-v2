@@ -44,7 +44,7 @@ public class ChordChart {
     }
 
     public ChordChart(int tempo) {
-        this.chordList = new ArrayList<>();
+        this.chordList = new ArrayList<Chordy>();
         this.tempo = tempo;
     }
 
