@@ -4,10 +4,13 @@ import org.jfugue.theory.*;
 class Chordy extends Chord {
 
     private String duration;
+    //For easy reference to root
+    private Note root = this.getRoot();
 
-    public Chordy(String root, String extension, String duration) {
-        super(root + extension);
-        if(!this.getRoot().isOctaveExplicitlySet()) getRoot().setOctaveExplicitlySet(true);
+
+    public Chordy(String rootStr, String extension, String duration) {
+        super(rootStr + extension);
+        if(!root.isOctaveExplicitlySet()) root.setOctaveExplicitlySet(true);
         this.duration = duration;
     }
 
@@ -68,40 +71,40 @@ class Chordy extends Chord {
     }
 
     public void incOct(){
-        if(this.getRoot().getValue() <= 115) this.getRoot().changeValue(12);
+        if(root.getValue() <= 115) root.changeValue(12);
 
     }
 
     public void incOct(int n){
-        if(this.getRoot().getValue()+ (12* n) <= 127) this.getRoot().changeValue(12*n);
+        if(root.getValue()+ (12* n) <= 127) root.changeValue(12*n);
     }
 
     public void decOct(){
-        if(this.getRoot().getValue() >= 12) this.getRoot().changeValue(-12);
+        if(root.getValue() >= 12) root.changeValue(-12);
     }
 
     public void decOct(int n){
-        if(this.getRoot().getValue()- (12 * n) >= 0) this.getRoot().changeValue(-12*n);
+        if(root.getValue()- (12 * n) >= 0) root.changeValue(-12*n);
     }
 
     //Returns the octave of the chord
     public int getOct(){
-        return Byte.toUnsignedInt(this.getRoot().getOctave());
+        return Byte.toUnsignedInt(root.getOctave());
     }
 
     //helper function to detect the note of a chordy without its octave
     public String detNote(){
-        return this.getRoot().toStringWithoutDuration().replaceAll("[\\d.]", "");
+        return root.toStringWithoutDuration().replaceAll("[\\d.]", "");
     }
 
     //Raises chord by 1 half step
     public void incRoot() {
-        if(this.getRoot().getValue() <= 126) this.getRoot().changeValue(1);
+        if(root.getValue() <= 126) root.changeValue(1);
     }
 
     //Lowers chord by 1 half step
     public void decRoot() {
-        if(this.getRoot().getValue() >= 1) this.getRoot().changeValue(-1);
+        if(root.getValue() >= 1) root.changeValue(-1);
     }
 
     //<editor-fold desc="Getters and Setters">
