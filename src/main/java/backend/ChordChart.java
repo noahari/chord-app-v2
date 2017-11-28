@@ -88,11 +88,7 @@ public class ChordChart {
     }
 
     public void toFile(String path){
-        String pat = "T" + tempo + " ";
-        for(Chordy chord:getChordList()){
-            pat += "" + chord.toString();
-        }
-        Pattern p = new Pattern(pat); // shouldn't `pat` just be `this.toString()`?
+        Pattern p = new Pattern(this.toString());
         try {
             MidiFileManager.savePatternToMidi(p, new File(path+"/yourMidi.midi"));
         }
@@ -107,7 +103,7 @@ public class ChordChart {
 
         retString = "T" + tempo;
 
-        for(Chordy chord : chordList) {
+        for(Chordy chord : chordList) { // should we use this.getChordList() instead?
             retString += " " + chord.toString();
         }
 
