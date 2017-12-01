@@ -3,7 +3,7 @@ import org.jfugue.theory.*;
 
 class Chordy extends Chord {
 
-    private String duration;
+    private Duration duration;
     //For easy reference to root
     private Note root = this.getRoot();
 
@@ -15,59 +15,11 @@ class Chordy extends Chord {
     }
 
     public void decDur(){
-        switch (this.duration){
-            case "w":
-                this.duration = "h";
-                break;
-            case "h":
-                this.duration = "q";
-                break;
-            case "q":
-                this.duration = "i";
-                break;
-            case "i":
-                this.duration = "s";
-                break;
-            case "s":
-                this.duration = "t";
-                break;
-            case "t":
-                this.duration = "x";
-                break;
-            case "x":
-                this.duration = "o";
-                break;
-            case "o":
-                break;
-        }
+        duration.decDur();
     }
 
     public void incDur(){
-        switch (this.duration){
-            case "o":
-                this.duration = "x";
-                break;
-            case "x":
-                this.duration = "t";
-                break;
-            case "t":
-                this.duration = "s";
-                break;
-            case "s":
-                this.duration = "i";
-                break;
-            case "i":
-                this.duration = "q";
-                break;
-            case "q":
-                this.duration = "h";
-                break;
-            case "h":
-                this.duration = "w";
-                break;
-            case "w":
-                break;
-        }
+        duration.incDur();
     }
 
     public void incOct(){
