@@ -61,12 +61,10 @@ public class ChordChart extends Observable {
     //
 
     //Observer Method
-
     public void chartChanged(){
         setChanged();
         notifyObservers();
     }
-
     //
 
     public void incTempo() {
