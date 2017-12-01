@@ -14,7 +14,7 @@ public class NotationPanel extends Panel {
 
     // if this sucks just delete it:
     public void updateDrawnChordList(){
-        ArrayList<DrawnChord> retlist = new ArrayList<DrawnChord>;
+        ArrayList<DrawnChord> retlist = new ArrayList<>();
         for (Chordy chord : userInterface.chordChart.getChordList()){
             retlist.add(new DrawnChord(chord));
         }
