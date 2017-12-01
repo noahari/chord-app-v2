@@ -19,7 +19,7 @@ public class UI extends JPanel implements Observer {
      private ChordButtonsPanel buttonsPanel;
      private GlobalParametersPanel globalParamsPanel;
 
-    ArrayList<Panel> panels = new ArrayList<>();
+    private ArrayList<Panel> panels = new ArrayList<>();
 
     public UI(Observable observable){
         this.observable = observable;

@@ -5,11 +5,13 @@ import backend.*;
 public class GenericUIBuilder implements UIBuilder{
     UI userInterface;
 
+    //All of these "make" methods need to be tied to the actual GUI
+    //but .add is kind of the intuition
     public void makeNotationPanel(){
-        // dothis
+       userInterface.add(new NotationPanel());
     }
     public void makeButtonsPanel(){
-        // dothis
+        userInterface.add(new ChordButtonsPanel());
     }
     public void makeButtons(){
         // dothis
@@ -21,6 +23,6 @@ public class GenericUIBuilder implements UIBuilder{
         return this.userInterface;
     }
     public void makeGlobalParamsPanel(){
-        // dothis
+        userInterface.add(new GlobalParametersPanel());
     }
 }
