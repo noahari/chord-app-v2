@@ -1,7 +1,7 @@
 package backend;
 import org.jfugue.theory.*;
 
-class Chordy extends Chord {
+public class Chordy extends Chord {
 
     private String duration;
     //For easy reference to root
