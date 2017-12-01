@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+// yoooooooooooooooooo should it extend Panel or JPanel???
+// Panel is prettier imo but might be unnecessary
 public class UI extends JPanel implements Observer {
     // Instance Variables
     Observable observable;
     private JFrame frame;
     protected ChordChart chordChart;
 
-    //These classes don't exist yet
      private NotationPanel notationPanel;
      private ChordButtonsPanel buttonsPanel;
      private GlobalParametersPanel globalParamsPanel;
@@ -43,7 +44,7 @@ public class UI extends JPanel implements Observer {
 
     public void setChordChart(ChordChart chord){
         this.chordChart = chord;
-        chordChart.chartChanged();;
+        chordChart.chartChanged();
     }
 
 }
