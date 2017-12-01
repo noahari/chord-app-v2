@@ -8,7 +8,7 @@ public class Chordy extends Chord {
     private Note root = this.getRoot();
 
 
-    public Chordy(String rootStr, String extension, String duration) {
+    public Chordy(String rootStr, String extension, Duration duration) {
         super(rootStr + extension);
         if(!root.isOctaveExplicitlySet()) root.setOctaveExplicitlySet(true);
         this.duration = duration;
