@@ -1,5 +1,7 @@
 package frontend;
 
+import backend.*;
+
 public class GenericUIBuilder implements UIBuilder{
     UI userInterface;
 
@@ -12,11 +14,11 @@ public class GenericUIBuilder implements UIBuilder{
     public void makeButtons(){
         // dothis
     }
-    public void makeUI(){
-        // dothis
+    public void makeUI(ChordChart chord){
+        userInterface = new UI(chord);
     }
-    public void getUI(){
-        // dothis
+    public UI getUI(){
+        return this.userInterface;
     }
     public void makeGlobalParamsPanel(){
         // dothis
