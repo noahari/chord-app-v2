@@ -14,4 +14,8 @@ public class DrawnChord {
     public void SetChord(Chordy chord){
         this.chord = chord;
     }
+
+    public void draw(){
+        // fuck
+    }
 }
