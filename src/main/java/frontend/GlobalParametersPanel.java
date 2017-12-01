@@ -1,6 +1,6 @@
 package frontend;
 
-public class GlobalParametersPanel {
+public class GlobalParametersPanel extends Panel {
     int tempo;
     String key;
 

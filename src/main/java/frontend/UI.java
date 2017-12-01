@@ -18,7 +18,7 @@ public class UI extends JPanel implements Observer {
      private ChordButtonsPanel buttonsPanel;
      private GlobalParametersPanel globalParamsPanel;
 
-    ArrayList<JPanel> panels = new ArrayList<>();
+    ArrayList<Panel> panels = new ArrayList<>();
 
     public UI(Observable observable){
         this.observable = observable;
@@ -26,7 +26,7 @@ public class UI extends JPanel implements Observer {
     }
 
     public void update(Observable obs, Object arg){
-        for(JPanel panel : panels){
+        for(Panel panel : panels){
             panel.draw();
         }
     }
