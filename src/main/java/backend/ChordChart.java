@@ -7,12 +7,14 @@ import org.jfugue.pattern.Pattern;
 import org.jfugue.midi.*;
 import org.jfugue.theory.*;
 import java.io.File;
+import java.util.Observable;
 
-public class ChordChart {
+public class ChordChart extends Observable {
 
     private ArrayList<Chordy> chordList;
 
     private int tempo = 120;
+
 
     //<editor-fold desc="Getters and Setters">
     public ArrayList<Chordy> getChordList() {
@@ -56,6 +58,14 @@ public class ChordChart {
         this.chordList = chordList;
         this.tempo = tempo;
     }
+    //
+
+    //Observer Method
+    public void chartChanged(){
+        setChanged();
+        notifyObservers();
+    }
+    //
 
     public void incTempo() {
         tempo++;

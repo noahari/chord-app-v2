@@ -1,120 +1,72 @@
 package backend;
 import org.jfugue.theory.*;
 
-class Chordy extends Chord {
+public class Chordy extends Chord {
 
-    private String duration;
+    private Duration duration;
     //For easy reference to root
     private Note root = this.getRoot();
 
 
-    public Chordy(String rootStr, String extension, String duration) {
+    public Chordy(String rootStr, String extension, Duration duration) {
         super(rootStr + extension);
         if(!root.isOctaveExplicitlySet()) root.setOctaveExplicitlySet(true);
         this.duration = duration;
     }
 
-    public void decDur(){
-        switch (this.duration){
-            case "w":
-                this.duration = "h";
-                break;
-            case "h":
-                this.duration = "q";
-                break;
-            case "q":
-                this.duration = "i";
-                break;
-            case "i":
-                this.duration = "s";
-                break;
-            case "s":
-                this.duration = "t";
-                break;
-            case "t":
-                this.duration = "x";
-                break;
-            case "x":
-                this.duration = "o";
-                break;
-            case "o":
-                break;
-        }
+    void decDur(){
+        duration.decDur();
     }
 
-    public void incDur(){
-        switch (this.duration){
-            case "o":
-                this.duration = "x";
-                break;
-            case "x":
-                this.duration = "t";
-                break;
-            case "t":
-                this.duration = "s";
-                break;
-            case "s":
-                this.duration = "i";
-                break;
-            case "i":
-                this.duration = "q";
-                break;
-            case "q":
-                this.duration = "h";
-                break;
-            case "h":
-                this.duration = "w";
-                break;
-            case "w":
-                break;
-        }
+    void incDur(){
+        duration.incDur();
     }
 
-    public void incOct(){
+    void incOct(){
         if(root.getValue() <= 115) root.changeValue(12);
 
     }
 
-    public void incOct(int n){
+    void incOct(int n){
         if(root.getValue()+ (12* n) <= 127) root.changeValue(12*n);
     }
 
-    public void decOct(){
+    void decOct(){
         if(root.getValue() >= 12) root.changeValue(-12);
     }
 
-    public void decOct(int n){
+    void decOct(int n){
         if(root.getValue()- (12 * n) >= 0) root.changeValue(-12*n);
     }
 
     //Returns the octave of the chord
-    public int getOct(){
+    int getOct(){
         return Byte.toUnsignedInt(root.getOctave());
     }
 
     //helper function to detect the note of a chordy without its octave
-    public String detNote(){
+    String detNote(){
         return root.toStringWithoutDuration().replaceAll("[\\d.]", "");
     }
 
     //Raises chord by 1 half step
-    public void incRoot() {
+    void incRoot() {
         if(root.getValue() <= 126) root.changeValue(1);
     }
 
     //Lowers chord by 1 half step
-    public void decRoot() {
+    void decRoot() {
         if(root.getValue() >= 1) root.changeValue(-1);
     }
 
     //<editor-fold desc="Getters and Setters">
 
-    public String getDuration() {
-        return duration;
+    String getDuration() {
+       return duration.getDur();
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    void setDuration(String dur) {
+        duration.setDur(dur);
     }
     //</editor-fold>
 

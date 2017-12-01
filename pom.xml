@@ -25,26 +25,6 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jfugue</groupId>
-                            <artifactId>jfugue</artifactId>
-                            <version>5.0.9</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/libs/jfugue-5.0.9.jar</file>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.1</version>
                 <executions>
@@ -79,7 +59,6 @@
         <plugins>
           <plugin>
             <!-- JUnit code coverage. -->
-            <!-- Call with  mvn cobertura:cobertura -->		  
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>cobertura-maven-plugin</artifactId>
             <version>2.6</version>
