@@ -8,11 +8,11 @@ class Test {
 //        player.play("C D E F G A B C6");
         ChordChart chordChart = new ChordChart();
 
-        Chordy c = new Chordy("C5", "maj7", "w");
+        Chordy c = new Chordy("C5", "maj7", Duration.WHOLE);
 
         System.out.println("c: " + c.getRoot().getToneString());
 
-        Chordy d = new Chordy("C5","maj7", "w");
+        Chordy d = new Chordy("C5","maj7", Duration.WHOLE);
 
         System.out.println("d: " + d.getRoot().getToneString());
 
@@ -26,7 +26,7 @@ class Test {
 
         chordChart.play(2);
 
-        Chordy blah = new Chordy("C5", "maj7", "q");
+        Chordy blah = new Chordy("C5", "maj7", Duration.QUARTER);
         System.out.println(blah.toString());
         blah.setDuration("w");
         System.out.println(blah.toString());

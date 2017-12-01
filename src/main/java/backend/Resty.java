@@ -1,7 +1,7 @@
 package backend;
 
 public class Resty extends Chordy {
-    public Resty(String duration) {
+    public Resty(Duration duration) {
         super("R","",duration);
     }
 }

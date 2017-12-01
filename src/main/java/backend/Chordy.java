@@ -62,11 +62,11 @@ public class Chordy extends Chord {
     //<editor-fold desc="Getters and Setters">
 
     public String getDuration() {
-        return duration;
+        duration.getDur();
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setDuration(String dur) {
+        duration.setDur(dur);
     }
     //</editor-fold>
 
