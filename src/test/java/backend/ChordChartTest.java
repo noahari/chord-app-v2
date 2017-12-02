@@ -21,6 +21,7 @@ public class ChordChartTest {
      @Mock
      private Chordy chordy;
      private Chordy chordyB;
+     private Duration duration;
 
     @Test
     public void insertChord() {
@@ -58,7 +59,7 @@ public class ChordChartTest {
     public void restChord(){
         ChordChart chordChart = new ChordChart();
         chordChart.insertUseable(chordy);
-        when(chordy.getNotes()).thenReturn(new Note[]{new Note(60, 15)});
+        when(chordy.getDuration()).thenReturn(Duration.QUARTER);
         chordChart.restChord(0);
         assertTrue(chordChart.getChordList().get(0).isRest());
     }

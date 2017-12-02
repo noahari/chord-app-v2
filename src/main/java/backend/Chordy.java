@@ -22,6 +22,7 @@ public class Chordy extends Chord implements Useable {
         duration.incDur();
     }
 
+
     void incOct(){
         if(root.getValue() <= 115) root.changeValue(12);
     }

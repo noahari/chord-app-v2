@@ -4,8 +4,8 @@ import org.jfugue.theory.Note;
 
 public class Resty extends Note implements Useable{
 
-    public Resty(double duration) {
-        super(createRest(duration));
+    public Resty(Duration duration) {
+        super("R"+duration.getDur());
     }
 
     public boolean isRest(){
