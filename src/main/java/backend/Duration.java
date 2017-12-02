@@ -11,6 +11,7 @@ public enum Duration {
     ONETWENTYEIGHTH("o");
 
     private String duration;
+
     Duration(String duration){
         this.duration = duration;
     }

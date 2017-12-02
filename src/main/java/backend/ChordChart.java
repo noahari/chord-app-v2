@@ -11,19 +11,19 @@ import java.util.Observable;
 
 public class ChordChart extends Observable {
 
-    private ArrayList<Chordy> chordList;
+    private ArrayList<Useable> chordList;
 
     private int tempo = 120;
 
 
     //<editor-fold desc="Getters and Setters">
-    public ArrayList<Chordy> getChordList() {
+    public ArrayList<Useable> getChordList() {
         return chordList;
     }
 
-    private ArrayList<Chordy> getChordList(int index) {
-        ArrayList<Chordy> retList = chordList;
-        retList.subList(0, index-1).clear();
+    public ArrayList<Useable> getChordList(int index) {
+        ArrayList<Useable> retList = chordList;
+        retList.subList(0, index).clear();
         return retList;
     }
 
@@ -31,7 +31,7 @@ public class ChordChart extends Observable {
         return tempo;
     }
 
-    public void setChordList(ArrayList<Chordy> chordList) {
+    public void setChordList(ArrayList<Useable> chordList) {
         this.chordList = chordList;
     }
 
@@ -46,15 +46,15 @@ public class ChordChart extends Observable {
     }
 
     public ChordChart(int tempo) {
-        this.chordList = new ArrayList<Chordy>();
+        this.chordList = new ArrayList<Useable>();
         this.tempo = tempo;
     }
 
-    public ChordChart(ArrayList<Chordy> chordList) {
+    public ChordChart(ArrayList<Useable> chordList) {
         this.chordList = chordList;
     }
 
-    public ChordChart(ArrayList<Chordy> chordList, int tempo) {
+    public ChordChart(ArrayList<Useable> chordList, int tempo) {
         this.chordList = chordList;
         this.tempo = tempo;
     }
@@ -79,14 +79,20 @@ public class ChordChart extends Observable {
         chordList.add(index, chord);
     }
 
-    private Chordy getChord(int index) {
-        return chordList.get(index);
+    public Chordy getChord(int index) {
+        if(getChordList().get(index) instanceof Chordy) {
+            return (Chordy) chordList.get(index);
+        }
+        else return null;
     }
 
     public void restChord(int index) {
-        for(Note n: getChord(index).getNotes())
-           n = Note.createRest(n.getDuration());
+        if(!(getChordList().get(index) instanceof Resty)) {
+            double duration = getChord(index).getNotes()[0].getDuration();
+            getChordList().set(index, new Resty(duration));
+        }
      }
+
 
     public void delChord(int index) {
         chordList.remove(index);
@@ -113,7 +119,7 @@ public class ChordChart extends Observable {
 
         retString = "T" + tempo;
 
-        for(Chordy chord : chordList) { // should we use this.getChordList() instead?
+        for(Useable chord : chordList) { // should we use this.getChordList() instead?
             retString += " " + chord.toString();
         }
 
@@ -124,7 +130,7 @@ public class ChordChart extends Observable {
 
         retString = "T" + tempo;
 
-        for(Chordy chord : getChordList(index)) {
+        for(Useable chord : getChordList(index)) {
             retString += " " + chord.toString();
         }
 

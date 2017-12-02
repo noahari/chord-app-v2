@@ -2,6 +2,7 @@ package frontend;
 
 import java.util.ArrayList;
 import backend.Chordy;
+import backend.Useable;
 
 public class NotationPanel extends Panel {
     private UI userInterface;
@@ -15,8 +16,8 @@ public class NotationPanel extends Panel {
     // if this sucks just delete it:
     public void updateDrawnChordList(){
         ArrayList<DrawnChord> retlist = new ArrayList<>();
-        for (Chordy chord : userInterface.chordChart.getChordList()){
-            retlist.add(new DrawnChord(chord));
+        for (Useable chord : userInterface.chordChart.getChordList()){
+            retlist.add(new DrawnChord((Chordy) chord));
         }
         this.drawnChordList = retlist;
     }

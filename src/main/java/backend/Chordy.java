@@ -1,7 +1,7 @@
 package backend;
 import org.jfugue.theory.*;
 
-public class Chordy extends Chord {
+public class Chordy extends Chord implements Useable {
 
     private Duration duration;
     //For easy reference to root
@@ -59,11 +59,15 @@ public class Chordy extends Chord {
         if(root.getValue() >= 1) root.changeValue(-1);
     }
 
+    public boolean isRest(){return false;}
+
     //<editor-fold desc="Getters and Setters">
 
-    String getDuration() {
-       return duration.getDur();
+    Duration getDuration() {
+       return duration;
     }
+
+    String getDurationString(){return duration.getDur();}
 
     void setDuration(String dur) {
         duration.setDur(dur);

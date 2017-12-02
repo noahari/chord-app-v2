@@ -1,9 +1,7 @@
 package frontend;
 
-import backend.*;
-
 public class GenericUIBuilder implements UIBuilder{
-    UI userInterface;
+    private UI userInterface;
 
     //All of these "make" methods need to be tied to the actual GUI
     //but .add is kind of the intuition
@@ -16,7 +14,7 @@ public class GenericUIBuilder implements UIBuilder{
     public void makeButtons(){
         // dothis
     }
-    public void makeUI(ChordChart chord){
+    public void makeUI(backend.ChordChart chord){
         userInterface = new UI(chord);
     }
     public UI getUI(){
