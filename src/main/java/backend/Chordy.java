@@ -24,7 +24,6 @@ public class Chordy extends Chord implements Useable {
 
     void incOct(){
         if(root.getValue() <= 115) root.changeValue(12);
-
     }
 
     void incOct(int n){

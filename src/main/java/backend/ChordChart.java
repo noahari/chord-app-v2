@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.jfugue.player.Player;
 import org.jfugue.pattern.Pattern;
 import org.jfugue.midi.*;
-import org.jfugue.theory.*;
+
 import java.io.File;
 import java.util.Observable;
 
@@ -72,10 +72,10 @@ public class ChordChart extends Observable {
     }
     public void decTempo() { tempo--; }
 
-    public void insertChord(Chordy chord) {
+    public void insertUseable(Useable chord) {
         chordList.add(chord);
     }
-    public void insertChord(int index, Chordy chord) {
+    public void insertUseable(int index, Useable chord) {
         chordList.add(index, chord);
     }
 
@@ -84,6 +84,10 @@ public class ChordChart extends Observable {
             return (Chordy) chordList.get(index);
         }
         else return null;
+    }
+
+    public Useable getUseable(int index){
+        return getChordList().get(index);
     }
 
     public void restChord(int index) {
@@ -99,7 +103,7 @@ public class ChordChart extends Observable {
     }
 
     public void moveChord(int presentIndex, int futureIndex) {
-        this.insertChord(futureIndex, this.getChord(presentIndex));
+        this.insertUseable(futureIndex, this.getChord(presentIndex));
         this.delChord(presentIndex);
     }
 
