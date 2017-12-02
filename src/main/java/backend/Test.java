@@ -9,6 +9,8 @@ class Test {
 
         Duration dur = Duration.ONETWENTYEIGHTH;
         System.out.println(dur.getDur());
+
+
         dur.incDur();
         System.out.println(dur.getDur());
 
