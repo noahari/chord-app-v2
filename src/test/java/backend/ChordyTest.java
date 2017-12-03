@@ -14,9 +14,8 @@ public class ChordyTest {
 
         sChord.decDur();
 
-        assertEquals("h", sChord.getDuration());
+        assertEquals(Duration.HALF, sChord.getDuration());
         //should add more JUnit tests for each case
-
     }
 
     @Test
@@ -26,7 +25,7 @@ public class ChordyTest {
 
         sChord.incDur();
 
-        assertEquals("x", sChord.getDuration());
+        assertEquals(Duration.SIXTYFOURTH, sChord.getDuration());
         //should add more JUnit tests for each case
     }
 

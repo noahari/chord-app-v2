@@ -10,7 +10,7 @@ public class ButtonsPanel extends JPanel {
     UI userInterface;
 
     public void rootButtonHit(JButton rootButton){
-        userInterface.getChordChart().insertChord(new Chordy(rootButton.getName(), "", Duration.QUARTER));
+        userInterface.getChordChart().insertUseable(new Chordy(rootButton.getName(), "", Duration.QUARTER));
     }
     public void actionPerformed(ActionEvent evt){
         //

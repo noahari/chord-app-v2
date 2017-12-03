@@ -20,6 +20,7 @@ class Test {
        Resty r = new Resty(Duration.WHOLE);
 
        Chordy c = new Chordy("C5", "maj7", Duration.QUARTER);
+
 //
 //        System.out.println("c: " + c.getRoot().getToneString());
 //

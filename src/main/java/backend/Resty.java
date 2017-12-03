@@ -9,6 +9,6 @@ public class Resty extends Note implements Useable{
     }
 
     public boolean isRest(){
-        return super.isRest();
+        return true;
     }
 }

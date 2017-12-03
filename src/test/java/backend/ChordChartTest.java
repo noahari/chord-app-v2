@@ -73,9 +73,4 @@ public class ChordChartTest {
         assertTrue(new File(path+"/yourMidi.midi").exists());
     }
 
-
-
-
-
-
 }

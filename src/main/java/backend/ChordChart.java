@@ -91,7 +91,7 @@ public class ChordChart extends Observable {
     }
 
     public void restChord(int index) {
-        if(!(getChordList().get(index) instanceof Resty)) {
+        if(!(getChordList().get(index).isRest())) {
             Chordy c = getChord(index);
             getChordList().set(index, new Resty(c.getDuration()));
         }
