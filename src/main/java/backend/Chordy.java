@@ -14,12 +14,60 @@ public class Chordy extends Chord implements Useable {
         this.duration = duration;
     }
 
-    void decDur(){
-        duration.decDur();
+    public void incDur(){
+        switch (this.duration){
+            case ONETWENTYEIGHTH:
+                this.duration = Duration.SIXTYFOURTH;
+                break;
+            case SIXTYFOURTH:
+                this.duration = Duration.THIRTYSECOND;
+                break;
+            case THIRTYSECOND:
+                this.duration = Duration.SIXTEENTH;
+                break;
+            case SIXTEENTH:
+                this.duration = Duration.EIGHTH;
+                break;
+            case EIGHTH:
+                this.duration = Duration.QUARTER;
+                break;
+            case QUARTER:
+                this.duration = Duration.HALF;
+                break;
+            case HALF:
+                this.duration = Duration.WHOLE;
+                break;
+            case WHOLE:
+                break;
+        }
     }
 
-    void incDur(){
-        duration.incDur();
+    public void decDur(){
+        switch (this.duration){
+            case WHOLE:
+                this.duration = Duration.HALF;
+                break;
+            case HALF:
+                this.duration = Duration.QUARTER;
+                break;
+            case QUARTER:
+                this.duration = Duration.EIGHTH;
+                break;
+            case EIGHTH:
+                this.duration = Duration.SIXTEENTH;
+                break;
+            case SIXTEENTH:
+                this.duration = Duration.THIRTYSECOND;
+                break;
+            case THIRTYSECOND:
+                this.duration = Duration.SIXTYFOURTH;
+                break;
+            case SIXTYFOURTH:
+                this.duration = Duration.ONETWENTYEIGHTH;
+                break;
+            case ONETWENTYEIGHTH:
+                break;
+        }
     }
 
 

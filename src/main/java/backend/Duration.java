@@ -24,62 +24,6 @@ public enum Duration {
         this.duration = dur;
     }
 
-    public void incDur(){
-        switch (this.duration){
-            case "o":
-                this.duration = "x";
-                break;
-            case "x":
-                this.duration = "t";
-                break;
-            case "t":
-                this.duration = "s";
-                break;
-            case "s":
-                this.duration = "i";
-                break;
-            case "i":
-                this.duration = "q";
-                break;
-            case "q":
-                this.duration = "h";
-                break;
-            case "h":
-                this.duration = "w";
-                break;
-            case "w":
-                break;
-        }
-    }
-
-    public void decDur(){
-        switch (this.duration){
-            case "w":
-                this.duration = "h";
-                break;
-            case "h":
-                this.duration = "q";
-                break;
-            case "q":
-                this.duration = "i";
-                break;
-            case "i":
-                this.duration = "s";
-                break;
-            case "s":
-                this.duration = "t";
-                break;
-            case "t":
-                this.duration = "x";
-                break;
-            case "x":
-                this.duration = "o";
-                break;
-            case "o":
-                break;
-        }
-    }
-
     public Boolean isValidDur(String dur){
         if(dur.equals("w") ||
                 dur.equals("h") ||
