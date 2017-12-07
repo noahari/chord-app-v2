@@ -4,7 +4,9 @@ import com.sun.xml.internal.fastinfoset.util.QualifiedNameArray;
 import org.jfugue.theory.Chord;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
+import org.apache.commons.io.FilenameUtils;
 
+import java.io.File;
 import java.util.List;
 
 class Test {
@@ -26,11 +28,10 @@ class Test {
 
 //
 //        System.out.println("c: " + c.getRoot().getToneString());
-        Key key = new Key("BbMaj");
-        List<Note> notes = key.getScale().getIntervals().setRoot(key.getRoot().toString()).getNotes();
-        for (Note n : notes) {
-            String nStr = n.toString();
-            System.out.println(nStr.substring(0, nStr.length()-1));
+        File folder = new File("graphics/");
+        File[] listOfFiles = folder.listFiles();
+        for (File f : listOfFiles) {
+            System.out.println(FilenameUtils.removeExtension(f.getName()));
         }
 //
 //

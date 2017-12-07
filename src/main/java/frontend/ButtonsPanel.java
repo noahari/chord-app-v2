@@ -4,6 +4,7 @@ import backend.Chordy;
 import backend.Duration;
 import backend.ChordChart;
 import jdk.nashorn.internal.objects.Global;
+import org.apache.commons.io.FilenameUtils;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
@@ -19,7 +20,12 @@ import java.util.List;
 
 public class ButtonsPanel extends Panel {
     UI userInterface;
-    private ArrayList<Icon> iconList = new ArrayList<>();
+
+    public ArrayList<ImageIcon> getIconList() {
+        return iconList;
+    }
+
+    private ArrayList<ImageIcon> iconList = new ArrayList<>();
     private JPanel panel;
     private JButton chordButton1;
     private JButton chordButton5;
@@ -50,7 +56,7 @@ public class ButtonsPanel extends Panel {
         //
     }
 
-    private void getButtons() {
+    public void getButtons() {
         ChordChart chordchard = userInterface.getChordChart();
         GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
         String gpKey = globalParametersPanel.getKey();
@@ -59,21 +65,22 @@ public class ButtonsPanel extends Panel {
         for (Note n : notes) {
             try {
                 toIcons(n);
-            }
-            catch(IOException ioe){
+            } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
         }
     }
 
-    private void toIcons(Note n) throws IOException{
+    public void toIcons(Note n) throws IOException {
         File folder = new File("graphics/");
         File[] listOfFiles = folder.listFiles();
         String nStr = n.toString();
         for (File f : listOfFiles) {
-            if (nStr.substring(0, nStr.length()-1).equals(f.toString())){
+            if (nStr.substring(0, nStr.length() - 1).equals(FilenameUtils.removeExtension(f.getName()))) {
                 BufferedImage image = ImageIO.read(f);
-                iconList.add(new ImageIcon(image));
+                ImageIcon icon = new ImageIcon(image);
+                icon.setDescription(nStr.substring(0, nStr.length() - 1));
+                iconList.add(icon);
             }
         }
     }
