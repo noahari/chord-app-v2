@@ -12,19 +12,18 @@ import java.util.Observer;
 public class UI extends JPanel implements Observer {
     // Instance Variables
     Observable observable;
+    NotationPanel notationPanel;
+    GlobalParametersPanel globalParametersPanel;
+    ButtonsPanel buttonsPanel;
     ChordChart chordChart;
     private JFrame frame;
-
-    private NotationPanel notationPanel;
-    private ChordButtonsPanel buttonsPanel;
-    private GlobalParametersPanel globalParamsPanel;
 
     private ArrayList<Panel> panels = new ArrayList<>();
 
     public UI(Observable observable){
         this.observable = observable;
         observable.addObserver(this);
-        addPanel();
+        addPanels();
     }
 
     public void update(Observable obs, Object arg){
@@ -33,15 +32,19 @@ public class UI extends JPanel implements Observer {
         }
     }
 
-    private void addPanel(){
-        panels.add(notationPanel);
-        panels.add(buttonsPanel);
-        panels.add(globalParamsPanel);
+    private void addPanels(){
+        panels.add(globalParametersPanel = new GlobalParametersPanel());
+        panels.add(notationPanel = new NotationPanel());
+        panels.add(buttonsPanel = new ButtonsPanel());
     }
 
     public ChordChart getChordChart(){
         return chordChart;
     }
+
+    public NotationPanel getNotationPanel(){return notationPanel;}
+
+    public GlobalParametersPanel getGlobalParametersPanel(){return globalParametersPanel;}
 
     public void setChordChart(ChordChart chord){
         this.chordChart = chord;

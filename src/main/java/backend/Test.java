@@ -2,7 +2,10 @@ package backend;
 
 import com.sun.xml.internal.fastinfoset.util.QualifiedNameArray;
 import org.jfugue.theory.Chord;
+import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
+
+import java.util.List;
 
 class Test {
     public static void main(String[] args){
@@ -23,14 +26,13 @@ class Test {
 
 //
 //        System.out.println("c: " + c.getRoot().getToneString());
+        Key key = new Key("BbMaj");
+        List<Note> notes = key.getScale().getIntervals().setRoot(key.getRoot().toString()).getNotes();
+        for (Note n : notes) {
+            String nStr = n.toString();
+            System.out.println(nStr.substring(0, nStr.length()-1));
+        }
 //
-        Chordy d = new Chordy("C5","maj7", Duration.QUARTER);
-
-        chordChart.insertUseable(c);
-        chordChart.insertUseable(r);
-        chordChart.insertUseable(d);
-
-        chordChart.play();
 //
 //        System.out.println("d: " + d.getRoot().getToneString());
 //
