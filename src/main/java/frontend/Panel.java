@@ -5,6 +5,7 @@ import org.jfugue.theory.Note;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -32,12 +33,16 @@ public abstract class Panel extends JPanel {
     public JButton toIcon(Note n) throws IOException {
         File blankFile = new File("graphics/C.png");
         String nStr = n.toString();
+        System.out.println(nStr);
         BufferedImage image = ImageIO.read(blankFile);
         ImageIcon icon = new ImageIcon(image);
         icon.setDescription(nStr);
         JButton button = new JButton();
         button.setIcon(icon);
-        button.setText(nStr);
+        button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 25));
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
+        button.setText(nStr.substring(0, nStr.length()-1));
         return button;
     }
 }

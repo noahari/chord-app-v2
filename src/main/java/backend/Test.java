@@ -14,19 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 class Test {
-    public static void toChromaticNotes(){
-        Intervals chromatic = new Intervals("1 #1 2 #2 3 4 #4 5 #5 6 #6 7 #7");
-        chromatic.setRoot("C5");
-        Set<String> chromaticNotes = new LinkedHashSet<>();
-        for (Note n : chromatic.getNotes()) {
-            chromaticNotes.add(Note.getDispositionedToneStringWithoutOctave(1, n.getValue()));
-            chromaticNotes.add(Note.getDispositionedToneStringWithoutOctave(-1, n.getValue()));
-        }
-        System.out.println(chromaticNotes);
-        for(String s : chromaticNotes.toArray(new String[0])){
-            System.out.println(s);
-        }
-    }
     public static void main(String[] args){
 //        Player player = new Player();
 //        player.play("C D E F G A B C6");
@@ -74,7 +61,7 @@ class Test {
 //        chordChart.play();
         //Note[] notes = new Note[]{new Note("C5"), new Note("C#5"), new Note("D5")};
 
-        toChromaticNotes();
+
 //
 //
 //        chordChart.insertUseable(new Chordy("C", "maj7", "q"));
