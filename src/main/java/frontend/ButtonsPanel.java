@@ -3,9 +3,6 @@ package frontend;
 import backend.Chordy;
 import backend.Duration;
 import backend.ChordChart;
-import jdk.nashorn.internal.objects.Global;
-import org.apache.commons.io.FilenameUtils;
-import org.jfugue.theory.Chord;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
@@ -14,10 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ButtonsPanel extends Panel implements ActionListener {
@@ -32,10 +27,18 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private JButton chordButton3;
     private JButton extraButton;
     private JButton chordButton4;
-    private String extension;
+    private String extension; //Is this also in global params panel?
 
     public UI getUserInterface() {
         return userInterface;
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("ButtonsPanel");
+        frame.setContentPane(new ButtonsPanel().panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     public void setUserInterface(UI userInterface) {
@@ -45,14 +48,6 @@ public class ButtonsPanel extends Panel implements ActionListener {
     public ButtonsPanel() {
         $$$setupUI$$$();
         panel.setPreferredSize(new Dimension(900, 400));
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("ButtonsPanel");
-        frame.setContentPane(new ButtonsPanel().panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
     }
 
     public void rootButtonHit(JButton rootButton) {
@@ -67,17 +62,14 @@ public class ButtonsPanel extends Panel implements ActionListener {
             Chordy chord = new Chordy(note, this.extension, Duration.QUARTER);
             chordChart.insertUseable(chord);
             this.getUserInterface().setChordChart(chordChart);
-        }
-        else{
+        } else {
             //ADD JMENU OR WHATEVER WITH BUTTONS IN NONUSED LIST
         }
     }
 
-    public void getButtons() {
-        //ChordChart chordchard = userInterface.getChordChart();
-        //GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
-        //String gpKey = globalParametersPanel.getKey();
-        String gpKey = "Amin";
+    private void getButtons() {
+        GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
+        String gpKey = globalParametersPanel.getKey();
         Key key = new Key(gpKey);
         List<Note> notes = key.getScale().getIntervals().setRoot(key.getRoot().toString()).getNotes();
         for (Note n : notes) {
@@ -97,6 +89,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         this.getButtons();
+        //I tried to use an Array and iterate over it but it didn't work??
         chordButton1 = new JButton();
         chordButton1.setIcon(this.getIconList().get(0));
         chordButton1.addActionListener(this);
@@ -119,12 +112,8 @@ public class ButtonsPanel extends Panel implements ActionListener {
         chordButton7.setIcon(this.getIconList().get(6));
         chordButton7.addActionListener(this);
         extraButton = new JButton();
-        try {
-            extraButton.setIcon(new ImageIcon(ImageIO.read(new File("graphics/EllipseButton.png"))));
-            extraButton.addActionListener(this);
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+        extraButton.setIcon(getEllipseIcon());
+        extraButton.addActionListener(this);
     }
 
     /**
@@ -162,4 +151,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
     public JComponent $$$getRootComponent$$$() {
         return panel;
     }
+
 }
+
+

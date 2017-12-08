@@ -13,6 +13,15 @@ import java.util.ArrayList;
 public abstract class Panel extends JPanel {
     private ArrayList<ImageIcon> iconList = new ArrayList<>();
     private ArrayList<ImageIcon> nonUsedIconList = new ArrayList<>();
+    private ImageIcon ellipseIcon;
+
+    public void setEllipseIcon(ImageIcon ellipseIcon) {
+        this.ellipseIcon = ellipseIcon;
+    }
+
+    public ImageIcon getEllipseIcon() {
+        return ellipseIcon;
+    }
 
     public ArrayList<ImageIcon> getIconList() {
         return iconList;
@@ -31,8 +40,12 @@ public abstract class Panel extends JPanel {
             icon.setDescription(fileName);
             if (nStr.substring(0, nStr.length() - 1).equals(fileName)) {
                 iconList.add(icon);
-            } else {
-                nonUsedList.add(icon);
+            }
+            else if(fileName.equals("EllipseButton")){
+                this.setEllipseIcon(icon);
+            }
+            else {
+                nonUsedIconList.add(icon);
             }
         }
     }

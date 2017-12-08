@@ -12,9 +12,9 @@ import java.util.Observer;
 public class UI extends JPanel implements Observer {
     // Instance Variables
     Observable observable;
-    NotationPanel notationPanel;
-    GlobalParametersPanel globalParametersPanel;
-    ButtonsPanel buttonsPanel;
+    private NotationPanel notationPanel;
+    private GlobalParametersPanel globalParametersPanel;
+    private ButtonsPanel buttonsPanel;
     ChordChart chordChart;
     private JFrame frame;
 
