@@ -5,6 +5,7 @@ import backend.Duration;
 import backend.ChordChart;
 import jdk.nashorn.internal.objects.Global;
 import org.apache.commons.io.FilenameUtils;
+import org.jfugue.theory.Chord;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
@@ -12,21 +13,16 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ButtonsPanel extends Panel {
+public class ButtonsPanel extends Panel implements ActionListener {
     UI userInterface;
 
-    public ArrayList<ImageIcon> getIconList() {
-        return iconList;
-    }
-
-    private ArrayList<ImageIcon> iconList = new ArrayList<>();
     private JPanel panel;
     private JButton chordButton1;
     private JButton chordButton5;
@@ -36,10 +32,19 @@ public class ButtonsPanel extends Panel {
     private JButton chordButton3;
     private JButton extraButton;
     private JButton chordButton4;
+    private String extension;
+
+    public UI getUserInterface() {
+        return userInterface;
+    }
+
+    public void setUserInterface(UI userInterface) {
+        this.userInterface = userInterface;
+    }
 
     public ButtonsPanel() {
         $$$setupUI$$$();
-        panel.setPreferredSize(new Dimension(600, 700));
+        panel.setPreferredSize(new Dimension(900, 400));
     }
 
     public static void main(String[] args) {
@@ -55,7 +60,17 @@ public class ButtonsPanel extends Panel {
     }
 
     public void actionPerformed(ActionEvent evt) {
-        //
+        JButton button = (JButton) evt.getSource();
+        if (!button.equals(extraButton)) {
+            ChordChart chordChart = this.getUserInterface().getChordChart();
+            String note = ((ImageIcon) button.getIcon()).getDescription();
+            Chordy chord = new Chordy(note, this.extension, Duration.QUARTER);
+            chordChart.insertUseable(chord);
+            this.getUserInterface().setChordChart(chordChart);
+        }
+        else{
+            //ADD JMENU OR WHATEVER WITH BUTTONS IN NONUSED LIST
+        }
     }
 
     public void getButtons() {
@@ -74,20 +89,6 @@ public class ButtonsPanel extends Panel {
         }
     }
 
-    public void toIcons(Note n) throws IOException {
-        File folder = new File("graphics/");
-        File[] listOfFiles = folder.listFiles();
-        String nStr = n.toString();
-        for (File f : listOfFiles) {
-            if (nStr.substring(0, nStr.length() - 1).equals(FilenameUtils.removeExtension(f.getName()))) {
-                BufferedImage image = ImageIO.read(f);
-                ImageIcon icon = new ImageIcon(image);
-                icon.setDescription(nStr.substring(0, nStr.length() - 1));
-                iconList.add(icon);
-            }
-        }
-    }
-
     public void draw() {
         createUIComponents();
     }
@@ -98,20 +99,32 @@ public class ButtonsPanel extends Panel {
         this.getButtons();
         chordButton1 = new JButton();
         chordButton1.setIcon(this.getIconList().get(0));
+        chordButton1.addActionListener(this);
         chordButton2 = new JButton();
         chordButton2.setIcon(this.getIconList().get(1));
+        chordButton2.addActionListener(this);
         chordButton3 = new JButton();
         chordButton3.setIcon(this.getIconList().get(2));
+        chordButton3.addActionListener(this);
         chordButton4 = new JButton();
         chordButton4.setIcon(this.getIconList().get(3));
+        chordButton4.addActionListener(this);
         chordButton5 = new JButton();
         chordButton5.setIcon(this.getIconList().get(4));
+        chordButton5.addActionListener(this);
         chordButton6 = new JButton();
         chordButton6.setIcon(this.getIconList().get(5));
+        chordButton6.addActionListener(this);
         chordButton7 = new JButton();
         chordButton7.setIcon(this.getIconList().get(6));
+        chordButton7.addActionListener(this);
         extraButton = new JButton();
-        extraButton.setIcon(new )
+        try {
+            extraButton.setIcon(new ImageIcon(ImageIO.read(new File("graphics/EllipseButton.png"))));
+            extraButton.addActionListener(this);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
     /**
@@ -137,7 +150,6 @@ public class ButtonsPanel extends Panel {
         panel.add(chordButton7, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         chordButton3.setText("");
         panel.add(chordButton3, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        extraButton = new JButton();
         extraButton.setText("");
         panel.add(extraButton, new com.intellij.uiDesigner.core.GridConstraints(1, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         chordButton4.setText("");
