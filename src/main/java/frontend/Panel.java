@@ -29,20 +29,15 @@ public abstract class Panel extends JPanel {
 
     public abstract void draw();
 
-    public void toIcon(Note n) throws IOException {
-        File folder = new File("graphics/blankButton.png");
+    public JButton toIcon(Note n) throws IOException {
+        File blankFile = new File("graphics/C.png");
         String nStr = n.toString();
-        String fileName = FilenameUtils.removeExtension(folder.getName());
-        BufferedImage image = ImageIO.read(folder);
+        BufferedImage image = ImageIO.read(blankFile);
         ImageIcon icon = new ImageIcon(image);
-        icon.setDescription(fileName);
-        if (nStr.substring(0,nStr.length() - 1).equals(fileName)) {
-            iconList.add(icon);
-        } else if (fileName.equals("EllipseButton")) {
-            this.setEllipseIcon(icon);
-        } else {
-            nonUsedIconList.add(icon);
-        }
-
+        icon.setDescription(nStr);
+        JButton button = new JButton();
+        button.setIcon(icon);
+        button.setText(nStr);
+        return button;
     }
 }
