@@ -69,12 +69,11 @@ public class ButtonsPanel extends Panel implements ActionListener {
 
     private void getButtons() {
         GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
-        String gpKey = globalParametersPanel.getKey();
-        Key key = new Key(gpKey);
-        List<Note> notes = key.getScale().getIntervals().setRoot(key.getRoot().toString()).getNotes();
+        Key key = globalParametersPanel.getKey();
+        List<Note> notes = key.getScale().getIntervals().getNotes();
         for (Note n : notes) {
             try {
-                toIcons(n);
+                toIcon(n);
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
