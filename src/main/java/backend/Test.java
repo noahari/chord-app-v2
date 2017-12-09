@@ -1,15 +1,9 @@
 package backend;
 
-import com.sun.xml.internal.fastinfoset.util.QualifiedNameArray;
+
 import frontend.ButtonsPanel;
 import frontend.Panel;
 import org.jfugue.theory.*;
-import org.apache.commons.io.FilenameUtils;
-
-import java.io.File;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 class Test {
     public static void main(String[] args){
