@@ -1,6 +1,7 @@
 package frontend;
 
 import org.apache.commons.io.FilenameUtils;
+import org.jfugue.theory.Chord;
 import org.jfugue.theory.Note;
 
 import javax.imageio.ImageIO;
@@ -12,37 +13,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Panel extends JPanel {
-    private ArrayList<ImageIcon> iconList = new ArrayList<>();
-    private ArrayList<ImageIcon> nonUsedIconList = new ArrayList<>();
-    private ImageIcon ellipseIcon;
-
-    public void setEllipseIcon(ImageIcon ellipseIcon) {
-        this.ellipseIcon = ellipseIcon;
-    }
-
-    public ImageIcon getEllipseIcon() {
-        return ellipseIcon;
-    }
-
-    public ArrayList<ImageIcon> getIconList() {
-        return iconList;
-    }
-
     public abstract void draw();
 
-    public JButton toIcon(Note n) throws IOException {
-        File blankFile = new File("graphics/C.png");
-        String nStr = n.toString();
-        System.out.println(nStr);
-        BufferedImage image = ImageIO.read(blankFile);
-        ImageIcon icon = new ImageIcon(image);
-        icon.setDescription(nStr);
+    public JButton toIcon(Chord c) throws IOException {
+        String cStr = c.toString();
+        cStr = cStr.substring(0, cStr.length() - 4);
+        switch(c.getChordType()){
+            case "AUG":
+                cStr = cStr + "+";
+            case "MAJ":
+                cStr = cStr.toUpperCase();
+                break;
+            case "DIM":
+                cStr = cStr + "o";
+            case "MIN":
+                cStr = cStr.toLowerCase();
+                break;
+        }
+        ImageIcon icon = new ImageIcon("graphics/C.png");
+        icon.setDescription(cStr);
         JButton button = new JButton();
         button.setIcon(icon);
         button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 25));
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition(JButton.CENTER);
-        button.setText(nStr.substring(0, nStr.length()-1));
+        button.setText(cStr);
         return button;
+
     }
 }

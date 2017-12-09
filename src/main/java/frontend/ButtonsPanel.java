@@ -3,9 +3,7 @@ package frontend;
 import backend.Chordy;
 import backend.Duration;
 import backend.ChordChart;
-import org.jfugue.theory.Intervals;
-import org.jfugue.theory.Key;
-import org.jfugue.theory.Note;
+import org.jfugue.theory.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -75,23 +73,27 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private void getButtons() throws IOException {
         //GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
         //Key key = globalParametersPanel.getKey();
-        Key key = new Key("Cmaj");
+        Key key = new Key("DMaj");
         Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
-        String[] chromaticNotesArr = chromaticNotes.toArray(new String[0]);
-        key.getScale().getIntervals().setRoot(key.getRoot());
-        List<Note> keyNotes = key.getScale().getIntervals().getNotes();
-        for (int i = 0; i < chromaticNotesArr.length; i++) {
-            Note n = new Note(chromaticNotesArr[i] + "4");
-            if (keyNotes.contains(n)) {
-                usedButtonList.add(toIcon(n));
-                chromaticNotes.remove(n.toString());
-            } else {
-                nonUsedButtonList.add(toIcon(n));
-            }
+        ChordProgression progression;
+        if (key.getScale().getMajorOrMinorIndicator() == 1) {
+            progression = new ChordProgression("I ii iii IV V vi viio");
+        } else {
+            progression = new ChordProgression("i iio III iv v VI VII");
+        }
+        progression.setKey(key);
+        for (Chord c : progression.getChords()) {
+            System.out.println(c);
+            usedButtonList.add(toIcon(c));
+            String nStr = c.toString();
+            chromaticNotes.remove(nStr.substring(0, nStr.length() - 4));
+        }
+        for (String str : chromaticNotes) {
+            nonUsedButtonList.add(toIcon(new Chord(str)));
         }
     }
 
-    public static Set<String> getChromaticNotes() {
+    private static Set<String> getChromaticNotes() {
         Intervals chromatic = new Intervals("1 #1 2 #2 3 4 #4 5 #5 6 #6 7 #7");
         chromatic.setRoot("C5");
         Set<String> chromaticNotes = new LinkedHashSet<>();
@@ -114,6 +116,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        //I tried to use an array to iterate it doesnt work?
         chordButton1 = usedButtonList.get(0);
         chordButton1.addActionListener(this);
         chordButton2 = usedButtonList.get(1);
@@ -128,35 +131,8 @@ public class ButtonsPanel extends Panel implements ActionListener {
         chordButton1.addActionListener(this);
         chordButton7 = usedButtonList.get(6);
         chordButton1.addActionListener(this);
-
-
-        //I tried to use an Array and iterate over it but it didn't work??
-
-//        chordButton1 = new JButton();
-//        chordButton1.setIcon(this.getIconList().get(0));
-//        chordButton1.setText(this.getIconList().get(0).getDescription());
-//        chordButton1.addActionListener(this);
-//        chordButton2 = new JButton();
-//        chordButton2.setIcon(this.getIconList().get(1));
-//        chordButton2.addActionListener(this);
-//        chordButton3 = new JButton();
-//        chordButton3.setIcon(this.getIconList().get(2));
-//        chordButton3.addActionListener(this);
-//        chordButton4 = new JButton();
-//        chordButton4.setIcon(this.getIconList().get(3));
-//        chordButton4.addActionListener(this);
-//        chordButton5 = new JButton();
-//        chordButton5.setIcon(this.getIconList().get(4));
-//        chordButton5.addActionListener(this);
-//        chordButton6 = new JButton();
-//        chordButton6.setIcon(this.getIconList().get(5));
-//        chordButton6.addActionListener(this);
-//        chordButton7 = new JButton();
-//        chordButton7.setIcon(this.getIconList().get(6));
-//        chordButton7.addActionListener(this);
-//        extraButton = new JButton();
-//        extraButton.setIcon(getEllipseIcon());
-//        extraButton.addActionListener(this);
+        extraButton = new JButton();
+        extraButton.setIcon(new ImageIcon("graphics/EllipseButton.png"));
     }
 
     /**
@@ -177,7 +153,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
         panel.add(chordButton2, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel.add(chordButton7, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel.add(chordButton3, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        extraButton = new JButton();
+        extraButton.setEnabled(true);
         extraButton.setText("");
         panel.add(extraButton, new com.intellij.uiDesigner.core.GridConstraints(1, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel.add(chordButton4, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
