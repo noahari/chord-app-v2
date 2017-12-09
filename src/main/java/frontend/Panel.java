@@ -1,17 +1,13 @@
 package frontend;
 
-import org.apache.commons.io.FilenameUtils;
-import org.jfugue.theory.Chord;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
+
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public abstract class Panel extends JPanel {
     private Key key;
@@ -32,17 +28,17 @@ public abstract class Panel extends JPanel {
     }
 
 
-    private String stringCorrect(Note n) throws IOException{
+     public String stringCorrect(Note n){
         String nStr = n.toString();
         char noteOnly = nStr.charAt(0);
         Boolean sharpKey = isSharpKey(getKey());
         if(nStr.length() > 1) {
-            if (sharpKey) {
+            if (sharpKey)
                 nStr = Note.getDispositionedToneStringWithoutOctave(1, n.getValue());
-            } else
+            else
                 nStr = Note.getDispositionedToneStringWithoutOctave(-1, n.getValue());
         }
-         String keySignature = getKey().getKeySignature();
+        String keySignature = getKey().getKeySignature();
         if((noteOnly == 'C' || noteOnly == 'F') && sharpKey && !keySignature.equals("Cmaj")){
             if(nStr.equals("C") && !(keySignature.equals("Gmaj") || keySignature.equals("Emin"))) nStr = "B#";
             if(nStr.equals("F")) nStr = "E#";

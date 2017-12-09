@@ -2,6 +2,7 @@ package backend;
 
 import com.sun.xml.internal.fastinfoset.util.QualifiedNameArray;
 import frontend.ButtonsPanel;
+import frontend.Panel;
 import org.jfugue.theory.*;
 import org.apache.commons.io.FilenameUtils;
 
@@ -12,8 +13,9 @@ import java.util.Set;
 
 class Test {
     public static void main(String[] args){
-        Key k = new Key("EBmin");
-        System.out.println(k.getKeySignature());
+        Panel p = new ButtonsPanel();
+        p.setKey(new Key("C#maj"));
+        System.out.println(p.stringCorrect(new  Note("E#")));
 
 //
 //
