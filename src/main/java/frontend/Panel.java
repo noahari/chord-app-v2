@@ -23,27 +23,14 @@ public abstract class Panel extends JPanel {
 
     public abstract void draw();
 
-    public JButton toButton(Note n, int i) throws IOException{
+    public ChordButton toButton(Note n, int i) throws IOException{
         String nStr = stringCorrect(n);
-        nStr = stringFromKey(nStr, i);
-        return toIcon(nStr);
+        return toIcon(nStr, stringFromKey(nStr, i));
     }
 
-    public JButton toButton(Note n) throws IOException {
+    public ChordButton toButton(Note n) throws IOException {
         String nStr = stringCorrect(n);
-        return toIcon(nStr);
-    }
-
-    private static String isMajor(String str){
-        return str.toUpperCase();
-    }
-
-    private static String isMinor(String str){
-        return str.toLowerCase();
-    }
-
-    private static String isDiminished(String str){
-        return isMinor(str) + "o";
+        return toIcon(nStr, "MAJ");
     }
 
     private static boolean isSharpKey(Key key) {
@@ -53,15 +40,14 @@ public abstract class Panel extends JPanel {
 
     private String stringFromKey(String str, int i ){
         if(getKey().getScale().getMajorOrMinorIndicator() == 1){
-            if (i == 0 || i == 3 || i == 4) str = isMajor(str);
-            else if (i != 6) str = isMinor(str);
-            else str = isDiminished(str);
+            if (i == 0 || i == 3 || i == 4) return "MAJ";
+            else if (i != 6) return "MIN";
+            else return "DIM";
         } else{
-            if (i == 2 || i == 5 || i == 6) str = isMajor(str);
-            else if (i != 1) str = isMinor(str);
-            else str = isDiminished(str);
+            if (i == 2 || i == 5 || i == 6) return "MAJ";
+            else if (i != 1) return "MIN";
+            else return "DIM";
         }
-        return str;
     }
 
      private String stringCorrect(Note n){
@@ -86,15 +72,14 @@ public abstract class Panel extends JPanel {
         return nStr;
     }
 
-    private JButton toIcon(String nStr) throws IOException {
+    private ChordButton toIcon(String nStr, String extension) throws IOException {
         ImageIcon icon = new ImageIcon("graphics/C.png");
-        icon.setDescription(nStr);
-        JButton button = new JButton();
+        ChordButton button = new ChordButton(nStr, extension);
         //button.setIcon(icon);
         button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 25));
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition(JButton.CENTER);
-        button.setText(nStr);
+        button.setText(button.toString());
         return button;
     }
 }
