@@ -18,8 +18,8 @@ import java.util.List;
 public class ButtonsPanel extends Panel implements ActionListener {
     UI userInterface;
 
-    ArrayList<JButton> usedButtonList = new ArrayList<>();
-    ArrayList<JButton> nonUsedButtonList = new ArrayList<>();
+    private ArrayList<JButton> usedButtonList = new ArrayList<>();
+    private ArrayList<JButton> nonUsedButtonList = new ArrayList<>();
 
     private JPanel panel;
     private JButton chordButton1;
@@ -73,12 +73,12 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private void getButtons() throws IOException {
 //        GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
  //       setKey(globalParametersPanel.getKey());
-        this.setKey(new Key("C#maj"));
+        this.setKey(new Key("Cmaj"));
         Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
         getKey().getScale().getIntervals().setRoot(getKey().getRoot());
         List<Note> keyNotes = getKey().getScale().getIntervals().getNotes();
         for (Note n : keyNotes) {
-            usedButtonList.add(toButton(n));
+            usedButtonList.add(toButton(n, keyNotes.indexOf(n)));
             String nStr = n.toString();
             chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
         }

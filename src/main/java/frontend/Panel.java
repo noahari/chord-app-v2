@@ -1,5 +1,6 @@
 package frontend;
 
+import org.jfugue.theory.ChordProgression;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
@@ -22,13 +23,48 @@ public abstract class Panel extends JPanel {
 
     public abstract void draw();
 
-    public static boolean isSharpKey(Key key) {
+    public JButton toButton(Note n, int i) throws IOException{
+        String nStr = stringCorrect(n);
+        nStr = stringFromKey(nStr, i);
+        return toIcon(nStr);
+    }
+
+    public JButton toButton(Note n) throws IOException {
+        String nStr = stringCorrect(n);
+        return toIcon(nStr);
+    }
+
+    private static String isMajor(String str){
+        return str.toUpperCase();
+    }
+
+    private static String isMinor(String str){
+        return str.toLowerCase();
+    }
+
+    private static String isDiminished(String str){
+        return isMinor(str) + "o";
+    }
+
+    private static boolean isSharpKey(Key key) {
         String keyStr = key.getRoot().toString();
         return !((keyStr.length() > 1 && keyStr.charAt(1) == 'B') || keyStr.equals("F"));
     }
 
+    private String stringFromKey(String str, int i ){
+        if(getKey().getScale().getMajorOrMinorIndicator() == 1){
+            if (i == 0 || i == 3 || i == 4) str = isMajor(str);
+            else if (i != 6) str = isMinor(str);
+            else str = isDiminished(str);
+        } else{
+            if (i == 2 || i == 5 || i == 6) str = isMajor(str);
+            else if (i != 1) str = isMinor(str);
+            else str = isDiminished(str);
+        }
+        return str;
+    }
 
-     public String stringCorrect(Note n){
+     private String stringCorrect(Note n){
         String nStr = n.toString();
         char noteOnly = nStr.charAt(0);
         Boolean sharpKey = isSharpKey(getKey());
@@ -50,8 +86,7 @@ public abstract class Panel extends JPanel {
         return nStr;
     }
 
-    public JButton toButton(Note n) throws IOException {
-        String nStr = stringCorrect(n);
+    private JButton toIcon(String nStr) throws IOException {
         ImageIcon icon = new ImageIcon("graphics/C.png");
         icon.setDescription(nStr);
         JButton button = new JButton();
@@ -62,6 +97,4 @@ public abstract class Panel extends JPanel {
         button.setText(nStr);
         return button;
     }
-
-
 }

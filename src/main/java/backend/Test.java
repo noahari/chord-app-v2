@@ -7,9 +7,8 @@ import org.jfugue.theory.*;
 
 class Test {
     public static void main(String[] args){
-        Panel p = new ButtonsPanel();
-        p.setKey(new Key("C#maj"));
-        System.out.println(p.stringCorrect(new  Note("E#")));
+        Chord c = new Chord(new Key("Db"));
+        System.out.println(c);
 
 //
 //
