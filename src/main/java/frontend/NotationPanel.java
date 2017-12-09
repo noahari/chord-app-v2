@@ -1,14 +1,21 @@
 package frontend;
 
 import java.util.ArrayList;
+
+import backend.ChordChart;
 import backend.Chordy;
 import backend.Useable;
+
+import javax.swing.*;
 
 public class NotationPanel extends Panel {
     private UI userInterface;
     private String title;
     private ArrayList<DrawnChord> drawnChordList;
+    private JPanel panel1;
+    private JTable table1;
 
+    table1 = new JTable(ChordChart.chordList);
     public void draw(){
         // uhhh
     }
