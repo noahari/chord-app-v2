@@ -3,7 +3,10 @@ package frontend;
 import backend.Chordy;
 import backend.Duration;
 import backend.ChordChart;
-import org.jfugue.theory.*;
+import org.jfugue.theory.ChordProgression;
+import org.jfugue.theory.Intervals;
+import org.jfugue.theory.Key;
+import org.jfugue.theory.Note;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -73,23 +76,17 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private void getButtons() throws IOException {
         //GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
         //Key key = globalParametersPanel.getKey();
-        Key key = new Key("DMaj");
+        Key key = new Key("Amaj");
         Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
-        ChordProgression progression;
-        if (key.getScale().getMajorOrMinorIndicator() == 1) {
-            progression = new ChordProgression("I ii iii IV V vi viio");
-        } else {
-            progression = new ChordProgression("i iio III iv v VI VII");
-        }
-        progression.setKey(key);
-        for (Chord c : progression.getChords()) {
-            System.out.println(c);
-            usedButtonList.add(toIcon(c));
-            String nStr = c.toString();
-            chromaticNotes.remove(nStr.substring(0, nStr.length() - 4));
+        key.getScale().getIntervals().setRoot(key.getRoot());
+        List<Note> keyNotes = key.getScale().getIntervals().getNotes();
+        for (Note n : keyNotes) {
+            usedButtonList.add(toIcon(n));
+            String nStr = n.toString();
+            chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
         }
         for (String str : chromaticNotes) {
-            nonUsedButtonList.add(toIcon(new Chord(str)));
+            nonUsedButtonList.add(toIcon(new Note(str)));
         }
     }
 
