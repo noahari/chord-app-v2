@@ -15,7 +15,7 @@ public class NotationPanel extends Panel {
     private JPanel panel1;
     private JTable table1;
 
-    table1 = new JTable(ChordChart.chordList);
+    //JTable table1 = new JTable(ChordChart.chordList);
     public void draw(){
         // uhhh
     }

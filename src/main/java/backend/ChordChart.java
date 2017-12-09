@@ -142,7 +142,7 @@ public class ChordChart extends Observable {
     }
 
     private String[][] toTableArray(){
-        String[][] retArray;
+        String[][] retArray = new String[chordList.size()][3];
         for(int i = 0; i > chordList.size(); i++){
             if(chordList.get(i).isRest()) {
                 Resty resterino = (Resty)chordList.get(i);
@@ -157,6 +157,7 @@ public class ChordChart extends Observable {
                 retArray[i][2] = chorderino.getDuration().toString();
             }
         }
+        return retArray;
     }
 
     public void play() {
