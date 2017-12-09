@@ -35,7 +35,7 @@ hs_err_pid*
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/**/workspace.xml
+#.idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml # added by Aidan
@@ -48,11 +48,11 @@ hs_err_pid*
 .idea/**/dataSources.local.xml
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
+# .idea/**/uiDesigner.xml
 
 # Gradle:
 .idea/**/gradle.xml
-.idea/**/libraries
+#.idea/**/libraries
 
 # CMake
 cmake-build-debug/
@@ -89,9 +89,9 @@ fabric.properties
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
-*.iml
-modules.xml
-.idea/misc.xml
+# *.iml
+# modules.xml
+# .idea/misc.xml
 *.ipr
 
 # Sonarlint plugin
