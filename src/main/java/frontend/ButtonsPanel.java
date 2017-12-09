@@ -71,21 +71,19 @@ public class ButtonsPanel extends Panel implements ActionListener {
     }
 
     private void getButtons() throws IOException {
-        //GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
-        setKey() = globalParametersPanel.getKey();
-        boolean sharpKey = true;
-        Key key = new Key("C#Maj");
+//        GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
+ //       setKey(globalParametersPanel.getKey());
+        this.setKey(new Key("Cmaj"));
         Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
-        key.getScale().getIntervals().setRoot(key.getRoot());
-        List<Note> keyNotes = key.getScale().getIntervals().getNotes();
+        getKey().getScale().getIntervals().setRoot(getKey().getRoot());
+        List<Note> keyNotes = getKey().getScale().getIntervals().getNotes();
         for (Note n : keyNotes) {
-            usedButtonList.add(createIcon(n, key));
+            usedButtonList.add(toButton(n));
             String nStr = n.toString();
             chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
         }
         for (String str : chromaticNotes) {
-            System.out.println("!");
-            nonUsedButtonList.add(createIcon(new Note(str), key));
+            nonUsedButtonList.add(toButton(new Note(str)));
         }
     }
 

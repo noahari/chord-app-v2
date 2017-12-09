@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Panel extends JPanel {
+    private Key key;
+
     public void setKey(Key key) {
         this.key = key;
     }
@@ -22,16 +24,16 @@ public abstract class Panel extends JPanel {
         return key;
     }
 
-    private Key key;
     public abstract void draw();
 
-    private static boolean isSharpKey(Key key) {
-        char kid = key.toString().charAt(1);
-        return !(kid == 'b' || kid == 'F' || kid == 'G');
+    public static boolean isSharpKey(Key key) {
+        String keyStr = key.getRoot().toString();
+        return !((keyStr.length() > 1 && keyStr.charAt(1) == 'B') || keyStr.equals("F"));
     }
 
 
-    private String stringCorrect(String nStr) throws IOException{
+    private String stringCorrect(Note n) throws IOException{
+        String nStr = n.toString();
         char noteOnly = nStr.charAt(0);
         Boolean sharpKey = isSharpKey(getKey());
         if(nStr.length() > 1) {
@@ -40,23 +42,24 @@ public abstract class Panel extends JPanel {
             } else
                 nStr = Note.getDispositionedToneStringWithoutOctave(-1, n.getValue());
         }
-        if((noteOnly == 'C' || noteOnly == 'F') && sharpKey){
-            if(nStr.equals("C")) nStr = "B#";
-            if(nStr.equals("F")) nStr = "E#;";
+         String keySignature = getKey().getKeySignature();
+        if((noteOnly == 'C' || noteOnly == 'F') && sharpKey && !keySignature.equals("Cmaj")){
+            if(nStr.equals("C") && !(keySignature.equals("Gmaj") || keySignature.equals("Emin"))) nStr = "B#";
+            if(nStr.equals("F")) nStr = "E#";
         }
         else if((noteOnly == 'B' || noteOnly == 'E') && !sharpKey) {
             if(nStr.equals("B")) nStr = "Cb";
-            if(nStr.equals("F")) nStr =
+            if(nStr.equals("E") && (!keySignature.equals("Fmaj") || keySignature.equals("Dmin"))) nStr = "Fb";
         }
         return nStr;
     }
 
     public JButton toButton(Note n) throws IOException {
-        String nStr = stringCorrect(getKey().toString());
+        String nStr = stringCorrect(n);
         ImageIcon icon = new ImageIcon("graphics/C.png");
         icon.setDescription(nStr);
         JButton button = new JButton();
-        button.setIcon(icon);
+        //button.setIcon(icon);
         button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 25));
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition(JButton.CENTER);

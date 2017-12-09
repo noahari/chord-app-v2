@@ -12,9 +12,8 @@ import java.util.Set;
 
 class Test {
     public static void main(String[] args){
-        Chord c = new Chord(new Key("Ebmaj"));
-        System.out.println(c);
-
+        Key k = new Key("EBmin");
+        System.out.println(k.getKeySignature());
 
 //
 //
