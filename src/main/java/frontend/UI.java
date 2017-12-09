@@ -35,7 +35,7 @@ public class UI extends JPanel implements Observer {
     private void addPanels(){
         panels.add(globalParametersPanel = new GlobalParametersPanel());
         panels.add(notationPanel = new NotationPanel());
-        panels.add(buttonsPanel = new ButtonsPanel());
+        panels.add(buttonsPanel = new ButtonsPanel(this));
     }
 
     public ChordChart getChordChart(){

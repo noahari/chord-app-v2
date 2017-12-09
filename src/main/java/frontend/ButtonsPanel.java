@@ -5,30 +5,23 @@ import backend.Duration;
 import backend.ChordChart;
 import org.jfugue.theory.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
 public class ButtonsPanel extends Panel implements ActionListener {
-    UI userInterface;
+    private UI userInterface;
 
     private ArrayList<ChordButton> usedButtonList = new ArrayList<>();
     private ArrayList<ChordButton> nonUsedButtonList = new ArrayList<>();
 
     private JPanel panel;
-    private ChordButton chordButton1;
-    private ChordButton chordButton2;
-    private ChordButton chordButton3;
-    private ChordButton chordButton4;
-    private ChordButton chordButton5;
-    private ChordButton chordButton6;
-    private ChordButton chordButton7;
+    private ChordButton chordButton1, chordButton2, chordButton3, chordButton4,
+            chordButton5, chordButton6, chordButton7;
     private ChordButton extraButton;
 
     public UI getUserInterface() {
@@ -52,6 +45,12 @@ public class ButtonsPanel extends Panel implements ActionListener {
         panel.setPreferredSize(new Dimension(900, 400));
     }
 
+    public ButtonsPanel(UI userInterface) {
+        this.userInterface = userInterface;
+        $$$setupUI$$$();
+        panel.setPreferredSize(new Dimension(900, 400));
+    }
+
     public void rootButtonHit(JButton rootButton) {
         userInterface.getChordChart().insertUseable(new Chordy(rootButton.getName(), "", Duration.QUARTER));
     }
@@ -60,7 +59,6 @@ public class ButtonsPanel extends Panel implements ActionListener {
         ChordButton button = (ChordButton) evt.getSource();
         if (!button.equals(extraButton)) {
             ChordChart chordChart = this.getUserInterface().getChordChart();
-            String note = ((ImageIcon) button.getIcon()).getDescription();
             Chordy chord = new Chordy(button.getChord(), button.getExtenstion(), Duration.QUARTER);
             chordChart.insertUseable(chord);
             this.getUserInterface().setChordChart(chordChart);

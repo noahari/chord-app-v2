@@ -15,7 +15,7 @@ public class GenericUIBuilder implements UIBuilder {
     }
 
     public void makeButtonsPanel() {
-        userInterface.add(new ButtonsPanel());
+        userInterface.add(new ButtonsPanel(userInterface));
     }
 
     public void makeButtons() {
