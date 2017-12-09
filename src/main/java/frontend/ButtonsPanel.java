@@ -30,14 +30,6 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private ChordButton chordButton6;
     private ChordButton chordButton7;
     private ChordButton extraButton;
-    //    private JButton chordButton1;
-//    private JButton chordButton5;
-//    private JButton chordButton6;
-//    private JButton chordButton2;
-//    private JButton chordButton7;
-//    private JButton chordButton3;
-//    private JButton extraButton;
-//    private JButton chordButton4;
 
     public UI getUserInterface() {
         return userInterface;
