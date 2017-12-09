@@ -152,9 +152,9 @@ public class ChordChart extends Observable {
             }
             else{
                 Chordy chorderino = (Chordy)chordList.get(i);
-                retArray[i][0] = chorderino.getRoot();
-                retArray[i][1] = chorderino.getExtension();
-                retArray[i][2] = chorderino.getDuration();
+                retArray[i][0] = chorderino.getRoot().toString();
+                retArray[i][1] = chorderino.getChordType();
+                retArray[i][2] = chorderino.getDuration().toString();
             }
         }
     }

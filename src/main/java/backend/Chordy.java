@@ -126,7 +126,4 @@ public class Chordy extends Chord implements Useable {
         return super.toString() + duration;
     }
 
-    public String getExtension() {
-        return extension;
-    }
 }
