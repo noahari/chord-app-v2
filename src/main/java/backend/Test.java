@@ -16,7 +16,6 @@ class Test {
         System.out.println(c);
 
 
-
 //
 //
 //        chordChart.insertUseable(new Chordy("C", "maj7", "q"));

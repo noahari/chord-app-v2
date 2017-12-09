@@ -73,7 +73,10 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private void getButtons() throws IOException {
         //GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
         //Key key = globalParametersPanel.getKey();
+        boolean sharpKey = true;
         Key key = new Key("AMaj");
+        char kid = key.toString().charAt(2);
+        if(kid == 'b' || kid == 'F') sharpKey =false;
         Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
         key.getScale().getIntervals().setRoot(key.getRoot());
         List<Note> keyNotes = key.getScale().getIntervals().getNotes();

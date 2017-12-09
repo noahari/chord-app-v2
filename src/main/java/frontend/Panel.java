@@ -16,20 +16,8 @@ public abstract class Panel extends JPanel {
     public abstract void draw();
 
     public JButton toIcon(Note n) throws IOException {
+
         String nStr = n.toString();
-//        String cStr = cStrOrig.substring(0, cStrOrig.length() - 4);
-//        switch(c.getChordType()){
-//            case "AUG":
-//                cStr = cStr + "+";
-//            case "MAJ":
-//                cStr = cStr.toUpperCase();
-//                break;
-//            case "DIM":
-//                cStr = cStr + "o";
-//            case "MIN":
-//                cStr = cStr.toLowerCase();
-//                break;
-//        }
         ImageIcon icon = new ImageIcon("graphics/C.png");
         icon.setDescription(nStr);
         JButton button = new JButton();
