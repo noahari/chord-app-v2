@@ -74,19 +74,20 @@ public class ButtonsPanel extends Panel implements ActionListener {
         //GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
         //Key key = globalParametersPanel.getKey();
         boolean sharpKey = true;
-        Key key = new Key("AMaj");
-        char kid = key.toString().charAt(2);
-        if(kid == 'b' || kid == 'F') sharpKey =false;
+        Key key = new Key("C#Maj");
+        char kid = key.toString().charAt(1);
+        if (kid == 'b' || kid == 'F') sharpKey = false;
         Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
         key.getScale().getIntervals().setRoot(key.getRoot());
         List<Note> keyNotes = key.getScale().getIntervals().getNotes();
         for (Note n : keyNotes) {
-            usedButtonList.add(toIcon(n));
+            usedButtonList.add(toIcon(n, sharpKey));
             String nStr = n.toString();
             chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
         }
         for (String str : chromaticNotes) {
-            nonUsedButtonList.add(toIcon(new Note(str)));
+            System.out.println("!");
+            nonUsedButtonList.add(toIcon(new Note(str), sharpKey));
         }
     }
 

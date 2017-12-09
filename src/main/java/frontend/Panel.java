@@ -15,9 +15,20 @@ import java.util.ArrayList;
 public abstract class Panel extends JPanel {
     public abstract void draw();
 
-    public JButton toIcon(Note n) throws IOException {
-
+    protected JButton noteProcessor(Note n, Boolean sharpKey) throws IOException{
         String nStr = n.toString();
+        if(nStr.length() > 1) {
+            if (sharpKey) {
+                nStr = Note.getDispositionedToneStringWithoutOctave(1, n.getValue());
+                System.out.println("!");
+            } else
+                nStr = Note.getDispositionedToneStringWithoutOctave(-1, n.getValue());
+        }
+        JButton icon = toIcon(nStr);
+        return icon;
+    }
+
+    private static JButton toIcon(String nStr) throws IOException {
         ImageIcon icon = new ImageIcon("graphics/C.png");
         icon.setDescription(nStr);
         JButton button = new JButton();
@@ -25,8 +36,9 @@ public abstract class Panel extends JPanel {
         button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 25));
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition(JButton.CENTER);
-        button.setText(nStr.substring(0, nStr.length() - 1));
+        button.setText(nStr);
         return button;
-
     }
+
+
 }
