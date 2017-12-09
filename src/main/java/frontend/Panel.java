@@ -1,52 +1,85 @@
 package frontend;
 
-import org.apache.commons.io.FilenameUtils;
+import org.jfugue.theory.ChordProgression;
+import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.*;
+
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public abstract class Panel extends JPanel {
-    private ArrayList<ImageIcon> iconList = new ArrayList<>();
-    private ArrayList<ImageIcon> nonUsedIconList = new ArrayList<>();
-    private ImageIcon ellipseIcon;
+    private Key key;
 
-    public void setEllipseIcon(ImageIcon ellipseIcon) {
-        this.ellipseIcon = ellipseIcon;
+    public void setKey(Key key) {
+        this.key = key;
     }
 
-    public ImageIcon getEllipseIcon() {
-        return ellipseIcon;
-    }
-
-    public ArrayList<ImageIcon> getIconList() {
-        return iconList;
+    public Key getKey() {
+        return key;
     }
 
     public abstract void draw();
 
-    public void toIcons(Note n) throws IOException {
-        File folder = new File("graphics/");
-        File[] listOfFiles = folder.listFiles();
-        String nStr = n.toString();
-        for (File f : listOfFiles) {
-            String fileName = FilenameUtils.removeExtension(f.getName());
-            BufferedImage image = ImageIO.read(f);
-            ImageIcon icon = new ImageIcon(image);
-            icon.setDescription(fileName);
-            if (nStr.substring(0, nStr.length() - 1).equals(fileName)) {
-                iconList.add(icon);
-            }
-            else if(fileName.equals("EllipseButton")){
-                this.setEllipseIcon(icon);
-            }
-            else {
-                nonUsedIconList.add(icon);
-            }
+    public ChordButton toButton(Note n, int i) throws IOException{
+        String nStr = stringCorrect(n);
+        return toIcon(nStr, stringFromKey(nStr, i));
+    }
+
+    public ChordButton toButton(Note n) throws IOException {
+        String nStr = stringCorrect(n);
+        return toIcon(nStr, "MAJ");
+    }
+
+    private static boolean isSharpKey(Key key) {
+        String keyStr = key.getRoot().toString();
+        return !((keyStr.length() > 1 && keyStr.charAt(1) == 'B') || keyStr.equals("F"));
+    }
+
+    private String stringFromKey(String str, int i ){
+        if(getKey().getScale().getMajorOrMinorIndicator() == 1){
+            if (i == 0 || i == 3 || i == 4) return "MAJ";
+            else if (i != 6) return "MIN";
+            else return "DIM";
+        } else{
+            if (i == 2 || i == 5 || i == 6) return "MAJ";
+            else if (i != 1) return "MIN";
+            else return "DIM";
         }
+    }
+
+     private String stringCorrect(Note n){
+        String nStr = n.toString();
+        char noteOnly = nStr.charAt(0);
+        Boolean sharpKey = isSharpKey(getKey());
+        if(nStr.length() > 1) {
+            if (sharpKey)
+                nStr = Note.getDispositionedToneStringWithoutOctave(1, n.getValue());
+            else
+                nStr = Note.getDispositionedToneStringWithoutOctave(-1, n.getValue());
+        }
+        String keySignature = getKey().getKeySignature();
+        if((noteOnly == 'C' || noteOnly == 'F') && sharpKey && !keySignature.equals("Cmaj")){
+            if(nStr.equals("C") && !(keySignature.equals("Gmaj") || keySignature.equals("Emin"))) nStr = "B#";
+            if(nStr.equals("F")) nStr = "E#";
+        }
+        else if((noteOnly == 'B' || noteOnly == 'E') && !sharpKey) {
+            if(nStr.equals("B")) nStr = "Cb";
+            if(nStr.equals("E") && (!keySignature.equals("Fmaj") || keySignature.equals("Dmin"))) nStr = "Fb";
+        }
+        return nStr;
+    }
+
+    private ChordButton toIcon(String nStr, String extension) throws IOException {
+        ImageIcon icon = new ImageIcon("graphics/C.png");
+        ChordButton button = new ChordButton(nStr, extension);
+        //button.setIcon(icon);
+        button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 25));
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
+        button.setText(button.toString());
+        return button;
     }
 }
