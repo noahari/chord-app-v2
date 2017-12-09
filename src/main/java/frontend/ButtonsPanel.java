@@ -96,7 +96,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
     }
 
     public void draw() {
-        createUIComponents();
+        $$$setupUI$$$();
     }
 
 
