@@ -1,6 +1,5 @@
 package frontend;
 
-import org.jfugue.theory.ChordProgression;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
