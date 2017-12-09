@@ -19,14 +19,13 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     }
 
     private final String[] ALLKEYS = {"CMaj", "GMaj", "DMaj", "AMaj", "EMaj", "BMaj", "F#Maj", "C#Maj",
-            "FMaj", "BBMaj", "EBMaj", "ABMaj", "DBMaj", "GBMaj", "CBMaj", "amin", "emin", "bmin", "c#min", "g#min", "d#min",
+            "FMaj", "BBMaj", "EBMaj", "ABMaj", "DBMaj", "GBMaj", "CBMaj", "amin", "emin", "bmin", "f#min", "c#min", "g#min", "d#min",
             "a#min", "dmin", "gmin", "cmin", "fmin", "bBmin", "eBmin", "aBmin"};
 
     public GlobalParametersPanel() {
         $$$setupUI$$$();
         this.setKey(new Key("CMaj"));
         panel.setPreferredSize(new Dimension(500, 200));
-        keys.addActionListener(this);
     }
 
     public static void main(String[] args) {
@@ -46,6 +45,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             JComboBox cb = (JComboBox) evt.getSource();
             Key key = new Key((String) cb.getSelectedItem());
             this.setKey(key);
+            System.out.println("Key changed to:  " + getKey().getRoot().toString() + getKey().getScale());
         } else if (evt.getSource() instanceof JTextField) {
             String tText = tempo.getText();
             int tInt = 120;
@@ -64,11 +64,9 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-//        keys = new JComboBox<>();
-//        keys.addItem("Hello");
-//        keys.addItem("Goodbye");
-//        keys.setSelectedIndex(0);
-        //       keys.addActionListener(this);
+        keys = new JComboBox<>(ALLKEYS);
+        keys.setSelectedIndex(0);
+        keys.addActionListener(this);
         tempo = new JTextField("120");
         tempo.addActionListener(this);
     }
@@ -84,42 +82,10 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         createUIComponents();
         panel = new JPanel();
         panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        keys = new JComboBox();
-        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        defaultComboBoxModel1.addElement("CMaj");
-        defaultComboBoxModel1.addElement("GMaj");
-        defaultComboBoxModel1.addElement("DMaj");
-        defaultComboBoxModel1.addElement("AMaj");
-        defaultComboBoxModel1.addElement("EMaj");
-        defaultComboBoxModel1.addElement("BMaj");
-        defaultComboBoxModel1.addElement("F#Maj");
-        defaultComboBoxModel1.addElement("C#Maj");
-        defaultComboBoxModel1.addElement("FMaj");
-        defaultComboBoxModel1.addElement("BBMaj");
-        defaultComboBoxModel1.addElement("EBMaj");
-        defaultComboBoxModel1.addElement("ABMaj");
-        defaultComboBoxModel1.addElement("DBMaj");
-        defaultComboBoxModel1.addElement("GBMaj");
-        defaultComboBoxModel1.addElement("CBMaj");
-        defaultComboBoxModel1.addElement("amin");
-        defaultComboBoxModel1.addElement("emin");
-        defaultComboBoxModel1.addElement("bmin");
-        defaultComboBoxModel1.addElement("c#min");
-        defaultComboBoxModel1.addElement("g#min");
-        defaultComboBoxModel1.addElement("d#min");
-        defaultComboBoxModel1.addElement("a#min");
-        defaultComboBoxModel1.addElement("dmin");
-        defaultComboBoxModel1.addElement("gmin");
-        defaultComboBoxModel1.addElement("cmin");
-        defaultComboBoxModel1.addElement("fmin");
-        defaultComboBoxModel1.addElement("bBmin");
-        defaultComboBoxModel1.addElement("eBmin");
-        defaultComboBoxModel1.addElement("aBmin");
-        keys.setModel(defaultComboBoxModel1);
         panel.add(keys, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel.add(tempo, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(50, 24), null, 0, false));
         playButton = new JButton();
-        playButton.setText("Button");
+        playButton.setText("Play");
         panel.add(playButton, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
