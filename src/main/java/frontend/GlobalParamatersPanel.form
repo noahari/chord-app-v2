@@ -8,43 +8,11 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="21748" class="javax.swing.JComboBox" binding="keys">
+      <component id="21748" class="javax.swing.JComboBox" binding="keys" custom-create="true">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties>
-          <model>
-            <item value="CMaj"/>
-            <item value="GMaj"/>
-            <item value="DMaj"/>
-            <item value="AMaj"/>
-            <item value="EMaj"/>
-            <item value="BMaj"/>
-            <item value="F#Maj"/>
-            <item value="C#Maj"/>
-            <item value="FMaj"/>
-            <item value="BBMaj"/>
-            <item value="EBMaj"/>
-            <item value="ABMaj"/>
-            <item value="DBMaj"/>
-            <item value="GBMaj"/>
-            <item value="CBMaj"/>
-            <item value="amin"/>
-            <item value="emin"/>
-            <item value="bmin"/>
-            <item value="c#min"/>
-            <item value="g#min"/>
-            <item value="d#min"/>
-            <item value="a#min"/>
-            <item value="dmin"/>
-            <item value="gmin"/>
-            <item value="cmin"/>
-            <item value="fmin"/>
-            <item value="bBmin"/>
-            <item value="eBmin"/>
-            <item value="aBmin"/>
-          </model>
-        </properties>
+        <properties/>
       </component>
       <component id="c762c" class="javax.swing.JTextField" binding="tempo" custom-create="true">
         <constraints>
