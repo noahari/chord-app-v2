@@ -6,6 +6,7 @@ import org.jfugue.theory.Note;
 import javax.swing.*;
 import java.awt.*;
 
+import java.awt.font.TextLayout;
 import java.io.IOException;
 
 
@@ -75,7 +76,10 @@ public abstract class Panel extends JPanel {
         ImageIcon icon = new ImageIcon("graphics/Button.png");
         ChordButton button = new ChordButton(nStr, extension);
         button.setIcon(icon);
-        button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 25));
+        Graphics g = button.getGraphics();
+        Font fonty = new Font("ARIAL", Font.PLAIN, 36);
+        button.setFont(fonty);
+        button.setForeground(Color.white);
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition(JButton.CENTER);
         button.setText(button.toString());
