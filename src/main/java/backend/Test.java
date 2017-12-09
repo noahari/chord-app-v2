@@ -12,8 +12,8 @@ import java.util.Set;
 
 class Test {
     public static void main(String[] args){
-        Chord c = new Chord("Db");
-        System.out.println(c.getChordType());
+        Chord c = new Chord(new Key("Ebmaj"));
+        System.out.println(c);
 
 
 

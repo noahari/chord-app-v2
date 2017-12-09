@@ -3,10 +3,7 @@ package frontend;
 import backend.Chordy;
 import backend.Duration;
 import backend.ChordChart;
-import org.jfugue.theory.ChordProgression;
-import org.jfugue.theory.Intervals;
-import org.jfugue.theory.Key;
-import org.jfugue.theory.Note;
+import org.jfugue.theory.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -76,7 +73,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private void getButtons() throws IOException {
         //GlobalParametersPanel globalParametersPanel = userInterface.getGlobalParametersPanel();
         //Key key = globalParametersPanel.getKey();
-        Key key = new Key("Amaj");
+        Key key = new Key("AbMaj");
         Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
         key.getScale().getIntervals().setRoot(key.getRoot());
         List<Note> keyNotes = key.getScale().getIntervals().getNotes();
