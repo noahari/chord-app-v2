@@ -73,9 +73,9 @@ public abstract class Panel extends JPanel {
     }
 
     private ChordButton toIcon(String nStr, String extension) throws IOException {
-        ImageIcon icon = new ImageIcon("graphics/C.png");
+        ImageIcon icon = new ImageIcon("graphics/Button.png");
         ChordButton button = new ChordButton(nStr, extension);
-        //button.setIcon(icon);
+        button.setIcon(icon);
         button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 25));
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition(JButton.CENTER);
