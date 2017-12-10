@@ -14,6 +14,7 @@ public class NotationPanel extends Panel {
     private ArrayList<DrawnChord> drawnChordList;
     private JPanel panel1;
     private JTable table1;
+    private final String[] COL_NAMES = { "Root", "Extension", "Duration" };
 
     //JTable table1 = new JTable(ChordChart.chordList);
     public void draw(){

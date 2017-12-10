@@ -109,6 +109,14 @@ public class Chordy extends Chord implements Useable {
 
     public boolean isRest(){return false;}
 
+    public String[] getRow() {
+	    return new String[]{
+		    this.getRoot().toString(),
+		    this.getChordType(),
+		    this.getDuration().toString()
+	    };
+    }
+
     //<editor-fold desc="Getters and Setters">
 
     Duration getDuration() {

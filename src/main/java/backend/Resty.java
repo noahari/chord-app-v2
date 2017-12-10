@@ -11,4 +11,12 @@ public class Resty extends Note implements Useable{
     public boolean isRest(){
         return true;
     }
+
+    public String[] getRow() {
+	    return new String[]{
+		    "R",
+		    "",
+		    String.valueOf(this.getDuration())
+	    };
+    }
 }

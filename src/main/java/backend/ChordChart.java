@@ -141,25 +141,6 @@ public class ChordChart extends Observable {
         return retString;
     }
 
-    private String[][] toTableArray(){
-        String[][] retArray = new String[chordList.size()][3];
-        for(int i = 0; i > chordList.size(); i++){
-            if(chordList.get(i).isRest()) {
-                Resty resterino = (Resty)chordList.get(i);
-                retArray[i][0] = "R";
-                retArray[i][1] = "";
-                retArray[i][2] = String.valueOf(resterino.getDuration());
-            }
-            else{
-                Chordy chorderino = (Chordy)chordList.get(i);
-                retArray[i][0] = chorderino.getRoot().toString();
-                retArray[i][1] = chorderino.getChordType();
-                retArray[i][2] = chorderino.getDuration().toString();
-            }
-        }
-        return retArray;
-    }
-
     public void play() {
         Player player = new Player();
         player.play(this.toString());
@@ -168,6 +149,14 @@ public class ChordChart extends Observable {
     public void play(int index) {
         Player player = new Player();
         player.play(this.toString(index));
+    }
+
+    private String[][] toTableArray(){
+        String[][] retArray = new String[chordList.size()][3];
+        for(int i = 0; i < chordList.size(); i++){
+		retArray[i] = chordList.get(i).toRow();
+	}
+        return retArray;
     }
 
 }
