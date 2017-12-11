@@ -59,7 +59,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
         ChordButton button = (ChordButton) evt.getSource();
         if (!button.equals(extraButton)) {
             ChordChart chordChart = this.getUserInterface().getChordChart();
-            Chordy chord = new Chordy(button.getChord(), button.getExtenstion(), Duration.QUARTER);
+            Chordy chord = new Chordy(button.getChord(), button.getExtension(), Duration.QUARTER);
             chordChart.insertUseable(chord);
             this.getUserInterface().setChordChart(chordChart);
         } else {

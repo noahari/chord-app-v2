@@ -151,10 +151,10 @@ public class ChordChart extends Observable {
         player.play(this.toString(index));
     }
 
-    private String[][] toTableArray(){
+    public String[][] toTableArray(){
         String[][] retArray = new String[chordList.size()][3];
         for(int i = 0; i < chordList.size(); i++){
-		retArray[i] = chordList.get(i).toRow();
+		retArray[i] = chordList.get(i).getRow();
 	}
         return retArray;
     }

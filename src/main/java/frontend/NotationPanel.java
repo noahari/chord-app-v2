@@ -32,7 +32,7 @@ public class NotationPanel extends Panel {
 */
     public void updateTable(){
 	    this.table1 = new JTable(
-			    userInterface.chordChart.getChordList().toTableArray(),
+			    userInterface.chordChart.toTableArray(),
 			    COL_NAMES
 			    );
     }

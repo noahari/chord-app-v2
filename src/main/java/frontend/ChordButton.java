@@ -3,7 +3,7 @@ package frontend;
 import javax.swing.*;
 
 public class ChordButton extends JButton {
-    private String extenstion;
+    private String extension;
     private String chord;
 
     public String getChord() {
@@ -14,24 +14,24 @@ public class ChordButton extends JButton {
         this.chord = chord;
     }
 
-    public String getExtenstion() {
-        return extenstion;
+    public String getExtension() {
+        return extension;
     }
 
-    public void setExtenstion(String extenstion) {
-        this.extenstion = extenstion;
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
     public ChordButton(){}
 
     public ChordButton(String chord, String extension){
         this.chord = chord;
-        this.extenstion = extension;
+        this.extension = extension;
     }
 
     public String toString(){
         String endChord = chord;
-        switch(extenstion){
+        switch(extension){
             case "MAJ":
                 endChord = endChord.toUpperCase();
                 break;
