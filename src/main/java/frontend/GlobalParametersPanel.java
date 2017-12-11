@@ -22,8 +22,9 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             "FMaj", "BBMaj", "EBMaj", "ABMaj", "DBMaj", "GBMaj", "CBMaj", "amin", "emin", "bmin", "f#min", "c#min", "g#min", "d#min",
             "a#min", "dmin", "gmin", "cmin", "fmin", "bBmin", "eBmin", "aBmin"};
 
-    public GlobalParametersPanel() {
+    public GlobalParametersPanel(UI userInterface) {
         $$$setupUI$$$();
+        this.userInterface = userInterface;
         this.setKey(new Key("CMaj"));
         panel.setPreferredSize(new Dimension(500, 200));
     }

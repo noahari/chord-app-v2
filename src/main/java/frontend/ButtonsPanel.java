@@ -40,11 +40,6 @@ public class ButtonsPanel extends Panel implements ActionListener {
         this.userInterface = userInterface;
     }
 
-    public ButtonsPanel() {
-        $$$setupUI$$$();
-        panel.setPreferredSize(new Dimension(900, 400));
-    }
-
     public ButtonsPanel(UI userInterface) {
         this.userInterface = userInterface;
         $$$setupUI$$$();
