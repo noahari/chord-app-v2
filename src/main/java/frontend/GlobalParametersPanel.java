@@ -8,37 +8,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GlobalParametersPanel extends Panel implements ActionListener {
-    private UI userInterface;
     private JTextField tempo;
     private JPanel panel;
     private JComboBox<String> keys;
     private JButton playButton;
-
-    public UI getUserInterface() {
-        return userInterface;
-    }
 
     private final String[] ALLKEYS = {"CMaj", "GMaj", "DMaj", "AMaj", "EMaj", "BMaj", "F#Maj", "C#Maj",
             "FMaj", "BBMaj", "EBMaj", "ABMaj", "DBMaj", "GBMaj", "CBMaj", "amin", "emin", "bmin", "f#min", "c#min", "g#min", "d#min",
             "a#min", "dmin", "gmin", "cmin", "fmin", "bBmin", "eBmin", "aBmin"};
 
     public GlobalParametersPanel(UI userInterface) {
+        super(userInterface);
         $$$setupUI$$$();
-        this.userInterface = userInterface;
         this.setKey(new Key("CMaj"));
         panel.setPreferredSize(new Dimension(500, 200));
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("GlobalParametersPanel");
-        frame.setContentPane(new GlobalParametersPanel().panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
     public void draw() {
-        new GlobalParametersPanel();
+        $$$setupUI$$$();
     }
 
     public void actionPerformed(ActionEvent evt) {

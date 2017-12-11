@@ -13,19 +13,13 @@ public class NotationPanel extends Panel {
     private final String[] COL_NAMES = new String[]{"Root", "Extension", "Duration"};
 
 
-    public NotationPanel() {
+    public NotationPanel(UI userInterface) {
+        super(userInterface);
         $$$setupUI$$$();
         panel1.setPreferredSize(new Dimension(500, 500));
 
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("NotationPanel");
-        frame.setContentPane(new NotationPanel().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
 
     //JTable TrackerTable = new JTable(ChordChart.chordList);
     public void draw() {

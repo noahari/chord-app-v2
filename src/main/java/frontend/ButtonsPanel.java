@@ -28,20 +28,12 @@ public class ButtonsPanel extends Panel implements ActionListener {
         return userInterface;
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("ButtonsPanel");
-        frame.setContentPane(new ButtonsPanel().panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
     public void setUserInterface(UI userInterface) {
         this.userInterface = userInterface;
     }
 
     public ButtonsPanel(UI userInterface) {
-        this.userInterface = userInterface;
+        super(userInterface);
         $$$setupUI$$$();
         panel.setPreferredSize(new Dimension(900, 400));
     }

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 public abstract class Panel extends JPanel {
-    private KeyMore key;
+    private Key key;
 
     private UI userInterface;
 
@@ -40,12 +40,14 @@ public abstract class Panel extends JPanel {
     public abstract void draw();
 
     public ChordButton toButton(Note n, int i) throws IOException{
-        String nStr = key.stringCorrect(n);
-        return toIcon(nStr, key.stringFromKey(nStr, i));
+        KeyMore keyMore = new KeyMore(key);
+        String nStr = keyMore.stringCorrect(n);
+        return toIcon(nStr, keyMore.stringFromKey(i));
     }
 
     public ChordButton toButton(Note n) throws IOException {
-        String nStr = key.stringCorrect(n);
+        KeyMore keyMore = new KeyMore(key);
+        String nStr = keyMore.stringCorrect(n);
         return toIcon(nStr, "MAJ");
     }
 

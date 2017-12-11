@@ -14,7 +14,7 @@ public class KeyMore extends Key{
         return !((keyStr.length() > 1 && keyStr.charAt(1) == 'B') || keyStr.equals("F"));
     }
 
-    protected String stringFromKey(String str, int i){
+    protected String stringFromKey(int i){
         if(this.getScale().getMajorOrMinorIndicator() == 1){
             if (i == 0 || i == 3 || i == 4) return "MAJ";
             else if (i != 6) return "MIN";

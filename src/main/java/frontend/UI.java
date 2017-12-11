@@ -1,6 +1,7 @@
 package frontend;
 
 import backend.*;
+import jdk.nashorn.internal.objects.Global;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -11,19 +12,19 @@ import java.util.Observer;
 // Panel is prettier imo but might be unnecessary
 public class UI extends JPanel implements Observer {
     // Instance Variables
-    Observable observable;
-    private NotationPanel notationPanel;
-    private GlobalParametersPanel globalParametersPanel;
-    private ButtonsPanel buttonsPanel;
+    private Observable observable;
     ChordChart chordChart;
     private JFrame frame;
 
-    private ArrayList<Panel> panels = new ArrayList<>();
+    private Panel[] panels;
+
+    public void setPanels(Panel[] panels) {
+        this.panels = panels;
+    }
 
     public UI(Observable observable){
         this.observable = observable;
         observable.addObserver(this);
-        addPanels();
     }
 
     public void update(Observable obs, Object arg){
@@ -32,19 +33,9 @@ public class UI extends JPanel implements Observer {
         }
     }
 
-    private void addPanels(){
-        panels.add(globalParametersPanel = new GlobalParametersPanel());
-        panels.add(notationPanel = new NotationPanel());
-        panels.add(buttonsPanel = new ButtonsPanel(this));
-    }
-
     public ChordChart getChordChart(){
         return chordChart;
     }
-
-    public NotationPanel getNotationPanel(){return notationPanel;}
-
-    public GlobalParametersPanel getGlobalParametersPanel(){return globalParametersPanel;}
 
     public void setChordChart(ChordChart chord){
         this.chordChart = chord;
