@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 public abstract class Panel extends JPanel {
-    private KeyString key;
+    private KeyMore key;
 
     private UI userInterface;
 

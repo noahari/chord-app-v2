@@ -3,9 +3,9 @@ package frontend;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
-public class KeyString extends Key{
+public class KeyMore extends Key{
 
-    public KeyString(Key key){
+    public KeyMore(Key key){
         super(key);
     }
 
