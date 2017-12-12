@@ -21,8 +21,9 @@ class Test {
 
         System.out.println(chordChart);
 
-        chordChart.toTextFile();
-        chordChart = ChordChart.fileToChart("chordChart.txt");
+        String fileName = "chordChart";
+        chordChart.toTextFile(fileName);
+        chordChart = ChordChart.fileToChart(fileName);
 
         System.out.println(chordChart);
 
