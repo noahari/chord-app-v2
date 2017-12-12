@@ -24,7 +24,7 @@ public class ChordChartTest {
      private Duration duration;
 
     @Test
-    public void insertChord() {
+    public void insertUseable() {
         ChordChart chordChart = new ChordChart();
 
         chordChart.insertUseable(chordy);
@@ -62,6 +62,31 @@ public class ChordChartTest {
         when(chordy.getDuration()).thenReturn(Duration.QUARTER);
         chordChart.restChord(0);
         assertTrue(chordChart.getChordList().get(0).isRest());
+    }
+
+    @Test
+    public void getChord() throws Exception {
+        
+    }
+
+    @Test
+    public void getUseable() throws Exception {
+    }
+
+    @Test
+    public void restChord1() throws Exception {
+    }
+
+    @Test
+    public void delChord() throws Exception {
+    }
+
+    @Test
+    public void moveChord() throws Exception {
+    }
+
+    @Test
+    public void toTableArray() throws Exception {
     }
 
     @Test
