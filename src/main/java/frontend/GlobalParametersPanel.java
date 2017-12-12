@@ -1,5 +1,6 @@
 package frontend;
 
+import backend.ChordChart;
 import org.jfugue.theory.Key;
 
 import javax.swing.*;
@@ -40,12 +41,15 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             int tInt = 120;
             try {
                 tInt = Integer.parseInt(tText);
-                if (tInt > 200 || tInt < 40) throw new NumberFormatException("Invalid");
+                if (tInt > 220 || tInt < 40) throw new NumberFormatException("Invalid");
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Enter Valid Tempo (from 40-220)");
                 tempo.setText("120");
             }
-            this.getUserInterface().getChordChart().setTempo(tInt);
+            ChordChart chordChart = new ChordChart(getUserInterface().getChordChart().getChordList());
+            chordChart.setTempo(tInt);
+            System.out.println(tInt);
+            this.getUserInterface().setChordChart(chordChart);
         } else {
             System.out.println(getUserInterface().getChordChart());
             this.getUserInterface().getChordChart().play();
