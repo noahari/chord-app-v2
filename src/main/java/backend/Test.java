@@ -17,7 +17,7 @@ class Test {
         chordChart.insertUseable(new Chordy("C", "maj7", Duration.QUARTER));
         chordChart.insertUseable(new Resty(Duration.WHOLE));
         chordChart.insertUseable(new Chordy("D", "min7", Duration.QUARTER));
-        chordChart.setTempo(99);
+        chordChart.setTempo(98);
 
         System.out.println(chordChart);
 
