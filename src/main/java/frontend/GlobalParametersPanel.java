@@ -46,6 +46,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             }
             this.getUserInterface().getChordChart().setTempo(tInt);
         } else {
+            System.out.println(this.getUserInterface().getChordChart());
             this.getUserInterface().getChordChart().play();
         }
     }
