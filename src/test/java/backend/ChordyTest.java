@@ -173,7 +173,7 @@ public class ChordyTest {
                 "MAJ7",
                 "ONETWENTYEIGHTH"
         };
-        assertEquals(testArray, sChord.getRow());
+        assertArrayEquals(testArray, sChord.getRow());
     }
 
 

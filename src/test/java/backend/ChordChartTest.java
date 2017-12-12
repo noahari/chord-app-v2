@@ -65,6 +65,31 @@ public class ChordChartTest {
     }
 
     @Test
+    public void getChord() throws Exception {
+        
+    }
+
+    @Test
+    public void getUseable() throws Exception {
+    }
+
+    @Test
+    public void restChord1() throws Exception {
+    }
+
+    @Test
+    public void delChord() throws Exception {
+    }
+
+    @Test
+    public void moveChord() throws Exception {
+    }
+
+    @Test
+    public void toTableArray() throws Exception {
+    }
+
+    @Test
     public void toFile(){
         ChordChart chordChart = new ChordChart();
         chordChart.insertUseable(new Chordy("C","maj",Duration.QUARTER));

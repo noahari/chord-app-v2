@@ -21,6 +21,6 @@ public class RestyTest {
                 // since a rest is a note, and therefore the duration is represented numerically,
                 //therefore, we need to update this method for the sake of UI display consistency
         };
-        assertEquals(testArray, restytesty.getRow());
+        assertArrayEquals(testArray, restytesty.getRow());
     }
 }
