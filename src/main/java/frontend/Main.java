@@ -1,5 +1,7 @@
 package frontend;
 
+import backend.ChordChart;
+
 import javax.swing.*;
 
 public class Main {

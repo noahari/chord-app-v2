@@ -4,8 +4,11 @@ import org.jfugue.theory.Note;
 
 public class Resty extends Note implements Useable{
 
+    private Duration duration;
+
     public Resty(Duration duration) {
         super("R"+duration.getDur());
+        this.duration = duration;
     }
 
     public boolean isRest(){
@@ -16,7 +19,7 @@ public class Resty extends Note implements Useable{
 	    return new String[]{
 		    "R",
 		    "",
-		    String.valueOf(this.getDuration())
+		    duration.toString() // this was originally giving back a double, now it gives back the string
 	    };
     }
 }

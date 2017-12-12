@@ -5,10 +5,38 @@ import frontend.ButtonsPanel;
 import frontend.Panel;
 import org.jfugue.theory.*;
 
+import java.awt.*;
+
 class Test {
     public static void main(String[] args){
-        Chord c = new Chord(new Key("Db"));
-        System.out.println(c);
+//        Chord c = new Chord(new Key("Db"));
+//        System.out.println(c);
+
+        // test of ChordChart.toTextFile() and ChordChart.stringToChart()
+        ChordChart chordChart = new ChordChart();
+        chordChart.insertUseable(new Chordy("C", "maj7", Duration.QUARTER));
+        chordChart.insertUseable(new Resty(Duration.WHOLE));
+        chordChart.insertUseable(new Chordy("D", "min7", Duration.QUARTER));
+        chordChart.setTempo(99);
+
+        System.out.println(chordChart);
+
+        chordChart.toTextFile();
+        chordChart = ChordChart.fileToChart("chordChart.txt");
+
+        System.out.println(chordChart);
+
+//        String[] txtArray = txt.split(System.getProperty("line.separator"));
+//
+//        for (String part: txtArray) {
+//            String[] partData = part.split("\\s+");
+//            if (partData[0].equals("T99")) continue;
+//            System.out.println(partData[0]);
+//            System.out.println(partData[1]);
+//            if(!partData[0].equals("R")) System.out.println(partData[2]);
+//        }
+
+
 
 //
 //

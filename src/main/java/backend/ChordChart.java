@@ -1,12 +1,12 @@
 package backend;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import org.jfugue.player.Player;
 import org.jfugue.pattern.Pattern;
 import org.jfugue.midi.*;
+import org.jfugue.theory.Chord;
 
-import java.io.File;
 import java.util.Observable;
 
 public class ChordChart extends Observable {
@@ -159,4 +159,62 @@ public class ChordChart extends Observable {
         return retArray;
     }
 
+    // saves the ChordChart as a .txt file
+    public void toTextFile() {
+        // begin file with the tempo
+        String txt = "T" + tempo + "\n";
+
+        // for each item in the chord list, create a new line with all of the data
+        for (Useable item : chordList) {
+            String[] data = item.getRow();
+            txt += data[0] + " " + data[1] + " " + data[2] + "\n";
+        }
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("chordChart.txt"));
+            writer.write(txt);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("ERROR GENERATING FILE");
+        }
+    }
+
+    public static ChordChart fileToChart(String fileName) {
+        // setup the chart to be returned
+        ChordChart chart = new ChordChart();
+
+        try {
+            // grab the file
+            BufferedReader fileIn = new BufferedReader(new FileReader(fileName));
+
+            // read the first line
+            String line = fileIn.readLine();
+
+            // setup tempo
+            try {
+                int tempo = Integer.parseInt(line.substring(1, line.length()));
+                if (tempo > 200 || tempo < 40) throw new NumberFormatException("Invalid");
+                chart.setTempo(tempo);
+            } catch (NumberFormatException nfe) {
+                System.out.println("INVALID TEMPO");
+            }
+
+            // setup the usable objects
+            while((line = fileIn.readLine()) != null) {
+                // split up parts of line by whitespace
+                String[] partData = line.split("\\s+");
+
+                // add useable to chart depending on type
+                if(partData[0].equals("R")) {
+                    chart.insertUseable(new Resty(Duration.valueOf(partData[1])));
+                } else {
+                    chart.insertUseable(new Chordy(partData[0], partData[1], Duration.valueOf(partData[2])));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("INVALID FILE");
+        }
+
+        return chart;
+    }
 }
