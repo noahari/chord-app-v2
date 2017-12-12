@@ -61,8 +61,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
                 chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
             }
 
-        }
-        else
+        } else
             for (int i = 0; i < this.getUsedButtonList().size(); i++) {
                 ChordButton b = getUsedButtonList().get(i);
                 Note n = keyNotes.get(i);
@@ -113,17 +112,17 @@ public class ButtonsPanel extends Panel implements ActionListener {
         chordButton1 = usedButtonList.get(0);
         chordButton1.addActionListener(this);
         chordButton2 = usedButtonList.get(1);
-        chordButton1.addActionListener(this);
+        chordButton2.addActionListener(this);
         chordButton3 = usedButtonList.get(2);
-        chordButton1.addActionListener(this);
+        chordButton3.addActionListener(this);
         chordButton4 = usedButtonList.get(3);
-        chordButton1.addActionListener(this);
+        chordButton4.addActionListener(this);
         chordButton5 = usedButtonList.get(4);
-        chordButton1.addActionListener(this);
+        chordButton5.addActionListener(this);
         chordButton6 = usedButtonList.get(5);
-        chordButton1.addActionListener(this);
+        chordButton6.addActionListener(this);
         chordButton7 = usedButtonList.get(6);
-        chordButton1.addActionListener(this);
+        chordButton7.addActionListener(this);
         extraButton = new ChordButton();
         extraButton.setIcon(new ImageIcon("graphics/EllipseButton.png"));
     }
