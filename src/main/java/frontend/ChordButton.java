@@ -1,5 +1,8 @@
 package frontend;
 
+import org.jfugue.theory.Key;
+import org.jfugue.theory.Note;
+
 import javax.swing.*;
 
 public class ChordButton extends JButton {
@@ -29,18 +32,33 @@ public class ChordButton extends JButton {
         this.extension = extension;
     }
 
-    public String toString(){
+    protected ChordButton resetText(Key key, Note n){
+        KeyMore keyMore = new KeyMore(key);
+        this.setText(keyMore.stringCorrect(n));
+        return this;
+    }
+
+    protected ChordButton resetText(Key key, Note n, int i){
+        KeyMore keyMore = new KeyMore(key);
+        this.setChord(keyMore.stringCorrect(n));
+        this.setExtension(keyMore.stringFromKey(i));
+        this.setText(this.toString());
+        return this;
+    }
+
+    public String toString() {
         String endChord = chord;
         switch(extension){
             case "MAJ":
                 endChord = endChord.toUpperCase();
                 break;
             case "DIM":
-                 endChord += "o";
+                endChord += "o";
             case "MIN":
                 endChord = endChord.toLowerCase();
                 break;
         }
         return endChord;
     }
+
 }

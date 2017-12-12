@@ -1,6 +1,7 @@
 package frontend;
 
 import backend.ChordChart;
+import org.jfugue.theory.Key;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,6 @@ public class GenericUIBuilder implements UIBuilder {
     private GlobalParametersPanel globalParamatersPanel;
     private NotationPanel notationPanel;
     private JPanel panel;
-
 
     public GenericUIBuilder() {
         $$$setupUI$$$();
@@ -32,7 +32,6 @@ public class GenericUIBuilder implements UIBuilder {
     @Override
     public void makeNotationPanel() {
         this.notationPanel = new NotationPanel(userInterface);
-
     }
 
     @Override
@@ -48,7 +47,6 @@ public class GenericUIBuilder implements UIBuilder {
     @Override
     public void makeGlobalParamsPanel() {
         this.globalParamatersPanel = new GlobalParametersPanel(userInterface);
-
     }
 
     private void createUIComponents() {
