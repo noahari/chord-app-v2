@@ -11,18 +11,10 @@ import java.io.IOException;
 
 
 public abstract class Panel extends JPanel {
-    private Key key;
 
     private UI userInterface;
 
     //<editor-fold desc="Getters and Setters">
-    public void setKey(Key key) {
-        this.key = key;
-    }
-
-    public Key getKey() {
-        return key;
-    }
 
     public UI getUserInterface() {
         return userInterface;
@@ -39,14 +31,28 @@ public abstract class Panel extends JPanel {
 
     public abstract void draw();
 
-    public ChordButton toButton(Note n, int i) throws IOException{
-        KeyMore keyMore = new KeyMore(key);
+    public Key getKey(){
+        try {
+            return getUserInterface().getKey();
+        }
+        catch(NullPointerException npe){
+           return new Key("Cmaj");
+        }
+    }
+
+    public void setKey(Key key){
+        getUserInterface().setKey(key);
+    }
+
+
+    protected ChordButton toButton(Note n, int i) throws IOException{
+        KeyMore keyMore = new KeyMore(getKey());
         String nStr = keyMore.stringCorrect(n);
         return toIcon(nStr, keyMore.stringFromKey(i));
     }
 
-    public ChordButton toButton(Note n) throws IOException {
-        KeyMore keyMore = new KeyMore(key);
+    protected ChordButton toButton(Note n) throws IOException {
+        KeyMore keyMore = new KeyMore(getKey());
         String nStr = keyMore.stringCorrect(n);
         return toIcon(nStr, "MAJ");
     }

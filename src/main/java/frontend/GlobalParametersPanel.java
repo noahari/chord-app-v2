@@ -20,11 +20,11 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     public GlobalParametersPanel(UI userInterface) {
         super(userInterface);
         $$$setupUI$$$();
-        this.setKey(new Key("CMaj"));
         panel.setPreferredSize(new Dimension(500, 200));
     }
 
     public void draw() {
+        this.repaint();
         $$$setupUI$$$();
     }
 
@@ -32,7 +32,8 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         if (evt.getSource() instanceof JComboBox) {
             JComboBox cb = (JComboBox) evt.getSource();
             Key key = new Key((String) cb.getSelectedItem());
-            this.setKey(key);
+            getUserInterface().setKey(key);
+            this.getUserInterface().redraw();
             System.out.println("Key changed to:  " + getKey().getRoot().toString() + getKey().getScale());
         } else if (evt.getSource() instanceof JTextField) {
             String tText = tempo.getText();
@@ -46,6 +47,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             }
             this.getUserInterface().getChordChart().setTempo(tInt);
         } else {
+            System.out.println(getUserInterface().getChordChart());
             this.getUserInterface().getChordChart().play();
         }
     }
