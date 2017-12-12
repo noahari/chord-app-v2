@@ -24,7 +24,7 @@ public class ChordChartTest {
      private Duration duration;
 
     @Test
-    public void insertChord() {
+    public void insertUseable() {
         ChordChart chordChart = new ChordChart();
 
         chordChart.insertUseable(chordy);
