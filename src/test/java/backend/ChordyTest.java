@@ -1,20 +1,35 @@
 package backend;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static org.junit.Assert.*;
 
 
 public class ChordyTest {
 
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+    @Mock
+    private Chordy chordy;
+    private String dur;
+    private Duration duration;
+
     @Test
     public void decDur() throws Exception {
         //test chordy
         Chordy sChord = new Chordy("C", "maj7", Duration.WHOLE);
 
-        sChord.decDur();
+        for(int i = 0; i < 7; i++) {
+            sChord.decDur();
+        }
 
-        assertEquals(Duration.HALF, sChord.getDuration());
+
+        assertEquals(Duration.ONETWENTYEIGHTH, sChord.getDuration());
         //should add more JUnit tests for each case
     }
 
@@ -23,9 +38,12 @@ public class ChordyTest {
         //test chordy
         Chordy sChord = new Chordy("C", "maj7", Duration.ONETWENTYEIGHTH);
 
-        sChord.incDur();
+        for(int i = 0; i < 7; i++) {
+            sChord.incDur();
+        }
 
-        assertEquals(Duration.SIXTYFOURTH, sChord.getDuration());
+
+        assertEquals(Duration.WHOLE, sChord.getDuration());
         //should add more JUnit tests for each case
     }
 
@@ -105,13 +123,14 @@ public class ChordyTest {
 
     @Test
     public void decRoot() throws Exception {
-        Chordy sChord = new Chordy("C", "maj7", Duration.ONETWENTYEIGHTH);
+        Chordy sChord = new Chordy("C4", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.decRoot();
         assertEquals("B3", sChord.getRoot().getToneString());
 
         Chordy aChord = new Chordy("C0", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.decRoot();
         assertEquals("C0", aChord.getRoot().getToneString());
+
     }
 
     @Test
@@ -125,5 +144,37 @@ public class ChordyTest {
         aChord.incRoot();
         assertEquals("G10", aChord.getRoot().getToneString());
     }
+
+    @Test
+    public void isRest() throws Exception {
+        assertEquals(false, chordy.isRest());
+
+    }
+
+    @Test
+    public void getDurationString() throws Exception{
+        Chordy sChord = new Chordy("B", "maj7", Duration.ONETWENTYEIGHTH);
+        assertEquals("o", sChord.getDurationString());
+    }
+
+    @Test
+    public void setDuration() throws Exception {
+        chordy.setDuration(dur);
+        assertEquals(dur, chordy.getDurationString());
+
+    }
+
+    //This test shows that we may want to change getRow() for the sake of UI readability
+    @Test
+    public void getRow(){
+        Chordy sChord = new Chordy("B", "maj7", Duration.ONETWENTYEIGHTH);
+        String[] testArray = new String[]{
+                "B",
+                "MAJ7",
+                "ONETWENTYEIGHTH"
+        };
+        assertEquals(testArray, sChord.getRow());
+    }
+
 
 }
