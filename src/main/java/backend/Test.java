@@ -24,8 +24,8 @@ class Test {
         System.out.println(chordChart);
 
         String fileName = "chordChart";
-        chordChart.toTextFile(fileName);
-        chordChart = ChordChart.fileToChart(fileName);
+        chordChart.saveFile(fileName);
+        chordChart = ChordChart.fileToChart(fileName + ".chordface");
 
         System.out.println(chordChart);
 

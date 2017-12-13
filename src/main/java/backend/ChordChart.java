@@ -160,7 +160,7 @@ public class ChordChart extends Observable {
     }
 
     // saves the ChordChart as a .txt file
-    public void toTextFile(String fileName) {
+    public void saveFile(String fileName) {
         // begin file with the tempo
         String txt = "T" + tempo + "\n";
 
@@ -171,7 +171,7 @@ public class ChordChart extends Observable {
         }
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".chordface"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter( fileName + ".chordface"));
             writer.write(txt);
             writer.close();
         } catch (Exception e) {
@@ -179,13 +179,13 @@ public class ChordChart extends Observable {
         }
     }
 
-    public static ChordChart fileToChart(String fileName) {
+    public static ChordChart fileToChart(String path) {
         // setup the chart to be returned
         ChordChart chart = new ChordChart();
 
         try {
             // grab the file
-            BufferedReader fileIn = new BufferedReader(new FileReader(fileName + ".chordface"));
+            BufferedReader fileIn = new BufferedReader(new FileReader(path));
 
             // read the first line
             String line = fileIn.readLine();
