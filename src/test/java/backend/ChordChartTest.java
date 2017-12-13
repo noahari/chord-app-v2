@@ -21,6 +21,7 @@ public class ChordChartTest {
      @Mock
      private Chordy chordy;
      private Chordy chordyB;
+     private Resty resty;
      private Duration duration;
 
     @Test
@@ -28,10 +29,15 @@ public class ChordChartTest {
         ChordChart chordChart = new ChordChart();
 
         chordChart.insertUseable(chordy);
+        chordChart.insertUseable(resty);
+        chordChart.insertUseable(1, chordy);
 
-        ArrayList<Chordy> testArray = new ArrayList<>();
+
+        ArrayList<Useable> testArray = new ArrayList<>();
 
         testArray.add(chordy);
+        testArray.add(chordy);
+        testArray.add(resty);
 
         assertEquals(testArray, chordChart.getChordList());
     }
@@ -62,27 +68,62 @@ public class ChordChartTest {
         when(chordy.getDuration()).thenReturn(Duration.QUARTER);
         chordChart.restChord(0);
         assertTrue(chordChart.getChordList().get(0).isRest());
+
+        chordChart.restChord(0);
+        assertTrue(chordChart.getChordList().get(0).isRest());
     }
 
     @Test
     public void getChord() throws Exception {
-        
+        ChordChart chordChart = new ChordChart();
+
+        chordChart.insertUseable(chordy);
+        chordChart.insertUseable(resty);
+        chordChart.insertUseable(chordy);
+
+        assertEquals(chordy, (chordChart.getChord(0)));
+        assertEquals(null, (chordChart.getChord(1)));
+        assertEquals(chordy, (chordChart.getChord(2)));
     }
 
     @Test
     public void getUseable() throws Exception {
-    }
+        ChordChart chordChart = new ChordChart();
 
-    @Test
-    public void restChord1() throws Exception {
+        chordChart.insertUseable(chordy);
+        chordChart.insertUseable(resty);
+        chordChart.insertUseable(chordy);
+
+
+        assertEquals(chordy, (chordChart.getUseable(0)));
+        assertEquals(resty, (chordChart.getUseable(1)));
+        assertEquals(chordy, (chordChart.getUseable(2)));
     }
 
     @Test
     public void delChord() throws Exception {
+        ChordChart chordChart = new ChordChart();
+        chordChart.insertUseable(chordy);
+        chordChart.insertUseable(resty);
+        chordChart.insertUseable(chordy);
+
+        chordChart.delChord(1);
+
+        assertEquals(chordy, chordChart.getChordList().get(1));
     }
 
     @Test
     public void moveChord() throws Exception {
+        ChordChart chordChart = new ChordChart();
+        chordChart.insertUseable(chordy);
+        chordChart.insertUseable(chordy);
+        chordChart.insertUseable(resty);
+        chordChart.insertUseable(resty);
+        chordChart.insertUseable(chordy);
+
+        chordChart.moveChord(1,2);
+
+        assertEquals(chordy, chordChart.getChord(2));
     }
 
     @Test
@@ -90,11 +131,11 @@ public class ChordChartTest {
     }
 
     @Test
-    public void toFile(){
+    public void toMIDIFile(){
         ChordChart chordChart = new ChordChart();
         chordChart.insertUseable(new Chordy("C","maj",Duration.QUARTER));
         String path = System.getProperty("user.home")+"/Downloads/";
-        chordChart.toFile(path);
+        chordChart.toMIDIFile(path);
         assertTrue(new File(path+"/yourMidi.midi").exists());
     }
 

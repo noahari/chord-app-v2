@@ -15,8 +15,10 @@ class Test {
         // test of ChordChart.toTextFile() and ChordChart.stringToChart()
         ChordChart chordChart = new ChordChart();
         chordChart.insertUseable(new Chordy("C", "maj7", Duration.QUARTER));
-        chordChart.insertUseable(new Resty(Duration.WHOLE));
         chordChart.insertUseable(new Chordy("D", "min7", Duration.QUARTER));
+        chordChart.insertUseable(new Resty(Duration.HALF));
+        chordChart.insertUseable(new Chordy("G", "dom7", Duration.QUARTER));
+        chordChart.insertUseable(new Chordy("C", "maj7", Duration.QUARTER));
         chordChart.setTempo(98);
 
         System.out.println(chordChart);
@@ -26,6 +28,8 @@ class Test {
         chordChart = ChordChart.fileToChart(fileName);
 
         System.out.println(chordChart);
+
+        chordChart.play();
 
 //        String[] txtArray = txt.split(System.getProperty("line.separator"));
 //
