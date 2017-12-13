@@ -103,11 +103,11 @@ public class ChordChart extends Observable {
     }
 
     public void moveChord(int presentIndex, int futureIndex) {
-        this.insertUseable(futureIndex, this.getUseable(presentIndex));
+        this.insertUseable(futureIndex + 1, this.getUseable(presentIndex));
         this.delChord(presentIndex);
     }
 
-    public void toFile(String path){
+    public void toMIDIFile(String path){
         Pattern p = new Pattern(this.toString());
         try {
             MidiFileManager.savePatternToMidi(p, new File(path+"/yourMidi.midi"));

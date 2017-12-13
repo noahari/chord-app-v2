@@ -40,8 +40,6 @@ public class ChordChartTest {
         testArray.add(resty);
 
         assertEquals(testArray, chordChart.getChordList());
-
-
     }
 
     @Test
@@ -125,7 +123,7 @@ public class ChordChartTest {
 
         chordChart.moveChord(1,2);
 
-        assertEquals(chordy, chordChart.getChordList().get(2));
+        assertEquals(chordy, chordChart.getChord(2));
     }
 
     @Test
@@ -133,11 +131,11 @@ public class ChordChartTest {
     }
 
     @Test
-    public void toFile(){
+    public void toMIDIFile(){
         ChordChart chordChart = new ChordChart();
         chordChart.insertUseable(new Chordy("C","maj",Duration.QUARTER));
         String path = System.getProperty("user.home")+"/Downloads/";
-        chordChart.toFile(path);
+        chordChart.toMIDIFile(path);
         assertTrue(new File(path+"/yourMidi.midi").exists());
     }
 
