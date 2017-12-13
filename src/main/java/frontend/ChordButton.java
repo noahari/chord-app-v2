@@ -32,18 +32,10 @@ public class ChordButton extends JButton {
         this.extension = extension;
     }
 
-    protected ChordButton resetText(Key key, Note n){
-        KeyMore keyMore = new KeyMore(key);
-        this.setText(keyMore.stringCorrect(n));
-        return this;
-    }
-
-    protected ChordButton resetText(Key key, Note n, int i){
-        KeyMore keyMore = new KeyMore(key);
-        this.setChord(keyMore.stringCorrect(n));
-        this.setExtension(keyMore.stringFromKey(i));
+    protected void resetText(KeyMore key, Note n, int i){
+        this.setChord(key.stringCorrect(n));
+        this.setExtension(key.typeFromKey(i));
         this.setText(this.toString());
-        return this;
     }
 
     public String toString() {

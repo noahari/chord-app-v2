@@ -31,29 +31,31 @@ public abstract class Panel extends JPanel {
 
     public abstract void draw();
 
-    public Key getKey(){
+    public KeyMore getKey(){
         try {
             return getUserInterface().getKey();
         }
-        catch(NullPointerException npe){
-           return new Key("Cmaj");
+        catch(NullPointerException e){
+           return new KeyMore("Cmaj");
         }
     }
 
-    public void setKey(Key key){
-        getUserInterface().setKey(key);
+    public Key getKeyAsKey(){
+        return getKey().getKey();
+    }
+
+    public void setKey(KeyMore key){
+
     }
 
 
     protected ChordButton toButton(Note n, int i) throws IOException{
-        KeyMore keyMore = new KeyMore(getKey());
-        String nStr = keyMore.stringCorrect(n);
-        return toIcon(nStr, keyMore.stringFromKey(i));
+        String nStr = getKey().stringCorrect(n);
+        return toIcon(nStr, getKey().typeFromKey(i));
     }
 
     protected ChordButton toButton(Note n) throws IOException {
-        KeyMore keyMore = new KeyMore(getKey());
-        String nStr = keyMore.stringCorrect(n);
+        String nStr = getKey().stringCorrect(n);
         return toIcon(nStr, "MAJ");
     }
 
@@ -61,7 +63,6 @@ public abstract class Panel extends JPanel {
         ImageIcon icon = new ImageIcon("graphics/Button.png");
         ChordButton button = new ChordButton(nStr, extension);
         button.setIcon(icon);
-        Graphics g = button.getGraphics();
         Font fonty = new Font("ARIAL", Font.PLAIN, 36);
         button.setFont(fonty);
         button.setForeground(Color.white);

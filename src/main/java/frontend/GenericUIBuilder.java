@@ -40,8 +40,8 @@ public class GenericUIBuilder implements UIBuilder {
     }
 
     @Override
-    public void makeUI(ChordChart chart) {
-        this.userInterface = new UI(chart);
+    public void makeUI(ChordChart chart, KeyMore key) {
+        this.userInterface = new UI(chart, key);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GenericUIBuilder implements UIBuilder {
     }
 
     private void createUIComponents() {
-        makeUI(new ChordChart());
+        makeUI(new ChordChart(), new KeyMore("Cmaj"));
         makeGlobalParamsPanel();
         makeNotationPanel();
         makeButtonsPanel();

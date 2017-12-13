@@ -3,19 +3,31 @@ package frontend;
 import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
-public class KeyMore extends Key{
+import java.util.Observable;
 
-    public KeyMore(Key key){
-        super(key);
+public class KeyMore extends Observable {
+
+    private Key key;
+
+    public KeyMore(String s){
+        this.key = new Key(s);
+    }
+
+    public Key getKey() {
+        return key;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
     }
 
     private boolean isSharpKey() {
-        String keyStr = this.getRoot().toString();
+        String keyStr = key.getRoot().toString();
         return !((keyStr.length() > 1 && keyStr.charAt(1) == 'B') || keyStr.equals("F"));
     }
 
-    protected String stringFromKey(int i){
-        if(this.getScale().getMajorOrMinorIndicator() == 1){
+    protected String typeFromKey(int i){
+        if(key.getScale().getMajorOrMinorIndicator() == 1){
             if (i == 0 || i == 3 || i == 4) return "MAJ";
             else if (i != 6) return "MIN";
             else return "DIM";
@@ -36,7 +48,7 @@ public class KeyMore extends Key{
             else
                 nStr = Note.getDispositionedToneStringWithoutOctave(-1, n.getValue());
         }
-        String keySignature = this.getKeySignature();
+        String keySignature = key.getKeySignature();
         if((noteOnly == 'C' || noteOnly == 'F') && sharpKey && !keySignature.equals("Cmaj")){
             if(nStr.equals("C") && !(keySignature.equals("Gmaj") || keySignature.equals("Emin"))) nStr = "B#";
             if(nStr.equals("F")) nStr = "E#";
@@ -46,5 +58,16 @@ public class KeyMore extends Key{
             if(nStr.equals("E") && (!keySignature.equals("Fmaj") || keySignature.equals("Dmin"))) nStr = "Fb";
         }
         return nStr;
+    }
+
+    public void keyChanged(){
+        System.out.println("Changed");
+        setChanged();
+        System.out.println(this.hasChanged());
+        notifyObservers();
+    }
+
+    public String toString(){
+        return key.toString();
     }
 }

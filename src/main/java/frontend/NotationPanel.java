@@ -38,7 +38,7 @@ public class NotationPanel extends Panel {
     */
     public void updateTable() {
         this.TrackerTable = new JTable(
-                userInterface.chordChart.toTableArray(),
+                userInterface.getChordChart().toTableArray(),
                 COL_NAMES
         );
     }

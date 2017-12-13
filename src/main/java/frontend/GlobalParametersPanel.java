@@ -32,10 +32,8 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() instanceof JComboBox) {
             JComboBox cb = (JComboBox) evt.getSource();
-            Key key = new Key((String) cb.getSelectedItem());
-            getUserInterface().setKey(key);
-            this.getUserInterface().redraw();
-            System.out.println("Key changed to:  " + getKey().getRoot().toString() + getKey().getScale());
+            KeyMore key = new KeyMore((String) cb.getSelectedItem());
+            setKey(key);
         } else if (evt.getSource() instanceof JTextField) {
             String tText = tempo.getText();
             int tInt = 120;
@@ -48,7 +46,6 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             }
             ChordChart chordChart = new ChordChart(getUserInterface().getChordChart().getChordList());
             chordChart.setTempo(tInt);
-            System.out.println(tInt);
             this.getUserInterface().setChordChart(chordChart);
         } else {
             this.getUserInterface().getChordChart().play();

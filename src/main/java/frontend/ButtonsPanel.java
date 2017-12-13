@@ -33,10 +33,6 @@ public class ButtonsPanel extends Panel implements ActionListener {
         return usedButtonList;
     }
 
-    public void rootButtonHit(JButton rootButton) {
-        getUserInterface().getChordChart().insertUseable(new Chordy(rootButton.getName(), "", Duration.QUARTER));
-    }
-
     public void actionPerformed(ActionEvent evt) {
         ChordButton button = (ChordButton) evt.getSource();
         if (!button.equals(extraButton)) {
@@ -52,15 +48,14 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private void getButtons() throws IOException {
         nonUsedButtonList = new ArrayList<>();
         Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
-        getKey().getScale().getIntervals().setRoot(getKey().getRoot());
-        List<Note> keyNotes = getKey().getScale().getIntervals().getNotes();
+        getKeyAsKey().getScale().getIntervals().setRoot(getKeyAsKey().getRoot());
+        List<Note> keyNotes = getKeyAsKey().getScale().getIntervals().getNotes();
         if (usedButtonList.size() == 0) {
             for (Note n : keyNotes) {
                 usedButtonList.add(toButton(n, keyNotes.indexOf(n)));
                 String nStr = n.toString();
                 chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
             }
-
         } else
             for (int i = 0; i < this.getUsedButtonList().size(); i++) {
                 ChordButton b = getUsedButtonList().get(i);
@@ -83,13 +78,6 @@ public class ButtonsPanel extends Panel implements ActionListener {
             chromaticNotes.add(Note.getDispositionedToneStringWithoutOctave(-1, n.getValue()));
         }
         return chromaticNotes;
-    }
-
-    private void viewComponents(JPanel panel) {
-        Component[] components = panel.getComponents();
-        for (Component c : components) {
-            System.out.println("Component " + c);
-        }
     }
 
     public void draw() {
