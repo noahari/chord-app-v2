@@ -61,9 +61,7 @@ public class KeyMore extends Observable {
     }
 
     public void keyChanged(){
-        System.out.println("Changed");
         setChanged();
-        System.out.println(this.hasChanged());
         notifyObservers();
     }
 

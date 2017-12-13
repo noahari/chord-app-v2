@@ -44,10 +44,6 @@ public abstract class Panel extends JPanel {
         return getKey().getKey();
     }
 
-    public void setKey(KeyMore key){
-
-    }
-
 
     protected ChordButton toButton(Note n, int i) throws IOException{
         String nStr = getKey().stringCorrect(n);

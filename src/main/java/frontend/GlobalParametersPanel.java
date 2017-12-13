@@ -33,7 +33,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         if (evt.getSource() instanceof JComboBox) {
             JComboBox cb = (JComboBox) evt.getSource();
             KeyMore key = new KeyMore((String) cb.getSelectedItem());
-            setKey(key);
+            getUserInterface().setKey(key);
         } else if (evt.getSource() instanceof JTextField) {
             String tText = tempo.getText();
             int tInt = 120;

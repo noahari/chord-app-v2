@@ -18,12 +18,5 @@ public class UITest {
     KeyMore key;
     //ChordChart chordChart;
 
-    @Test
-    public void setKeyTest(){
-        ChordChart chordChart = mock(ChordChart.class);
-        doNothing().when(chordChart).chartChanged();
-        UI ui = new UI(key, chordChart);
-        ui.setKey(key);
-        verify(key).keyChanged();
-    }
+
 }

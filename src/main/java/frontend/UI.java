@@ -11,10 +11,8 @@ import java.util.Observer;
 
 public class UI implements Observer {
     // Instance Variables
-    private ChordChart chordChart;
-    private KeyMore key;
-    Observable chartObs;
-    Observable keyObs;
+    ChordChart chordChart;
+    KeyMore key;
 
     private Panel[] panels;
 
@@ -23,20 +21,20 @@ public class UI implements Observer {
     }
 
     public UI(Observable chartObs, Observable keyObs){
-        chartObs = chartObs;
-        keyObs = keyObs;
-        chartObs.addObserver(this);
-        keyObs.addObserver(this);
+        setChordChart((ChordChart) chartObs);
+        this.key = (KeyMore) keyObs;
+        this.chordChart.addObserver(this);
+        this.key.addObserver(this);
     }
 
     public void update(Observable obs, Object arg){
-        for(Panel panel : panels){
-            panel.draw();
+        for (Panel panel : panels) {
+                panel.draw();
         }
     }
 
     public ChordChart getChordChart(){
-        return chordChart;
+        return (ChordChart) chordChart;
     }
 
     public void setChordChart(ChordChart chord){
@@ -44,10 +42,12 @@ public class UI implements Observer {
         chordChart.chartChanged();
     }
 
-    public void setKey(KeyMore key) {
+    public void setKey(KeyMore newKey) {
+        this.key = newKey;
+        this.key.addObserver(this);
         key.keyChanged();
-        this.key = key;
     }
+
     public KeyMore getKey() {
         return key;
     }
