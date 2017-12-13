@@ -118,12 +118,14 @@ public class ChordChartTest {
     public void moveChord() throws Exception {
         ChordChart chordChart = new ChordChart();
         chordChart.insertUseable(chordy);
+        chordChart.insertUseable(chordy);
         chordChart.insertUseable(resty);
         chordChart.insertUseable(resty);
         chordChart.insertUseable(chordy);
 
-        chordChart.moveChord(0,1);
-        assertEquals(chordy, chordChart.getChordList().get(1));
+        chordChart.moveChord(1,2);
+
+        assertEquals(chordy, chordChart.getChordList().get(2));
     }
 
     @Test

@@ -103,7 +103,7 @@ public class ChordChart extends Observable {
     }
 
     public void moveChord(int presentIndex, int futureIndex) {
-        this.insertUseable(futureIndex, this.getChord(presentIndex));
+        this.insertUseable(futureIndex, this.getUseable(presentIndex));
         this.delChord(presentIndex);
     }
 
