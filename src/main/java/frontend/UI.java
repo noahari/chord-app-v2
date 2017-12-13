@@ -21,7 +21,7 @@ public class UI implements Observer {
     }
 
     public UI(Observable chartObs, Observable keyObs){
-        setChordChart((ChordChart) chartObs);
+        this.chordChart = (ChordChart) chartObs;
         this.key = (KeyMore) keyObs;
         this.chordChart.addObserver(this);
         this.key.addObserver(this);

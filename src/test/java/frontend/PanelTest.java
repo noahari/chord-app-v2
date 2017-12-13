@@ -1,10 +1,13 @@
 package frontend;
-import org.jfugue.theory.Key;
-import org.jfugue.theory.Note;
+import backend.ChordChart;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.junit.Rule;
+import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
-import java.lang.reflect.Method;
-
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 public class PanelTest {
@@ -14,6 +17,33 @@ public class PanelTest {
     private static final String[] SHARPKEYS = {"C", "G", "D", "A", "E", "B", "F#", "C#"};
 
     private static final String[] FLATKEYS = {"F", "BB", "EB", "AB", "DB", "GB", "CB"};
+
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+    @Mock
+    UI userInterface;
+
+    @Spy
+    Panel panel;
+
+    @Test
+    public void getKeyTest(){
+        panel.setUserInterface(userInterface);
+        KeyMore key = mock(KeyMore.class);
+        when(userInterface.getKey()).thenReturn(key);
+        assertEquals(panel.getKey(), key);
+    }
+
+    @Test
+    public void getKeyTestException(){
+        panel.setUserInterface(userInterface);
+        when(userInterface.getKey()).thenThrow(new NullPointerException());
+        assertEquals(panel.getKey().toString(), "Cmaj") ;
+    }
+    public void toButtonATest(){
+
+    }
 }
 
 

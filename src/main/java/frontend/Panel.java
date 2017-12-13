@@ -19,13 +19,13 @@ public abstract class Panel extends JPanel {
     public UI getUserInterface() {
         return userInterface;
     }
+
+    public void setUserInterface(UI ui){userInterface = ui;}
     //</editor-fold>
 
-    public Panel(UI userInterface){
-        this.userInterface = userInterface;
-    }
+    public Panel(){}
 
-    public void setUserInterface(UI userInterface) {
+    public Panel(UI userInterface){
         this.userInterface = userInterface;
     }
 
