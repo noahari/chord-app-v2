@@ -55,7 +55,7 @@ public class KeyMore extends Observable {
         }
         else if((noteOnly == 'B' || noteOnly == 'E') && !sharpKey) {
             if(nStr.equals("B")) nStr = "Cb";
-            if(nStr.equals("E") && (!keySignature.equals("Fmaj") || keySignature.equals("Dmin"))) nStr = "Fb";
+            if(nStr.equals("E") && !(keySignature.equals("Fmaj") || keySignature.equals("Dmin"))) nStr = "Fb";
         }
         return nStr;
     }
