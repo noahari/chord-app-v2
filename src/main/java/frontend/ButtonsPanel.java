@@ -16,7 +16,7 @@ import java.util.List;
 public class ButtonsPanel extends Panel implements ActionListener {
 
     private ArrayList<ChordButton> usedButtonList = new ArrayList<>();
-    private ArrayList<ChordButton> nonUsedButtonList = new ArrayList<>();
+    private ArrayList<String> nonUsedButtonList = new ArrayList<>();
 
     private JPanel panel;
     private ChordButton chordButton1, chordButton2, chordButton3, chordButton4,
@@ -41,7 +41,22 @@ public class ButtonsPanel extends Panel implements ActionListener {
             chordChart.insertUseable(chord);
             this.getUserInterface().setChordChart(chordChart);
         } else {
-            //ADD JMENU OR WHATEVER WITH BUTTONS IN NONUSED LIST
+            ChordButton[] buttons = new ChordButton[]{chordButton1, chordButton2, chordButton3, chordButton4,
+                    chordButton5, chordButton6, chordButton7};
+            if (chordButton1.getChord().equals(getKey().stringCorrect(getKeyAsKey().getRoot())))
+                for (int i = 0; i < nonUsedButtonList.size(); i++) {
+                    buttons[i].resetText(nonUsedButtonList.get(i), "MAJ");
+                }
+            else {
+                for (int i = 0; i < buttons.length; i++) {
+                    try {
+                        getButtons();
+                    } catch (IOException ioe) {
+                        ioe.printStackTrace();
+                    }
+                    buttons[i].resetText(usedButtonList.get(i).getChord(), usedButtonList.get(i).getExtension());
+                }
+            }
         }
     }
 
@@ -64,9 +79,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
                 String nStr = n.toString();
                 chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
             }
-        for (String str : chromaticNotes) {
-            nonUsedButtonList.add(toButton(new Note(str)));
-        }
+        nonUsedButtonList = toEnharmonics(chromaticNotes);
     }
 
     private static Set<String> getChromaticNotes() {
@@ -78,6 +91,18 @@ public class ButtonsPanel extends Panel implements ActionListener {
             chromaticNotes.add(Note.getDispositionedToneStringWithoutOctave(-1, n.getValue()));
         }
         return chromaticNotes;
+    }
+
+    private static ArrayList<String> toEnharmonics(Set<String> set) {
+        String[] notes = set.toArray(new String[]{});
+        ArrayList<String> endList = new ArrayList<>();
+        for (int i = 0; i < set.size() - 1; i++) {
+            if (new Note(notes[i]).getValue() == new Note(notes[i + 1]).getValue()) {
+                endList.add(notes[i] + "/" + notes[i + 1]);
+                i += 1;
+            } else endList.add(notes[i]);
+        }
+        return endList;
     }
 
     public void draw() {
@@ -113,6 +138,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
         chordButton7.addActionListener(this);
         extraButton = new ChordButton();
         extraButton.setIcon(new ImageIcon("graphics/EllipseButton.png"));
+        extraButton.addActionListener(this);
     }
 
     /**
