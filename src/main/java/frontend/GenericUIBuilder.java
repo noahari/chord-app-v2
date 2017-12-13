@@ -29,6 +29,8 @@ public class GenericUIBuilder implements UIBuilder {
         return this.userInterface;
     }
 
+    public JPanel getPanel() { return this.panel; }
+
     @Override
     public void makeNotationPanel() {
         this.notationPanel = new NotationPanel(userInterface);

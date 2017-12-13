@@ -6,28 +6,59 @@ import javax.swing.*;
 import javax.swing.filechooser.*;
 
 public class Main {
-    static JFileChooser fc = new JFileChooser();
+    static JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView());
     static UIBuilder uiBuilder = new GenericUIBuilder();;
 
     public static void main(String[] args) {
+
         // ask if open an old file or create a new one
+        JFrame frame = new JFrame();
+
+        Object[] options = {"New", "Load"};
+        int n = JOptionPane.showOptionDialog(frame,
+                "Load chart or Start a new chart",
+                "McChordface Startup",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,     //do not use a custom Icon
+                options,  //the titles of buttons
+                options[1]); //default button title
 
         // if opening old file
-        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView());
-        jfc.setDialogTitle("Select a chart");
-        jfc.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("ChordFace Files", "chordface");
-        jfc.addChoosableFileFilter(filter);
+        if(n == 1) {
+            fc.setDialogTitle("Select a chart");
+            fc.setAcceptAllFileFilterUsed(false);
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Chordface Files",
+                    "chordface");
+            fc.addChoosableFileFilter(filter);
 
-        int returnValue = jfc.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            String path = jfc.getSelectedFile().getPath();
-            System.out.println(path);
-            ChordChart chart = ChordChart.fileToChart(path);
-            System.out.println(chart.toString());
-            chart.play();
+            int returnValue = fc.showOpenDialog(null);
 
-            uiBuilder.makeUI(chart, new KeyMore("Cmaj"));
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                System.out.println("loading");
+                String path = fc.getSelectedFile().getPath();
+                System.out.println(path);
+                ChordChart chart = ChordChart.fileToChart(path);
+                System.out.println(chart.toString());
+                chart.play();
+
+                uiBuilder.makeUI(chart, new KeyMore("Cmaj"));
+
+            } else {
+                // else, makeUI for a generic chart
+                System.out.println("making generic");
+                uiBuilder.makeUI(new ChordChart(), new KeyMore("Cmaj"));
+            }
+        } else {
+            // else, makeUI for a generic chart
+            System.out.println("making generic");
+            uiBuilder.makeUI(new ChordChart(), new KeyMore("Cmaj"));
         }
+
+        // initialize UI frame
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(new GenericUIBuilder().getPanel());
+        frame.pack();
+        frame.setVisible(true);
     }
 }
