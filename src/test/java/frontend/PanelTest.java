@@ -1,11 +1,14 @@
 package frontend;
 import backend.ChordChart;
+import org.jfugue.theory.Note;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.junit.Rule;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+
+import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
@@ -42,8 +45,39 @@ public class PanelTest {
         assertEquals(panel.getKey().toString(), "CMAJ") ;
     }
 
+    @Test
     public void toButtonATest(){
+        panel.setUserInterface(userInterface);
+        Note note = mock(Note.class);
+        KeyMore key = mock(KeyMore.class);
+        when(userInterface.getKey()).thenReturn(key);
+        when(key.stringCorrect(note)).thenReturn("A");
+        ChordButton button = null;
+        try {
+            button = panel.toButton(note);
+        }
+        catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+        assertEquals(button.getText(),"A" );
+    }
 
+    @Test
+    public void toButtonBTest(){
+        panel.setUserInterface(userInterface);
+        Note note = mock(Note.class);
+        KeyMore key = mock(KeyMore.class);
+        when(userInterface.getKey()).thenReturn(key);
+        when(key.stringCorrect(note)).thenReturn("A");
+        when(key.typeFromKey(1)).thenReturn("MIN");
+        ChordButton button = null;
+        try {
+            button = panel.toButton(note, 1);
+        }
+        catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+        assertEquals(button.getText(),"a" );
     }
 }
 
