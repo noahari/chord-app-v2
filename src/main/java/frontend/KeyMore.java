@@ -67,7 +67,8 @@ public class KeyMore extends Observable {
 
     public String toString(){
         String type;
-        if(key.getScale().getMajorOrMinorIndicator() == 1)
-        return "" + stringCorrect(key.getRoot()) +;
+        if(key.getScale().getMajorOrMinorIndicator() == 1) type = "MAJ";
+        else type = "MIN";
+        return "" + stringCorrect(key.getRoot()) + type;
     }
 }

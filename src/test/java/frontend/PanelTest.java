@@ -39,8 +39,9 @@ public class PanelTest {
     public void getKeyTestException(){
         panel.setUserInterface(userInterface);
         when(userInterface.getKey()).thenThrow(new NullPointerException());
-        assertEquals(panel.getKey().toString(), "Cmaj") ;
+        assertEquals(panel.getKey().toString(), "CMAJ") ;
     }
+
     public void toButtonATest(){
 
     }
