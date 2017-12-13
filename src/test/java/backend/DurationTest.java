@@ -27,8 +27,8 @@ public class DurationTest {
         };
         String invalidDur = "THIS IS NOT A VALID DURATION";
         for(int i = 0; i < 8; i++){
-            assertEquals(true, Duration.isValidDur(testArrayValid[i]));
+            assertTrue(Duration.isValidDur(testArrayValid[i]));
         }
-        assertEquals(false, Duration.isValidDur(invalidDur));
+        assertFalse(Duration.isValidDur(invalidDur));
     }
 }

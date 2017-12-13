@@ -24,7 +24,7 @@ public enum Duration {
         this.duration = dur;
     }
 
-    public Boolean isValidDur(String dur){
+    public static Boolean isValidDur(String dur){
         if(dur.equals("w") ||
                 dur.equals("h") ||
                 dur.equals("q") ||
