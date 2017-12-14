@@ -43,6 +43,8 @@ public class GenericUIBuilder implements UIBuilder {
         this.globalParamatersPanel = new GlobalParametersPanel(userInterface);
     }
 
+    public GlobalParametersPanel getGlobalParamsPanel() { return this.globalParamatersPanel; }
+
     private void createUIComponents() {
         makeUI(new ChordChart(), new KeyMore("Cmaj"));
         makeGlobalParamsPanel();

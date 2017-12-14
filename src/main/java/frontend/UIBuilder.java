@@ -9,5 +9,6 @@ public interface UIBuilder {
     public void makeUI(backend.ChordChart  chart, KeyMore key);
     public UI getUI();
     public void makeGlobalParamsPanel();
+    public GlobalParametersPanel getGlobalParamsPanel();
     public JPanel getPanel();
 }
