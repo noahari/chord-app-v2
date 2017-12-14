@@ -34,7 +34,7 @@ public class ChordButton extends JButton {
     }
 
     /**
-     * Updates the button's
+     * Updates the button's text
      * @param key Key to interpret
      * @param n Note to interpret
      * @param i Scale degree

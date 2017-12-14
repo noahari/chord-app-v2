@@ -126,7 +126,6 @@ public class ButtonsPanel extends Panel implements ActionListener {
 
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         draw(0);
         //I tried to use an array to iterate it doesnt work?
         chordButton1 = usedButtonList.get(0);
