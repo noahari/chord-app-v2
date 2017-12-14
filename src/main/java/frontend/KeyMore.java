@@ -17,15 +17,18 @@ public class KeyMore extends Observable {
         return key;
     }
 
-    public void setKey(Key key) {
-        this.key = key;
-    }
-
+    /**
+     * @return True if sharp key (C is treated as "sharp")
+     */
     private boolean isSharpKey() {
         String keyStr = key.getRoot().toString();
         return !((keyStr.length() > 1 && keyStr.charAt(1) == 'B') || keyStr.equals("F"));
     }
 
+    /**
+     * @param i scale degree (0-6)
+     * @return The given degree's chord quality
+     */
     protected String typeFromKey(int i){
         if(key.getScale().getMajorOrMinorIndicator() == 1){
             if (i == 0 || i == 3 || i == 4) return "MAJ";
@@ -38,6 +41,11 @@ public class KeyMore extends Observable {
         }
     }
 
+    /**
+     * Fixing JFugue's insistence on not using enharmonic notes
+     * @param n Note to be evaluated
+     * @return The note as a string in this key
+     */
     protected String stringCorrect(Note n){
         String nStr = n.toString();
         char noteOnly = nStr.charAt(0);
@@ -60,11 +68,15 @@ public class KeyMore extends Observable {
         return nStr;
     }
 
+    /**
+     * Observer method
+     */
     public void keyChanged(){
         setChanged();
         notifyObservers(0);
     }
 
+    @Override
     public String toString(){
         String type;
         if(key.getScale().getMajorOrMinorIndicator() == 1) type = "MAJ";

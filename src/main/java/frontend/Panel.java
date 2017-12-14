@@ -10,7 +10,7 @@ import java.awt.font.TextLayout;
 import java.io.IOException;
 
 
-public abstract class Panel extends JPanel {
+public abstract class Panel{
 
     private UI userInterface;
 
