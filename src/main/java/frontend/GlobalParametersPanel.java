@@ -1,6 +1,7 @@
 package frontend;
 
 import backend.ChordChart;
+import org.jfugue.theory.Chord;
 import org.jfugue.theory.Key;
 
 import javax.swing.*;
@@ -43,6 +44,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             getUserInterface().setKey(key);
         } else if (evt.getSource() instanceof JTextField) {
             String tText = tempo.getText();
+            //System.out.println(tText);
             int tInt;
             try {
                 tInt = Integer.parseInt(tText);
@@ -52,7 +54,9 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
                 tempo.setText("120");
                 tInt = 120;
             }
-            this.getUserInterface().getChordChart().setTempo(tInt);
+            ChordChart chart = this.getUserInterface().getChordChart();
+            chart.setTempo(tInt);
+            this.getUserInterface().setChordChart(chart);
         } else {
             JButton buttonHit = (JButton) (evt.getSource());
             if (buttonHit.getText().equals("Play")) {

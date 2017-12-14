@@ -54,7 +54,6 @@ public class Main {
             String fileName = fc.getSelectedFile().getName();
             uiBuilder.getGlobalParamsPanel().setFileName(fc.getSelectedFile().getName().substring(0, fileName.length() - 10));
             uiBuilder.getGlobalParamsPanel().setTempo(chart.getTempo());
-            uiBuilder.getNotationPanel().updateTable();
         }
     }
 }
