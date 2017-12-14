@@ -88,8 +88,8 @@ public class NotationPanel extends Panel {
 
     public void tableDelChord(int[] array) {
         ChordChart cc = getUserInterface().getChordChart();
-        for(int i = 0; i < array.length; i++) {
-            cc.delChord(array[i]-i);
+        for (int i = 0; i < array.length; i++) {
+            cc.delChord(array[i] - i);
         }
         getUserInterface().setChordChart(cc);
     }
