@@ -1,6 +1,7 @@
 package frontend;
 
 import backend.ChordChart;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.junit.Rule;
@@ -10,25 +11,30 @@ import org.mockito.junit.MockitoRule;
 import static org.mockito.Mockito.*;
 
 public class UITest {
+    private UI ui;
+
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock
-    KeyMore key;
+    private KeyMore key;
 
     @Mock
-    ChordChart chordChart;
+    private ChordChart chordChart;
+
+    @Before
+    public void setUp(){
+        this.ui = new UI(chordChart, key);
+    }
 
     @Test
     public void setKeyTest(){
-        UI ui = new UI(chordChart, key);
         ui.setKey(key);
         verify(key).keyChanged();
     }
 
     @Test
     public void setChordChartTest(){
-        UI ui = new UI(chordChart, key);
         ui.setChordChart(chordChart);
         verify(chordChart).chartChanged();
     }
@@ -37,7 +43,6 @@ public class UITest {
     public void updateTest(){
         ButtonsPanel bp = mock(ButtonsPanel.class);
         Panel[] panels = new Panel[]{bp};
-        UI ui = new UI(chordChart, key);
         ui.setPanels(panels);
         ui.update(ui.getChordChart(), null);
         verify(bp).draw(null);

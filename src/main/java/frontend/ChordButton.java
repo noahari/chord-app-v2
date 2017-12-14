@@ -40,6 +40,7 @@ public class ChordButton extends JButton {
      */
     protected void resetText(KeyMore key, Note n, int i){
         this.setChord(key.stringCorrect(n));
+        System.out.println(this.toString());
         this.setExtension(key.typeFromKey(i));
         this.setText(this.toString());
     }
@@ -61,8 +62,6 @@ public class ChordButton extends JButton {
      */
     @Override
     public String toString() {
-        if(chord.length() > 1)
-            if (chord.charAt(1) == 'B') chord = chord.substring(0, 0) + "b";
         String endChord = chord;
         switch(extension){
             case "MAJ":
@@ -74,6 +73,8 @@ public class ChordButton extends JButton {
                 endChord = endChord.toLowerCase();
                 break;
         }
+        if(endChord.length() > 1)
+            if (endChord.charAt(1) == 'B') endChord = endChord.substring(1) + "b";
         return endChord;
     }
 

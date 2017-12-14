@@ -61,7 +61,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
                 tempo.setText("120");
                 tInt = 120;
             }
-            ChordChart chart = this.getUserInterface().getChordChart();
+            ChordChart chart = getUserInterface().getChordChart();
             chart.setTempo(tInt);
             this.getUserInterface().setChordChart(chart);
         } else {

@@ -17,15 +17,15 @@ public class GlobalParametersPanelTest {
 
     @Test
     //THIS FAILS RN GOTTA FUCK AROUND W/ MOCKITO A BIT
-    public void actionPerformedTextField(){
+    public void actionPerformedTextField() {
         UI ui = mock(UI.class);
         ChordChart chart = mock(ChordChart.class);
         GlobalParametersPanel gpp = new GlobalParametersPanel(ui);
         gpp.tempo.setText("100");
         gpp.tempo.postActionEvent();
-        when(ui.getChordChart()).thenReturn(chart);
-        //when(chart.setTempo(anyInt())).thenCallRealMethod();
+        doReturn(chart).when(ui).getChordChart();
         verify(chart).setTempo(100);
     }
+
 
 }
