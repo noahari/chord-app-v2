@@ -42,9 +42,10 @@ public class ButtonsPanel extends Panel implements ActionListener {
             ChordChart chordChart = getUserInterface().getChordChart();
             Chordy chord;
             try {
-                chord = new Chordy(button.getChord(), button.getExtension(), Duration.QUARTER);
+                chord = new Chordy(button.getChord(), button.getExtension(), getUserInterface().getDuration());
             } catch (NumberFormatException nfe) {
-                chord = new Chordy(button.getChord().substring(0, 2), button.getExtension(), Duration.QUARTER);
+                chord = new Chordy(button.getChord().substring(0, 2),
+                        button.getExtension(), getUserInterface().getDuration());
             }
             chordChart.insertUseable(chord);
             getUserInterface().setChordChart(chordChart);
@@ -56,12 +57,12 @@ public class ButtonsPanel extends Panel implements ActionListener {
                 inKey = false;
             } else {
                 inKey = true;
+                try {
+                    getButtons();
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
                 for (int i = 0; i < buttons.length; i++) {
-                    try {
-                        getButtons();
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
-                    }
                     buttons[i].resetText(usedButtonList.get(i).getChord(), usedButtonList.get(i).getExtension());
                 }
             }

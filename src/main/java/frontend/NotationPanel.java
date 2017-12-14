@@ -96,6 +96,7 @@ public class NotationPanel extends Panel {
 
     public void tableSetDur(int[] array, Duration duration) {
         ChordChart cc = getUserInterface().getChordChart();
+        getUserInterface().setDuration(duration);
         for (int i = 0; i < array.length; i++) {
             cc.getUseable(array[i]).setDur(duration);
         }

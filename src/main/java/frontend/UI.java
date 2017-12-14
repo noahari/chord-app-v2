@@ -13,6 +13,7 @@ public class UI implements Observer {
     // Instance Variables
     ChordChart chordChart;
     KeyMore key;
+    Duration duration = Duration.WHOLE;
 
     private Panel[] panels;
 
@@ -47,6 +48,14 @@ public class UI implements Observer {
         this.key = newKey;
         this.key.addObserver(this);
         key.keyChanged();
+    }
+
+    public void setDuration(Duration duration){
+        this.duration = duration;
+    }
+
+    public Duration getDuration(){
+        return this.duration;
     }
 
     public KeyMore getKey() {

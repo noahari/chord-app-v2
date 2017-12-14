@@ -9,7 +9,6 @@ public class ChordButton extends JButton {
     private String extension;
     private String chord;
 
-
     public String getChord() {
         return chord;
     }
