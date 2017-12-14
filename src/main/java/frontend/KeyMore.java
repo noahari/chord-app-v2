@@ -62,7 +62,7 @@ public class KeyMore extends Observable {
 
     public void keyChanged(){
         setChanged();
-        notifyObservers();
+        notifyObservers(0);
     }
 
     public String toString(){

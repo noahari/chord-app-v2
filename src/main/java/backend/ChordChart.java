@@ -63,7 +63,7 @@ public class ChordChart extends Observable {
     //Observer Method
     public void chartChanged(){
         setChanged();
-        notifyObservers();
+        notifyObservers(1);
     }
     //
 

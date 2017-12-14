@@ -22,7 +22,7 @@ public class NotationPanel extends Panel {
 
 
     //JTable TrackerTable = new JTable(ChordChart.chordList);
-    public void draw() {
+    public void draw(Object arg) {
         // uhhh
     }
 

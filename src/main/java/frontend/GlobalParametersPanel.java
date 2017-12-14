@@ -24,8 +24,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         panel.setPreferredSize(new Dimension(500, 200));
     }
 
-    public void draw() {
-        this.repaint();
+    public void draw(Object arg) {
         $$$setupUI$$$();
     }
 
