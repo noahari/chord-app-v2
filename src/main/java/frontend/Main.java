@@ -35,12 +35,8 @@ public class Main {
             int returnValue = fc.showOpenDialog(null);
 
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                System.out.println("loading");
                 String path = fc.getSelectedFile().getPath();
-                System.out.println(path);
                 ChordChart chart = ChordChart.fileToChart(path);
-                System.out.println(chart.toString());
-                chart.play();
 
                 uiBuilder.makeUI(chart, new KeyMore("Cmaj"));
 
@@ -57,7 +53,7 @@ public class Main {
 
         // initialize UI frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(new GenericUIBuilder().getPanel());
+        frame.setContentPane(uiBuilder.getPanel());
         frame.pack();
         frame.setVisible(true);
     }
