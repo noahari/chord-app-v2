@@ -1,7 +1,6 @@
 package frontend;
 
 import backend.ChordChart;
-import org.jfugue.theory.Key;
 
 import javax.swing.*;
 import java.awt.*;

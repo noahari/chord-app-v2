@@ -30,10 +30,15 @@ public class ButtonsPanel extends Panel implements ActionListener {
         panel.setPreferredSize(new Dimension(900, 400));
     }
 
-    public ArrayList<ChordButton> getUsedButtonList() {
+    private ArrayList<ChordButton> getUsedButtonList() {
         return usedButtonList;
     }
 
+    /**
+     * Adds button to chord chart or shows non-diatonic notes
+     * @param evt
+     */
+    @Override
     public void actionPerformed(ActionEvent evt) {
         ChordButton[] buttons = new ChordButton[]{chordButton1, chordButton2, chordButton3,
                 chordButton4, chordButton5, chordButton6, chordButton7};
@@ -69,6 +74,11 @@ public class ButtonsPanel extends Panel implements ActionListener {
         }
     }
 
+    /**
+     * Sets usedButtonList to be diatonic buttons and
+     * nonUsedButtonList to be non-diatonic notes
+     * @throws IOException
+     */
     private void getButtons() throws IOException {
         if (inKey) {
             nonUsedButtonList = new ArrayList<>();
@@ -93,6 +103,10 @@ public class ButtonsPanel extends Panel implements ActionListener {
         }
     }
 
+    /**
+     * Returns all chromatic notes with enharmonics
+     * @return a Set of these notes
+     */
     private static Set<String> getChromaticNotes() {
         Intervals chromatic = new Intervals("1 #1 2 #2 3 4 #4 5 #5 6 #6 7 #7");
         chromatic.setRoot("C5");
@@ -104,6 +118,11 @@ public class ButtonsPanel extends Panel implements ActionListener {
         return chromaticNotes;
     }
 
+    /**
+     * Groups enharmonic notes together
+     * @param set a set of strings
+     * @return an ArrayList with enharmonic notes grouped
+     */
     private static ArrayList<String> toEnharmonics(Set<String> set) {
         String[] notes = set.toArray(new String[]{});
         ArrayList<String> endList = new ArrayList<>();
@@ -116,6 +135,9 @@ public class ButtonsPanel extends Panel implements ActionListener {
         return endList;
     }
 
+    /**
+     * @param arg 0 if key was changed, 1 if chordChart was changed
+     */
     public void draw(Object arg) {
         if (arg.equals(0)) inKey = true;
         try {
@@ -125,7 +147,9 @@ public class ButtonsPanel extends Panel implements ActionListener {
         }
     }
 
-
+    /**
+     * Intellij Method to make components
+     */
     private void createUIComponents() {
         draw(0);
         //I tried to use an array to iterate it doesnt work?
