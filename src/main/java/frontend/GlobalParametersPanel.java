@@ -13,7 +13,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     private JPanel panel;
     protected JComboBox<String> keys;
     protected JTextField tempo;
-    private JButton playButton;
+    protected JButton playButton;
     private JButton save;
     private String fileName = null;
 
@@ -61,7 +61,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
                 tempo.setText("120");
                 tInt = 120;
             }
-            ChordChart chart = getUserInterface().getChordChart();
+            ChordChart chart = this.getUserInterface().getChordChart();
             chart.setTempo(tInt);
             this.getUserInterface().setChordChart(chart);
         } else {

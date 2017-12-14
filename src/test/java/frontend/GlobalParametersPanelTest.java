@@ -1,31 +1,53 @@
 package frontend;
 
 import backend.ChordChart;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class GlobalParametersPanelTest {
+    private GlobalParametersPanel gpp;
+
+    @Mock
+    private UI ui;
+
+    @Mock
+    private ChordChart chordChart;
+
+    @Before
+    public void setUp(){
+        this.gpp = new GlobalParametersPanel(ui);
+    }
+
     @Test
     public void actionPerformedComboBox(){
-        UI ui = mock(UI.class);
-        GlobalParametersPanel gpp = new GlobalParametersPanel(ui);
         gpp.keys.setSelectedIndex(1);
         verify(ui).setKey(any());
     }
 
+    //I DONT KNOW WHY THIS DOESNT WORK???
     @Test
-    //THIS FAILS RN GOTTA FUCK AROUND W/ MOCKITO A BIT
     public void actionPerformedTextField() {
-        UI ui = mock(UI.class);
-        ChordChart chart = mock(ChordChart.class);
-        GlobalParametersPanel gpp = new GlobalParametersPanel(ui);
         gpp.tempo.setText("100");
         gpp.tempo.postActionEvent();
-        doReturn(chart).when(ui).getChordChart();
-        verify(chart).setTempo(100);
+        when(ui.getChordChart()).thenReturn(chordChart); //its really just this line its returning null not chordChart??
+        verify(chordChart).setTempo(100);
     }
+
+    //THIS ONE TOO
+    @Test
+    public void actionPerformedStartButton(){
+        gpp.playButton.doClick();
+        when(ui.getChordChart()).thenReturn(chordChart);
+        verify(chordChart).play();
+    }
+
+
+
+
 
 
 }

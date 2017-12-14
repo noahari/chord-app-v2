@@ -20,7 +20,6 @@ public class ButtonsPanelTest {
     @Mock
     private UI ui;
     private ChordChart chordChart;
-
     private ButtonsPanel buttonsPanel;
 
     @Before
