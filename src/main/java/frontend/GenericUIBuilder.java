@@ -13,14 +13,6 @@ public class GenericUIBuilder implements UIBuilder {
     private NotationPanel notationPanel;
     private JPanel panel;
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("GenericUIBuilder");
-        frame.setContentPane(new GenericUIBuilder().panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
     public GenericUIBuilder() {
         $$$setupUI$$$();
     }
