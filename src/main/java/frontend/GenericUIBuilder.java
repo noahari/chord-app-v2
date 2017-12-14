@@ -29,6 +29,9 @@ public class GenericUIBuilder implements UIBuilder {
     }
 
     @Override
+    public NotationPanel getNotationPanel() { return notationPanel; }
+
+    @Override
     public void makeButtonsPanel() {
         this.buttonsPanel = new ButtonsPanel(userInterface);
     }
@@ -42,6 +45,9 @@ public class GenericUIBuilder implements UIBuilder {
     public void makeGlobalParamsPanel() {
         this.globalParamatersPanel = new GlobalParametersPanel(userInterface);
     }
+
+    @Override
+    public GlobalParametersPanel getGlobalParamsPanel() { return this.globalParamatersPanel; }
 
     private void createUIComponents() {
         makeUI(new ChordChart(), new KeyMore("Cmaj"));

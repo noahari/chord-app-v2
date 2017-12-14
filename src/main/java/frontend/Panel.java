@@ -23,7 +23,8 @@ public abstract class Panel{
     public void setUserInterface(UI ui){userInterface = ui;}
     //</editor-fold>
 
-    public Panel(){}
+    // this seems like a null pointer waiting to happen:
+    // public Panel(){}
 
     public Panel(UI userInterface){
         this.userInterface = userInterface;

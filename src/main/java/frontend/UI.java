@@ -34,11 +34,12 @@ public class UI implements Observer {
     }
 
     public ChordChart getChordChart(){
-        return (ChordChart) chordChart;
+        return chordChart;
     }
 
     public void setChordChart(ChordChart chord){
         this.chordChart = chord;
+        this.chordChart.addObserver(this);
         chordChart.chartChanged();
     }
 

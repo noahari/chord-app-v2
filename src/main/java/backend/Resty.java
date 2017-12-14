@@ -22,4 +22,7 @@ public class Resty extends Note implements Useable{
 		    duration.toString() // this was originally giving back a double, now it gives back the string
 	    };
     }
+    public void setDur(Duration dur) {
+        this.duration = dur;
+    }
 }

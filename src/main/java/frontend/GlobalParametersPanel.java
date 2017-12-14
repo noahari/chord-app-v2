@@ -1,6 +1,7 @@
 package frontend;
 
 import backend.ChordChart;
+import org.jfugue.theory.Chord;
 import org.jfugue.theory.Key;
 
 import javax.swing.*;
@@ -13,6 +14,8 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     private JPanel panel;
     private JComboBox<String> keys;
     private JButton playButton;
+    private JButton save;
+    private String fileName = null;
 
     private final String[] ALLKEYS = {"CMaj", "GMaj", "DMaj", "AMaj", "EMaj", "BMaj", "F#Maj", "C#Maj",
             "FMaj", "BBMaj", "EBMaj", "ABMaj", "DBMaj", "GBMaj", "CBMaj", "amin", "emin", "bmin", "f#min", "c#min", "g#min", "d#min",
@@ -24,9 +27,15 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         panel.setPreferredSize(new Dimension(500, 200));
     }
 
-    public void draw(Object arg) {
-        $$$setupUI$$$();
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
+
+    public void setTempo(int tempo) {
+        this.tempo.setText(Integer.toString(tempo));
+    }
+
+    public void draw(Object arg) { $$$setupUI$$$(); }
 
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() instanceof JComboBox) {
@@ -35,19 +44,31 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             getUserInterface().setKey(key);
         } else if (evt.getSource() instanceof JTextField) {
             String tText = tempo.getText();
-            int tInt = 120;
+            //System.out.println(tText);
+            int tInt;
             try {
                 tInt = Integer.parseInt(tText);
                 if (tInt > 220 || tInt < 40) throw new NumberFormatException("Invalid");
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Enter Valid Tempo (from 40-220)");
                 tempo.setText("120");
+                tInt = 120;
             }
-            ChordChart chordChart = new ChordChart(getUserInterface().getChordChart().getChordList());
-            chordChart.setTempo(tInt);
-            this.getUserInterface().setChordChart(chordChart);
+            ChordChart chart = this.getUserInterface().getChordChart();
+            chart.setTempo(tInt);
+            this.getUserInterface().setChordChart(chart);
         } else {
-            this.getUserInterface().getChordChart().play();
+            JButton buttonHit = (JButton) (evt.getSource());
+            if (buttonHit.getText().equals("Play")) {
+                this.getUserInterface().getChordChart().play();
+            } else {
+                if (fileName == null) {
+                    fileName = JOptionPane.showInputDialog("Please enter the name of your file:");
+                    if ((fileName != null) && (!fileName.isEmpty()))
+                        this.getUserInterface().getChordChart().saveFile(fileName);
+                } else this.getUserInterface().getChordChart().saveFile(fileName);
+
+            }
         }
     }
 
@@ -60,6 +81,8 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         tempo.addActionListener(this);
         playButton = new JButton("Play");
         playButton.addActionListener(this);
+        save = new JButton("Save");
+        save.addActionListener(this);
     }
 
     /**
@@ -72,10 +95,13 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     private void $$$setupUI$$$() {
         createUIComponents();
         panel = new JPanel();
-        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel.add(keys, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        panel.add(tempo, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(50, 24), null, 0, false));
-        panel.add(playButton, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
+        panel.add(keys, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel.add(tempo, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(50, 24), null, 0, false));
+        playButton.setText("Play");
+        panel.add(playButton, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        save.setText("Save");
+        panel.add(save, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

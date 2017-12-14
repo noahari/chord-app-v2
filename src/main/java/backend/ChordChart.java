@@ -154,8 +154,8 @@ public class ChordChart extends Observable {
     public String[][] toTableArray(){
         String[][] retArray = new String[chordList.size()][3];
         for(int i = 0; i < chordList.size(); i++){
-		retArray[i] = chordList.get(i).getRow();
-	}
+            retArray[i] = chordList.get(i).getRow();
+        }
         return retArray;
     }
 
@@ -191,13 +191,8 @@ public class ChordChart extends Observable {
             String line = fileIn.readLine();
 
             // setup tempo
-            try {
-                int tempo = Integer.parseInt(line.substring(1, line.length()));
-                if (tempo > 200 || tempo < 40) throw new NumberFormatException("Invalid");
-                chart.setTempo(tempo);
-            } catch (NumberFormatException nfe) {
-                System.out.println("INVALID TEMPO");
-            }
+            int tempo = Integer.parseInt(line.substring(1, line.length()));
+            chart.setTempo(tempo);
 
             // setup the usable objects
             while((line = fileIn.readLine()) != null) {
