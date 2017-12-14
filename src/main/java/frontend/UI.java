@@ -33,6 +33,7 @@ public class UI implements Observer {
         }
     }
 
+    // why are we casting chordChart to ChordChart? -aidan
     public ChordChart getChordChart(){
         return (ChordChart) chordChart;
     }

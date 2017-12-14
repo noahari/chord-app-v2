@@ -154,8 +154,8 @@ public class ChordChart extends Observable {
     public String[][] toTableArray(){
         String[][] retArray = new String[chordList.size()][3];
         for(int i = 0; i < chordList.size(); i++){
-		retArray[i] = chordList.get(i).getRow();
-	}
+            retArray[i] = chordList.get(i).getRow();
+        }
         return retArray;
     }
 

@@ -1,6 +1,7 @@
 package frontend;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class NotationPanel extends Panel {
@@ -11,19 +12,20 @@ public class NotationPanel extends Panel {
     private JTable TrackerTable;
     private JScrollPane scrollPane;
     private final String[] COL_NAMES = new String[]{"Root", "Extension", "Duration"};
+    private DefaultTableModel tableModel;
 
 
     public NotationPanel(UI userInterface) {
         super(userInterface);
         $$$setupUI$$$();
         panel1.setPreferredSize(new Dimension(500, 500));
-
+        updateTable();
     }
 
 
     //JTable TrackerTable = new JTable(ChordChart.chordList);
     public void draw(Object arg) {
-        // uhhh
+        updateTable();
     }
 
     /*
@@ -36,11 +38,15 @@ public class NotationPanel extends Panel {
             this.drawnChordList = retlist;
         }
     */
-    public void updateTable() {
-        this.TrackerTable = new JTable(
-                userInterface.getChordChart().toTableArray(),
+    public void updateTableModel() {
+        this.tableModel = new DefaultTableModel(
+                this.getUserInterface().getChordChart().toTableArray(),
                 COL_NAMES
         );
+    }
+    public void updateTable() {
+        updateTableModel();
+        this.TrackerTable.setModel(this.tableModel);
     }
 
     /**
