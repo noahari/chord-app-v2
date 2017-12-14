@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         // ask if open an old file or create a new one
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Chordy McChordface");
 
         Object[] options = {"New", "Load"};
         int n = JOptionPane.showOptionDialog(frame,
@@ -38,18 +38,12 @@ public class Main {
                 String path = fc.getSelectedFile().getPath();
                 ChordChart chart = ChordChart.fileToChart(path);
 
-                uiBuilder.makeUI(chart, new KeyMore("Cmaj"));
+                uiBuilder.getUI().setChordChart(chart);
 
-            } else {
-                // else, makeUI for a generic chart
-                System.out.println("making generic");
-                uiBuilder.makeUI(new ChordChart(), new KeyMore("Cmaj"));
             }
-        } else {
-            // else, makeUI for a generic chart
-            System.out.println("making generic");
-            uiBuilder.makeUI(new ChordChart(), new KeyMore("Cmaj"));
         }
+
+        uiBuilder.getUI().getChordChart().play();
 
         // initialize UI frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
