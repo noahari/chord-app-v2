@@ -13,6 +13,7 @@ import java.io.IOException;
 public abstract class Panel{
 
     private UI userInterface;
+    private KeyMore key;
 
     //<editor-fold desc="Getters and Setters">
 
