@@ -128,6 +128,10 @@ public class Chordy extends Chord implements Useable {
     void setDuration(String dur) {
         duration.setDur(dur);
     }
+
+    public void setDur(Duration dur) {
+        this.duration = dur;
+    }
     //</editor-fold>
 
     public String toString() {
