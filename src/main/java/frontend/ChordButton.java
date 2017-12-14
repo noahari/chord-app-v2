@@ -38,6 +38,12 @@ public class ChordButton extends JButton {
         this.setText(this.toString());
     }
 
+    protected void resetText(String chord, String extension){
+        this.setChord(chord);
+        this.setExtension(extension);
+        this.setText(this.toString());
+    }
+
     public String toString() {
         String endChord = chord;
         switch(extension){

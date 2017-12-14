@@ -17,14 +17,6 @@ public class GenericUIBuilder implements UIBuilder {
         $$$setupUI$$$();
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("GenericUIBuilder");
-        frame.setContentPane(new GenericUIBuilder().panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
     public UI getUI() {
         return this.userInterface;
     }

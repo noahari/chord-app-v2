@@ -16,12 +16,13 @@ import java.util.List;
 public class ButtonsPanel extends Panel implements ActionListener {
 
     private ArrayList<ChordButton> usedButtonList = new ArrayList<>();
-    private ArrayList<ChordButton> nonUsedButtonList = new ArrayList<>();
+    private ArrayList<String> nonUsedButtonList = new ArrayList<>();
 
     private JPanel panel;
     private ChordButton chordButton1, chordButton2, chordButton3, chordButton4,
-            chordButton5, chordButton6, chordButton7;
-    private ChordButton extraButton;
+            chordButton5, chordButton6, chordButton7, extraButton;
+
+    boolean inKey = true;
 
     public ButtonsPanel(UI userInterface) {
         super(userInterface);
@@ -34,38 +35,60 @@ public class ButtonsPanel extends Panel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
+        ChordButton[] buttons = new ChordButton[]{chordButton1, chordButton2, chordButton3,
+                chordButton4, chordButton5, chordButton6, chordButton7};
         ChordButton button = (ChordButton) evt.getSource();
         if (!button.equals(extraButton)) {
-            ChordChart chordChart = this.getUserInterface().getChordChart();
-            Chordy chord = new Chordy(button.getChord(), button.getExtension(), Duration.QUARTER);
+            ChordChart chordChart = getUserInterface().getChordChart();
+            Chordy chord;
+            try {
+                chord = new Chordy(button.getChord(), button.getExtension(), Duration.QUARTER);
+            } catch (NumberFormatException nfe) {
+                chord = new Chordy(button.getChord().substring(0, 2), button.getExtension(), Duration.QUARTER);
+            }
             chordChart.insertUseable(chord);
-            this.getUserInterface().setChordChart(chordChart);
+            getUserInterface().setChordChart(chordChart);
         } else {
-            //ADD JMENU OR WHATEVER WITH BUTTONS IN NONUSED LIST
+            if (inKey) {
+                for (int i = 0; i < nonUsedButtonList.size(); i++) {
+                    buttons[i].resetText(nonUsedButtonList.get(i), "MAJ");
+                }
+                inKey = false;
+            } else {
+                inKey = true;
+                for (int i = 0; i < buttons.length; i++) {
+                    try {
+                        getButtons();
+                    } catch (IOException ioe) {
+                        ioe.printStackTrace();
+                    }
+                    buttons[i].resetText(usedButtonList.get(i).getChord(), usedButtonList.get(i).getExtension());
+                }
+            }
         }
     }
 
     private void getButtons() throws IOException {
-        nonUsedButtonList = new ArrayList<>();
-        Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
-        getKeyAsKey().getScale().getIntervals().setRoot(getKeyAsKey().getRoot());
-        List<Note> keyNotes = getKeyAsKey().getScale().getIntervals().getNotes();
-        if (usedButtonList.size() == 0) {
-            for (Note n : keyNotes) {
-                usedButtonList.add(toButton(n, keyNotes.indexOf(n)));
-                String nStr = n.toString();
-                chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
-            }
-        } else
-            for (int i = 0; i < this.getUsedButtonList().size(); i++) {
-                ChordButton b = getUsedButtonList().get(i);
-                Note n = keyNotes.get(i);
-                b.resetText(getKey(), n, keyNotes.indexOf(n));
-                String nStr = n.toString();
-                chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
-            }
-        for (String str : chromaticNotes) {
-            nonUsedButtonList.add(toButton(new Note(str)));
+        if (inKey) {
+            nonUsedButtonList = new ArrayList<>();
+            Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
+            getKeyAsKey().getScale().getIntervals().setRoot(getKeyAsKey().getRoot());
+            List<Note> keyNotes = getKeyAsKey().getScale().getIntervals().getNotes();
+            if (usedButtonList.size() == 0)
+                for (Note n : keyNotes) {
+                    usedButtonList.add(toButton(n, keyNotes.indexOf(n)));
+                    String nStr = n.toString();
+                    chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
+                }
+            else
+                for (int i = 0; i < this.getUsedButtonList().size(); i++) {
+                    ChordButton b = getUsedButtonList().get(i);
+                    Note n = keyNotes.get(i);
+                    b.resetText(getKey(), n, keyNotes.indexOf(n));
+                    String nStr = n.toString();
+                    chromaticNotes.remove(nStr.substring(0, nStr.length() - 1));
+                }
+            nonUsedButtonList = toEnharmonics(chromaticNotes);
         }
     }
 
@@ -80,7 +103,20 @@ public class ButtonsPanel extends Panel implements ActionListener {
         return chromaticNotes;
     }
 
-    public void draw() {
+    private static ArrayList<String> toEnharmonics(Set<String> set) {
+        String[] notes = set.toArray(new String[]{});
+        ArrayList<String> endList = new ArrayList<>();
+        for (int i = 0; i < set.size() - 1; i++) {
+            if (new Note(notes[i]).getValue() == new Note(notes[i + 1]).getValue()) {
+                endList.add(notes[i] + "/" + notes[i + 1]);
+                i += 1;
+            } else endList.add(notes[i]);
+        }
+        return endList;
+    }
+
+    public void draw(Object arg) {
+        if (arg.equals(0)) inKey = true;
         try {
             this.getButtons();
         } catch (IOException ioe) {
@@ -91,11 +127,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        try {
-            this.getButtons();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+        draw(0);
         //I tried to use an array to iterate it doesnt work?
         chordButton1 = usedButtonList.get(0);
         chordButton1.addActionListener(this);
@@ -113,6 +145,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
         chordButton7.addActionListener(this);
         extraButton = new ChordButton();
         extraButton.setIcon(new ImageIcon("graphics/EllipseButton.png"));
+        extraButton.addActionListener(this);
     }
 
     /**

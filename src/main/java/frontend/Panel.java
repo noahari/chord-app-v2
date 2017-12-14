@@ -29,7 +29,7 @@ public abstract class Panel extends JPanel {
         this.userInterface = userInterface;
     }
 
-    public abstract void draw();
+    public abstract void draw(Object arg);
 
     public KeyMore getKey(){
         try {

@@ -29,7 +29,7 @@ public class UI implements Observer {
 
     public void update(Observable obs, Object arg){
         for (Panel panel : panels) {
-                panel.draw();
+            panel.draw(arg);
         }
     }
 

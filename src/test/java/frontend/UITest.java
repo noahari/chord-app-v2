@@ -40,6 +40,6 @@ public class UITest {
         UI ui = new UI(chordChart, key);
         ui.setPanels(panels);
         ui.update(ui.getChordChart(), null);
-        verify(bp).draw();
+        verify(bp).draw(null);
     }
 }
