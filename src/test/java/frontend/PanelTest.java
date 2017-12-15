@@ -49,7 +49,7 @@ public class PanelTest {
     public void toButtonATest(){
         when(userInterface.getKey()).thenReturn(key);
         when(key.stringCorrect(note)).thenReturn("A");
-        ChordButton button = null;
+        ChordButton button;
         try {
             button = panel.toButton(note);
         }
@@ -65,7 +65,7 @@ public class PanelTest {
         when(userInterface.getKey()).thenReturn(key);
         when(key.stringCorrect(note)).thenReturn("A");
         when(key.typeFromKey(1)).thenReturn("MIN");
-        ChordButton button = null;
+        ChordButton button;
         try {
             button = panel.toButton(note, 1);
         }
