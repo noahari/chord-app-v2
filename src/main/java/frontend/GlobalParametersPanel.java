@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 
 public class GlobalParametersPanel extends Panel implements ActionListener {
     private JPanel panel;
-    protected JComboBox<String> keys;
-    protected JTextField tempo;
-    protected JButton playButton;
+    JComboBox<String> keys;
+    JTextField tempo;
+    JButton playButton;
 
     protected JButton save;
     private JButton midiExportButton;
@@ -82,7 +82,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
                 this.getUserInterface().getChordChart().play();
             } else if (buttonHit.getText().equals("Save")) {
                 if (fileName == null) {
-                    fileName = inputDialog(null);
+                    fileName = inputDialog();
                     if ((fileName != null) && (!fileName.isEmpty()))
                         this.getUserInterface().getChordChart().saveFile(fileName);
                 } else this.getUserInterface().getChordChart().saveFile(fileName);
@@ -92,11 +92,11 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         }
     }
 
-    protected String inputDialog(Object obj) {
+    private String inputDialog() {
         return JOptionPane.showInputDialog("Please enter the name of your file:");
     }
 
-    protected void messageDialog() {
+    private void messageDialog() {
         JOptionPane.showMessageDialog(null, "Enter Valid Tempo (from 40-220)");
     }
 
