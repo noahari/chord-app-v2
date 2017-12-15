@@ -12,15 +12,7 @@ class Main {
 
     public static void main(String[] args) {
         // ask if open an old file or create a new one
-        Object[] options = {"New", "Load"};
-        int n = JOptionPane.showOptionDialog(frame,
-                "Load chart or Start a new chart",
-                "McChordface Startup",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,     //do not use a custom Icon
-                options,  //the titles of buttons
-                options[1]); //default button title
+        int n = ask();
 
         // if opening old file
         if(n == 1) {
@@ -31,6 +23,17 @@ class Main {
         initializeUI();
     }
 
+    protected static int ask() {
+        Object[] options = {"New", "Load"};
+        return JOptionPane.showOptionDialog(frame,
+                "Load or Create a chart",
+                "McChordface Startup",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,     //do not use a custom Icon
+                options,  //the titles of buttons
+                options[1]); //default button title
+    }
     private static void initializeUI() {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setContentPane(uiBuilder.getPanel());
@@ -38,7 +41,7 @@ class Main {
         frame.setVisible(true);
     }
 
-    private static void loadFile() {
+    protected static void loadFile() {
         fc.setDialogTitle("Select a chart");
         fc.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Chordface Files",
