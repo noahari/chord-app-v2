@@ -133,7 +133,7 @@ public class NotationPanel extends Panel {
         });
 
         // set up extension list:
-        this.extList.setListData(Chord.getChordNames());
+        this.extList.setListData(reverse(Chord.getChordNames()));
         this.extList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
@@ -153,6 +153,14 @@ public class NotationPanel extends Panel {
                 resetTable();
             }
         });
+    }
+
+    public String[] reverse(String[] array) {
+        String[] retArray = new String[array.length];
+        for (int i = 0; i < array.length; i++) {
+            retArray[array.length - 1 - i] = array[i];
+        }
+        return retArray;
     }
 
     public void resetTable() {
