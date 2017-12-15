@@ -69,6 +69,11 @@
             <version>2.7</version>
 	        <configuration>
       		    <instrumentation>
+                    <ignores>
+                        <ignore>
+                            com.intellij.uiDesigner.core.*
+                        </ignore>
+                    </ignores>
         	        <excludes>
          	            <exclude>com/intellij/uiDesigner/core/**/*.class</exclude>
         	        </excludes>
