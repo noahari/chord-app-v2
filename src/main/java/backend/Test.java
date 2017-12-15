@@ -23,6 +23,10 @@ class Test {
 
         System.out.println(chordChart);
 
+        chordChart.moveChord(2, 1);
+
+        System.out.println(chordChart);
+
         String fileName = "chordChart";
         chordChart.saveFile(fileName);
         chordChart = ChordChart.fileToChart(fileName + ".chordface");

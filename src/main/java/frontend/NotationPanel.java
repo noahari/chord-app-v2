@@ -17,6 +17,8 @@ public class NotationPanel extends Panel {
     private JScrollPane scrollPane;
     private JComboBox<Duration> durBox;
     private JButton delButton;
+    private JButton shiftDownButton;
+    private JButton shiftUpButton;
     private final String[] COL_NAMES = new String[]{"Root", "Extension", "Duration"};
     private DefaultTableModel tableModel;
     private final DefaultComboBoxModel<Duration> DB_MODEL = new DefaultComboBoxModel<Duration>(new Duration[]{
@@ -84,6 +86,37 @@ public class NotationPanel extends Panel {
                 tableDelChord(TrackerTable.getSelectedRows());
             }
         });
+
+        // set up shiftUp button:
+        shiftUpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int placeholder = TrackerTable.getSelectedRow();
+                tableShiftUp(TrackerTable.getSelectedRow());
+                TrackerTable.changeSelection(placeholder-1,0, false, false);
+            }
+        });
+
+        // set up shiftDown button:
+        shiftDownButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int placeholder = TrackerTable.getSelectedRow();
+                tableShiftDown(TrackerTable.getSelectedRow());
+                TrackerTable.changeSelection(placeholder+1,0, false, false);
+            }
+        });
+    }
+
+    public void tableShiftDown(int i) {
+        ChordChart cc = getUserInterface().getChordChart();
+        cc.moveChord(i, i+1);
+        getUserInterface().setChordChart(cc);
+    }
+    public void tableShiftUp(int i) {
+        ChordChart cc = getUserInterface().getChordChart();
+        cc.moveChord(i, i-1);
+        getUserInterface().setChordChart(cc);
     }
 
     public void tableDelChord(int[] array) {
