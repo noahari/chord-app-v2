@@ -1,19 +1,15 @@
 package frontend;
 
 import backend.*;
-import jdk.nashorn.internal.objects.Global;
-import org.jfugue.theory.Key;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 public class UI implements Observer {
     // Instance Variables
-    ChordChart chordChart;
-    KeyMore key;
-    Duration duration = Duration.WHOLE;
+    private ChordChart chordChart;
+    private KeyMore key;
+    private Duration duration = Duration.WHOLE;
 
     private Panel[] panels;
 

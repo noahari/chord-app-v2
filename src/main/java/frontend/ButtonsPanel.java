@@ -1,7 +1,6 @@
 package frontend;
 
 import backend.Chordy;
-import backend.Duration;
 import backend.ChordChart;
 import org.jfugue.theory.*;
 
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class ButtonsPanel extends Panel implements ActionListener {
 
-    private ArrayList<ChordButton> usedButtonList = new ArrayList<>();
+    private final ArrayList<ChordButton> usedButtonList = new ArrayList<>();
     private ArrayList<String> nonUsedButtonList = new ArrayList<>();
 
     private JPanel panel;
@@ -152,7 +151,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
      */
     private void createUIComponents() {
         draw(0);
-        //I tried to use an array to iterate it doesnt work?
+        //I tried to use an array to iterate it doesn't work?
         chordButton1 = usedButtonList.get(0);
         chordButton1.addActionListener(this);
         chordButton2 = usedButtonList.get(1);

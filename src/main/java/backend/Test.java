@@ -1,12 +1,6 @@
 package backend;
 
 
-import frontend.ButtonsPanel;
-import frontend.Panel;
-import org.jfugue.theory.*;
-
-import java.awt.*;
-
 class Test {
     public static void main(String[] args){
 //        Chord c = new Chord(new Key("Db"));
@@ -67,6 +61,6 @@ class Test {
 //        chordChart.incTempo();
 //        System.out.println("Tempo: " + chordChart.getTempo());
 //        chordChart.play();
-//        chordChart.play(6); // sounds nice and glitchy
+//        chordChart.play(6); // sounds nice
     }
 }

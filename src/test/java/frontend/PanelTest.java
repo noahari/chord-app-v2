@@ -1,5 +1,4 @@
 package frontend;
-import backend.ChordChart;
 import org.jfugue.theory.Note;
 import org.junit.Before;
 import org.junit.Test;

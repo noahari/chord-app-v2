@@ -1,8 +1,6 @@
 package frontend;
 
 import backend.ChordChart;
-import org.jfugue.theory.Chord;
-import org.jfugue.theory.Key;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +9,9 @@ import java.awt.event.ActionListener;
 
 public class GlobalParametersPanel extends Panel implements ActionListener {
     private JPanel panel;
-    protected JComboBox<String> keys;
-    protected JTextField tempo;
-    protected JButton playButton;
+    JComboBox<String> keys;
+    JTextField tempo;
+    JButton playButton;
     private JButton save;
     private String fileName = null;
 

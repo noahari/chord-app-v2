@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.jfugue.player.Player;
 import org.jfugue.pattern.Pattern;
 import org.jfugue.midi.*;
-import org.jfugue.theory.Chord;
 
 import java.util.Observable;
 
