@@ -103,8 +103,15 @@ public class ChordChart extends Observable {
     }
 
     public void moveChord(int presentIndex, int futureIndex) {
-        this.insertUseable(futureIndex + 1, this.getUseable(presentIndex));
-        this.delChord(presentIndex);
+        if (futureIndex>=0&&futureIndex<=chordList.size()) {
+            if (presentIndex<futureIndex) {
+                insertUseable(futureIndex+1,getChord(presentIndex));
+                delChord(presentIndex);
+            } else if (presentIndex>futureIndex) {
+                insertUseable(futureIndex,getChord(presentIndex));
+                delChord(presentIndex+1);
+            }
+        }
     }
 
     public void toMIDIFile(String path){
