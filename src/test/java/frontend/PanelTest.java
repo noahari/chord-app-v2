@@ -56,6 +56,7 @@ public class PanelTest {
         catch(IOException ioe){
             ioe.printStackTrace();
         }
+        assert button != null;
         assertEquals(button.getText(),"A" );
     }
 
@@ -71,6 +72,7 @@ public class PanelTest {
         catch(IOException ioe){
             ioe.printStackTrace();
         }
+        assert button != null;
         assertEquals(button.getText(),"a" );
     }
 }
