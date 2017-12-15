@@ -140,4 +140,18 @@ public class ChordChartTest {
         assertTrue(new File(path+"/yourMidi.midi").exists());
     }
 
+    @Test
+    public void saveFile() {
+        ChordChart chordChart = new ChordChart();
+        chordChart.insertUseable(new Chordy("C","maj",Duration.QUARTER));
+        String fileName = "test";
+        chordChart.saveFile(fileName);
+        assertTrue(new File("test.chordface").exists());
+    }
+
+    @Test
+    public void fileToChart() {
+        assertTrue(ChordChart.fileToChart("test.chordface") instanceof ChordChart);
+    }
+
 }
