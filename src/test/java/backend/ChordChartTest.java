@@ -165,7 +165,7 @@ public class ChordChartTest {
 
     @Test
     public void fileToChart() {
-        assertTrue(ChordChart.fileToChart("test.chordface") instanceof ChordChart);
+        assertTrue(ChordChart.fileToChart("test.chordface") != null);
     }
 
 }

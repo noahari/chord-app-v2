@@ -2,7 +2,6 @@ package frontend;
 
 import backend.ChordChart;
 import backend.Duration;
-import com.sun.demo.jvmti.hprof.Tracker;
 import org.jfugue.theory.Chord;
 
 import javax.swing.*;
@@ -12,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("Convert2Lambda")
 public class NotationPanel extends Panel {
     //private ArrayList<DrawnChord> drawnChordList;
     private JPanel panel1;
@@ -144,15 +144,15 @@ public class NotationPanel extends Panel {
         });
     }
 
-    public void tableSetExt(String ext, int[] array) {
+    private void tableSetExt(String ext, int[] array) {
         ChordChart cc = getUserInterface().getChordChart();
-        for (int i = 0; i < array.length; i++) {
-            cc.getChord(array[i]).setExtension(ext);
+        for (int anArray : array) {
+            cc.getChord(anArray).setExtension(ext);
         }
         getUserInterface().setChordChart(cc);
     }
 
-    public void tableShiftDown(int i) {
+    private void tableShiftDown(int i) {
         ChordChart cc = getUserInterface().getChordChart();
         cc.moveChord(i, i + 1);
         getUserInterface().setChordChart(cc);
