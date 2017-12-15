@@ -23,7 +23,7 @@ class Test {
 
         System.out.println(chordChart);
 
-        chordChart.moveChord(2, 1);
+        chordChart.getChord(1).setExtension(Chord.getChordNames()[5]);
 
         System.out.println(chordChart);
 

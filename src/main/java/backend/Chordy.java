@@ -4,13 +4,15 @@ import org.jfugue.theory.*;
 public class Chordy extends Chord implements Useable {
 
     private Duration duration;
+    private String extension;
     //For easy reference to root
     private Note root = this.getRoot();
 
 
     public Chordy(String rootStr, String extension, Duration duration) {
-        super(rootStr + extension);
+        super(rootStr);
         if(!root.isOctaveExplicitlySet()) root.setOctaveExplicitlySet(true);
+        this.extension = extension;
         this.duration = duration;
     }
 
@@ -112,7 +114,7 @@ public class Chordy extends Chord implements Useable {
     public String[] getRow() {
 	    return new String[]{
 		    this.getRoot().toString(),
-		    this.getChordType(),
+		    this.extension,
 		    this.getDuration().toString()
 	    };
     }
@@ -129,13 +131,17 @@ public class Chordy extends Chord implements Useable {
         duration.setDur(dur);
     }
 
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
+
     public void setDur(Duration dur) {
         this.duration = dur;
     }
     //</editor-fold>
 
     public String toString() {
-        return super.toString() + duration;
+        return super.getRoot().toString() + extension + duration;
     }
 
 
