@@ -6,27 +6,25 @@ import org.jfugue.theory.Note;
 import javax.swing.*;
 import java.awt.*;
 
-import java.awt.font.TextLayout;
-import java.io.IOException;
 
+abstract class Panel{
 
-public abstract class Panel{
 
     private UI userInterface;
 
     //<editor-fold desc="Getters and Setters">
 
-    public UI getUserInterface() {
+    UI getUserInterface() {
         return userInterface;
     }
 
-    public void setUserInterface(UI ui){userInterface = ui;}
+    void setUserInterface(UI ui){userInterface = ui;}
     //</editor-fold>
 
+    Panel(){}
 
-    public Panel(){}
+    Panel(UI userInterface){
 
-    public Panel(UI userInterface){
         this.userInterface = userInterface;
     }
 
@@ -41,22 +39,22 @@ public abstract class Panel{
         }
     }
 
-    public Key getKeyAsKey(){
+    Key getKeyAsKey(){
         return getKey().getKey();
     }
 
 
-    protected ChordButton toButton(Note n, int i) throws IOException{
+    ChordButton toButton(Note n, int i) {
         String nStr = getKey().stringCorrect(n);
         return toIcon(nStr, getKey().typeFromKey(i));
     }
 
-    protected ChordButton toButton(Note n) throws IOException {
+    ChordButton toButton(Note n) {
         String nStr = getKey().stringCorrect(n);
         return toIcon(nStr, "MAJ");
     }
 
-    private ChordButton toIcon(String nStr, String extension) throws IOException {
+    private ChordButton toIcon(String nStr, String extension) {
         ImageIcon icon = new ImageIcon("graphics/Button.png");
         ChordButton button = new ChordButton(nStr, extension);
         button.setIcon(icon);

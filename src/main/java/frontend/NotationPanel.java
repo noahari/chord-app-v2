@@ -5,7 +5,6 @@ import backend.Duration;
 import com.sun.demo.jvmti.hprof.Tracker;
 import org.jfugue.theory.Chord;
 
-import javax.sound.midi.Track;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -29,7 +28,7 @@ public class NotationPanel extends Panel {
     private JTable extTable;
     private final String[] COL_NAMES = new String[]{"Root", "Extension", "Duration"};
     private DefaultTableModel tableModel;
-    private final DefaultComboBoxModel<Duration> DB_MODEL = new DefaultComboBoxModel<Duration>(new Duration[]{
+    private final DefaultComboBoxModel<Duration> DB_MODEL = new DefaultComboBoxModel<>(new Duration[]{
             Duration.WHOLE,
             Duration.HALF,
             Duration.QUARTER,
@@ -65,19 +64,19 @@ public class NotationPanel extends Panel {
             this.drawnChordList = retlist;
         }
     */
-    public void updateTableModel() {
+    private void updateTableModel() {
         this.tableModel = new DefaultTableModel(
                 this.getUserInterface().getChordChart().toTableArray(),
                 COL_NAMES
         );
     }
 
-    public void updateTable() {
+    private void updateTable() {
         updateTableModel();
         this.TrackerTable.setModel(this.tableModel);
     }
 
-    public void setUpControl() {
+    private void setUpControl() {
         // set up duration box:
         durBox.setModel(DB_MODEL);
         durBox.addActionListener(new ActionListener() {
@@ -159,13 +158,13 @@ public class NotationPanel extends Panel {
         getUserInterface().setChordChart(cc);
     }
 
-    public void tableShiftUp(int i) {
+    private void tableShiftUp(int i) {
         ChordChart cc = getUserInterface().getChordChart();
         cc.moveChord(i, i - 1);
         getUserInterface().setChordChart(cc);
     }
 
-    public void tableDelChord(int[] array) {
+    private void tableDelChord(int[] array) {
         ChordChart cc = getUserInterface().getChordChart();
         for (int i = 0; i < array.length; i++) {
             cc.delChord(array[i] - i);
@@ -173,11 +172,11 @@ public class NotationPanel extends Panel {
         getUserInterface().setChordChart(cc);
     }
 
-    public void tableSetDur(int[] array, Duration duration) {
+    private void tableSetDur(int[] array, Duration duration) {
         ChordChart cc = getUserInterface().getChordChart();
         getUserInterface().setDuration(duration);
-        for (int i = 0; i < array.length; i++) {
-            cc.getUseable(array[i]).setDur(duration);
+        for (int anArray : array) {
+            cc.getUseable(anArray).setDur(duration);
         }
         getUserInterface().setChordChart(cc);
     }
@@ -213,6 +212,7 @@ public class NotationPanel extends Panel {
         delButton = new JButton();
         delButton.setText("Delete Selected");
         delButton.setToolTipText("delete the chord selected in the Tracker Table");
+<<<<<<< HEAD
         generalTab.add(delButton, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         durBox = new JComboBox();
         generalTab.add(durBox, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -220,6 +220,18 @@ public class NotationPanel extends Panel {
         tabbedPane1.addTab("Extensions", scrollPane1);
         extList = new JList();
         scrollPane1.setViewportView(extList);
+=======
+        panel1.add(delButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JPanel panel2 = new JPanel();
+        panel2.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.add(panel2, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        shiftDownButton = new JButton();
+        shiftDownButton.setText("Shift Down");
+        panel2.add(shiftDownButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        shiftUpButton = new JButton();
+        shiftUpButton.setText("Shift Up");
+        panel2.add(shiftUpButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+>>>>>>> b172b9493d7a1984cc5a9c7db62257b7a2d6d8ab
     }
 
     /**

@@ -7,7 +7,7 @@ import java.util.Observable;
 
 public class KeyMore extends Observable {
 
-    private Key key;
+    private final Key key;
 
     public KeyMore(String s){
         this.key = new Key(s);
@@ -29,7 +29,7 @@ public class KeyMore extends Observable {
      * @param i scale degree (0-6)
      * @return The given degree's chord quality
      */
-    protected String typeFromKey(int i){
+    String typeFromKey(int i){
         if(key.getScale().getMajorOrMinorIndicator() == 1){
             if (i == 0 || i == 3 || i == 4) return "MAJ";
             else if (i != 6) return "MIN";
@@ -46,7 +46,7 @@ public class KeyMore extends Observable {
      * @param n Note to be evaluated
      * @return The note as a string in this key
      */
-    protected String stringCorrect(Note n){
+    String stringCorrect(Note n){
         String nStr = n.toString();
         char noteOnly = nStr.charAt(0);
         Boolean sharpKey = isSharpKey();

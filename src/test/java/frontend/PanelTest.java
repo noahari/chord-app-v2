@@ -1,5 +1,4 @@
 package frontend;
-import backend.ChordChart;
 import org.jfugue.theory.Note;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,13 +49,8 @@ public class PanelTest {
     public void toButtonATest(){
         when(userInterface.getKey()).thenReturn(key);
         when(key.stringCorrect(note)).thenReturn("A");
-        ChordButton button = null;
-        try {
-            button = panel.toButton(note);
-        }
-        catch(IOException ioe){
-            ioe.printStackTrace();
-        }
+        ChordButton button = panel.toButton(note);
+        assert button != null;
         assertEquals(button.getText(),"A" );
     }
 
@@ -65,13 +59,8 @@ public class PanelTest {
         when(userInterface.getKey()).thenReturn(key);
         when(key.stringCorrect(note)).thenReturn("A");
         when(key.typeFromKey(1)).thenReturn("MIN");
-        ChordButton button = null;
-        try {
-            button = panel.toButton(note, 1);
-        }
-        catch(IOException ioe){
-            ioe.printStackTrace();
-        }
+        ChordButton button = panel.toButton(note, 1);
+        assert button != null;
         assertEquals(button.getText(),"a" );
     }
 }

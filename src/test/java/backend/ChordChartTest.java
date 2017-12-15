@@ -1,6 +1,5 @@
 package backend;
 
-import org.jfugue.theory.Note;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -79,6 +78,10 @@ public class ChordChartTest {
 
         chordChart.restChord(0);
         assertTrue(chordChart.getChordList().get(0).isRest());
+
+        chordChart.insertUseable(chordy);
+        chordChart.restChord(1);
+        assertTrue(chordChart.getChordList().get(0).isRest());
     }
 
     @Test
@@ -126,6 +129,20 @@ public class ChordChartTest {
 
     @Test
     public void toTableArray() throws Exception {
+        Chordy cChord = new Chordy("C","maj",Duration.QUARTER);
+        Resty zestyResty = new Resty(Duration.QUARTER);
+        Chordy gChord = new Chordy("G","maj",Duration.QUARTER);
+        ChordChart chartyBOI = new ChordChart();
+        chartyBOI.insertUseable(cChord);
+        chartyBOI.insertUseable(zestyResty);
+        chartyBOI.insertUseable(gChord);
+
+        String[][] testArray = new String[3][3];
+        testArray[0] = cChord.getRow();
+        testArray[1] = zestyResty.getRow();
+        testArray[2] = gChord.getRow();
+
+        assertArrayEquals(testArray, chartyBOI.toTableArray());
     }
 
     @Test

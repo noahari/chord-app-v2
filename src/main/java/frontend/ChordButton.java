@@ -1,6 +1,5 @@
 package frontend;
 
-import org.jfugue.theory.Key;
 import org.jfugue.theory.Note;
 
 import javax.swing.*;
@@ -38,9 +37,8 @@ public class ChordButton extends JButton {
      * @param n Note to interpret
      * @param i Scale degree
      */
-    protected void resetText(KeyMore key, Note n, int i){
+    void resetText(KeyMore key, Note n, int i){
         this.setChord(key.stringCorrect(n));
-        System.out.println(this.toString());
         this.setExtension(key.typeFromKey(i));
         this.setText(this.toString());
     }
@@ -50,7 +48,7 @@ public class ChordButton extends JButton {
      * @param chord Specific chord name to interpret
      * @param extension Extension
      */
-    protected void resetText(String chord, String extension){
+    void resetText(String chord, String extension){
         this.setChord(chord);
         this.setExtension(extension);
         this.setText(this.toString());

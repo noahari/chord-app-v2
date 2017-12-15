@@ -5,10 +5,10 @@ import backend.ChordChart;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 
-public class Main {
-    static JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView());
-    static UIBuilder uiBuilder = new GenericUIBuilder();
-    static JFrame frame = new JFrame("Chordy McChordface");
+class Main {
+    private static final JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView());
+    private static final UIBuilder uiBuilder = new GenericUIBuilder();
+    private static final JFrame frame = new JFrame("Chordy McChordface");
 
     public static void main(String[] args) {
         // ask if open an old file or create a new one
@@ -32,7 +32,7 @@ public class Main {
     }
 
     private static void initializeUI() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setContentPane(uiBuilder.getPanel());
         frame.pack();
         frame.setVisible(true);

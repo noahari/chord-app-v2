@@ -1,5 +1,6 @@
 package backend;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,6 +28,11 @@ public class ChordyTest {
         sChord = new Chordy("C5", "maj7", Duration.ONETWENTYEIGHTH);
     }
 
+    @After
+    public void tearDown(){
+        sChord = null;
+    }
+
     @Test
     public void decDur() throws Exception {
         //test chordy
@@ -35,7 +41,6 @@ public class ChordyTest {
         for(int i = 0; i < 7; i++) {
             sChord.decDur();
         }
-
 
         assertEquals(Duration.ONETWENTYEIGHTH, sChord.getDuration());
         //should add more JUnit tests for each case
