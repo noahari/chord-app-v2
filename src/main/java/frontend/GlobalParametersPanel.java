@@ -21,8 +21,6 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             "FMaj", "BBMaj", "EBMaj", "ABMaj", "DBMaj", "GBMaj", "CBMaj", "amin", "emin", "bmin", "f#min", "c#min", "g#min", "d#min",
             "a#min", "dmin", "gmin", "cmin", "fmin", "bBmin", "eBmin", "aBmin"};
 
-    public GlobalParametersPanel() {
-    }
 
     public GlobalParametersPanel(UI userInterface) {
         super(userInterface);
@@ -86,7 +84,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
                     if ((fileName != null) && (!fileName.isEmpty()))
                         this.getUserInterface().getChordChart().saveFile(fileName);
                 } else this.getUserInterface().getChordChart().saveFile(fileName);
-            } else if (buttonHit.getText().equals("Midi Export")) {
+            } else {
                 this.getUserInterface().getChordChart().toMIDIFile();
             }
         }
@@ -114,6 +112,8 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         playButton.addActionListener(this);
         save = new JButton("Save");
         save.addActionListener(this);
+        midiExportButton = new JButton("Midi Export");
+        midiExportButton.addActionListener(this);
     }
 
     /**
@@ -133,7 +133,6 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         panel.add(playButton, new com.intellij.uiDesigner.core.GridConstraints(0, 4, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         save.setText("Save");
         panel.add(save, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        midiExportButton = new JButton();
         midiExportButton.setText("Midi Export");
         panel.add(midiExportButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
