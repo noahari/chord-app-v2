@@ -6,8 +6,6 @@ import org.jfugue.theory.Note;
 import javax.swing.*;
 import java.awt.*;
 
-import java.io.IOException;
-
 
 abstract class Panel{
 
