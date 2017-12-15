@@ -110,10 +110,10 @@ public class ChordChart extends Observable {
         }
     }
 
-    void toMIDIFile(String path){
+    public void toMIDIFile(){
         Pattern p = new Pattern(this.toString());
         try {
-            MidiFileManager.savePatternToMidi(p, new File(path+"/yourMidi.midi"));
+            MidiFileManager.savePatternToMidi(p, new File("yourMidi.midi"));
         }
         catch(IOException ioe){
             System.out.println("Error");

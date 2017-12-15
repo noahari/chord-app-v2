@@ -149,9 +149,8 @@ public class ChordChartTest {
     public void toMIDIFile(){
         ChordChart chordChart = new ChordChart();
         chordChart.insertUseable(new Chordy("C","maj",Duration.QUARTER));
-        String path = System.getProperty("user.home")+"/Downloads/";
-        chordChart.toMIDIFile(path);
-        assertTrue(new File(path+"/yourMidi.midi").exists());
+        chordChart.toMIDIFile();
+        assertTrue(new File("yourMidi.midi").exists());
     }
 
     @Test
@@ -165,7 +164,7 @@ public class ChordChartTest {
 
     @Test
     public void fileToChart() {
-        assertTrue(ChordChart.fileToChart("test.chordface") instanceof ChordChart);
+        assertTrue(ChordChart.fileToChart("test.chordface") != null);
     }
 
 }
