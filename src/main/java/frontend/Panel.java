@@ -5,6 +5,7 @@ import org.jfugue.theory.Note;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 
 abstract class Panel{
@@ -54,8 +55,12 @@ abstract class Panel{
         return toIcon(nStr, "MAJ");
     }
 
+    URL getResource(String pathname){
+        return this.getClass().getResource(pathname);
+    }
+
     private ChordButton toIcon(String nStr, String extension) {
-        ImageIcon icon = new ImageIcon("src/main/resources/images/Button.png");
+        ImageIcon icon = new ImageIcon(getResource("/images/Button.png"));
         ChordButton button = new ChordButton(nStr, extension);
         button.setIcon(icon);
         Font fonty = new Font("ARIAL", Font.PLAIN, 36);

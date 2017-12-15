@@ -177,7 +177,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
         chordButton7 = usedButtonList.get(6);
         chordButton7.addActionListener(this);
         extraButton = new ChordButton();
-        extraButton.setIcon(new ImageIcon("src/main/resources/images/EllipseButton.png"));
+        extraButton.setIcon(new ImageIcon(getResource("/images/EllipseButton.png")));
         extraButton.addActionListener(this);
     }
 
