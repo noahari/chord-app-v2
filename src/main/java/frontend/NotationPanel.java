@@ -1,7 +1,9 @@
 package frontend;
 
 import backend.ChordChart;
+import backend.Chordy;
 import backend.Duration;
+import backend.Resty;
 import org.jfugue.theory.Chord;
 
 import javax.swing.*;
@@ -26,6 +28,7 @@ public class NotationPanel extends Panel {
     private JComboBox<String> extBox;
     private JList<String> extList;
     private JButton resetButton;
+    private JButton insertRestButton;
     private JTable extTable;
     private final String[] COL_NAMES = new String[]{"Root", "Extension", "Duration"};
     private DefaultTableModel tableModel;
@@ -153,6 +156,13 @@ public class NotationPanel extends Panel {
                 resetTable();
             }
         });
+
+        this.insertRestButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tableAddRest((Duration) durBox.getSelectedItem());
+            }
+        });
     }
 
     public String[] reverse(String[] array) {
@@ -163,6 +173,12 @@ public class NotationPanel extends Panel {
         return retArray;
     }
 
+    public void tableAddRest(Duration dur) {
+        ChordChart cc = getUserInterface().getChordChart();
+        cc.insertUseable(new Resty(dur));
+        getUserInterface().setChordChart(cc);
+    }
+
     public void resetTable() {
         ChordChart cc = getUserInterface().getChordChart();
         getUserInterface().setChordChart(new ChordChart(cc.getTempo()));
@@ -171,7 +187,9 @@ public class NotationPanel extends Panel {
     private void tableSetExt(String ext, int[] array) {
         ChordChart cc = getUserInterface().getChordChart();
         for (int anArray : array) {
-            cc.getChord(anArray).setExtension(ext);
+            if (cc.getChord(anArray) != null) {
+                cc.getChord(anArray).setExtension(ext);
+            }
         }
         getUserInterface().setChordChart(cc);
     }
@@ -222,7 +240,7 @@ public class NotationPanel extends Panel {
         tabbedPane1 = new JTabbedPane();
         panel1.add(tabbedPane1, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         generalTab = new JPanel();
-        generalTab.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        generalTab.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabbedPane1.addTab("General", generalTab);
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -236,12 +254,15 @@ public class NotationPanel extends Panel {
         delButton = new JButton();
         delButton.setText("Delete Selected");
         delButton.setToolTipText("delete the chord selected in the Tracker Table");
-        generalTab.add(delButton, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        generalTab.add(delButton, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         durBox = new JComboBox();
         generalTab.add(durBox, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         resetButton = new JButton();
         resetButton.setText("Reset");
-        generalTab.add(resetButton, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        generalTab.add(resetButton, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        insertRestButton = new JButton();
+        insertRestButton.setText("Insert Rest");
+        generalTab.add(insertRestButton, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
         tabbedPane1.addTab("Extensions", scrollPane1);
         extList = new JList();
