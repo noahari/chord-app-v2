@@ -12,6 +12,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     JComboBox<String> keys;
     JTextField tempo;
     JButton playButton;
+    //private String tempoStr = "120";
 
     protected JButton save;
     private JButton midiExportButton;
@@ -48,7 +49,6 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
      * @param arg 0 if key changed
      */
     public void draw(Object arg) {
-        $$$setupUI$$$();
     }
 
     /**
@@ -70,6 +70,10 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
                 messageDialog();
                 tempo.setText("120");
                 tInt = 120;
+            }
+            if (tInt > 220 || tInt < 40) {
+                messageDialog();
+                tempo.setText("120");
             }
             ChordChart chart = this.getUserInterface().getChordChart();
             chart.setTempo(tInt);
