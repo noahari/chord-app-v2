@@ -67,7 +67,11 @@ public class ButtonsPanel extends Panel implements ActionListener {
         } else {
             if (inKey) {
                 for (int i = 0; i < nonUsedButtonList.size(); i++) {
-                    buttons[i].resetText(nonUsedButtonList.get(i), "MAJ");
+                    try {
+                        buttons[i].resetText(nonUsedButtonList.get(i), "MAJ");
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        i++;
+                    }
                 }
                 inKey = false;
             } else {

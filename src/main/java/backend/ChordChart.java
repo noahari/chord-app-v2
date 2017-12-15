@@ -14,6 +14,12 @@ public class ChordChart extends Observable {
 
     private int tempo = 120;
 
+    private Player player = new Player();
+
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     //<editor-fold desc="Getters and Setters">
     ArrayList<Useable> getChordList() {
@@ -145,7 +151,6 @@ public class ChordChart extends Observable {
     }
 
     public void play() {
-        Player player = new Player();
         player.play(this.toString());
     }
 

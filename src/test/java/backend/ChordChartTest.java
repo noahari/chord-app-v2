@@ -1,5 +1,6 @@
 package backend;
 
+import org.jfugue.player.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -51,6 +52,14 @@ public class ChordChartTest {
         testArray.add(resty);
 
         assertEquals(testArray, chordChart.getChordList());
+    }
+
+    @Test
+    public void play(){
+        Player player = mock(Player.class);
+        chordChart.setPlayer(player);
+        chordChart.play();
+        verify(player).play(anyString());
     }
 
     @Test

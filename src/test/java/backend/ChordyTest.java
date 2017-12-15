@@ -1,5 +1,6 @@
 package backend;
 
+import org.jfugue.player.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -9,6 +10,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 
 public class ChordyTest {
@@ -130,20 +132,13 @@ public class ChordyTest {
 
     @Test
     public void incRoot() throws Exception {
-        //test chordy
-        Chordy sChord = new Chordy("B", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.incRoot();
-        assertEquals("C5", sChord.getRoot().getToneString());
-
-        Chordy aChord = new Chordy("G10", "maj", Duration.ONETWENTYEIGHTH);
-        aChord.incRoot();
-        assertEquals("G10", aChord.getRoot().getToneString());
+        assertEquals("C#5", sChord.getRoot().getToneString());
     }
 
     @Test
     public void isRest() throws Exception {
         assertEquals(false, chordy.isRest());
-
     }
 
     @Test
@@ -155,7 +150,6 @@ public class ChordyTest {
     public void setDuration() throws Exception {
         chordy.setDuration(dur);
         assertEquals(dur, chordy.getDurationString());
-
     }
 
     //This test shows that we may want to change getRow() for the sake of UI readability
@@ -164,7 +158,7 @@ public class ChordyTest {
         Chordy sChord = new Chordy("B", "maj7", Duration.ONETWENTYEIGHTH);
         String[] testArray = new String[]{
                 "B",
-                "MAJ7",
+                "maj7",
                 "ONETWENTYEIGHTH"
         };
         assertArrayEquals(testArray, sChord.getRow());
