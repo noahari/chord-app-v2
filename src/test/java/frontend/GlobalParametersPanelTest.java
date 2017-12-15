@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
@@ -12,6 +13,7 @@ import static org.mockito.Mockito.*;
 
 public class GlobalParametersPanelTest {
     private GlobalParametersPanel gpp;
+
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -22,9 +24,17 @@ public class GlobalParametersPanelTest {
     @Mock
     private ChordChart chordChart;
 
+    @Mock
+    private KeyMore key;
+
+    @Spy
+    private GlobalParametersPanel gpp2 = new GlobalParametersPanel(ui);
+
     @Before
     public void setUp(){
-        this.gpp = new GlobalParametersPanel(ui);
+        chordChart = mock(ChordChart.class);
+        key = mock(KeyMore.class);
+        this.gpp = new GlobalParametersPanel(new UI(chordChart, key));
     }
 
     @Test
@@ -45,19 +55,22 @@ public class GlobalParametersPanelTest {
 
     @Test
     public void actionPerformedTextFieldError(){
-        ChordChart chordChart = mock(ChordChart.class);
-        KeyMore key = mock(KeyMore.class);
-        this.gpp = new GlobalParametersPanel(new UI(chordChart, key));
         gpp.tempo.setText("abcd");
         gpp.tempo.postActionEvent();
         verify(chordChart).setTempo(120);
     }
 
+    @Test
+    public void actionPerformedPlayButton(){
+        gpp.playButton.doClick();
+        verify(chordChart).play();
+    }
 
-
-
-
-
-
+    @Test
+    public void actionPerformedSaveButton(){
+        gpp.setFileName("File");
+        gpp.save.doClick();
+        verify(chordChart).saveFile("File");
+    }
 
 }

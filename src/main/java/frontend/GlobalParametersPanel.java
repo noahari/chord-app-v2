@@ -9,15 +9,19 @@ import java.awt.event.ActionListener;
 
 public class GlobalParametersPanel extends Panel implements ActionListener {
     private JPanel panel;
-    JComboBox<String> keys;
-    JTextField tempo;
-    JButton playButton;
-    private JButton save;
+    protected JComboBox<String> keys;
+    protected JTextField tempo;
+    protected JButton playButton;
+
+    protected JButton save;
     private String fileName = null;
 
     private final String[] ALLKEYS = {"CMaj", "GMaj", "DMaj", "AMaj", "EMaj", "BMaj", "F#Maj", "C#Maj",
             "FMaj", "BBMaj", "EBMaj", "ABMaj", "DBMaj", "GBMaj", "CBMaj", "amin", "emin", "bmin", "f#min", "c#min", "g#min", "d#min",
             "a#min", "dmin", "gmin", "cmin", "fmin", "bBmin", "eBmin", "aBmin"};
+
+    public GlobalParametersPanel() {
+    }
 
     public GlobalParametersPanel(UI userInterface) {
         super(userInterface);
@@ -29,6 +33,10 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         return keys;
     }
 
+    public JButton getSave() {
+        return save;
+    }
+
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
@@ -38,10 +46,11 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     }
 
     /**
-     *
      * @param arg 0 if key changed
      */
-    public void draw(Object arg) { $$$setupUI$$$(); }
+    public void draw(Object arg) {
+        $$$setupUI$$$();
+    }
 
     /**
      * @param evt the event
@@ -59,7 +68,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
                 tInt = Integer.parseInt(tText);
                 if (tInt > 220 || tInt < 40) throw new NumberFormatException("Invalid");
             } catch (NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(null, "Enter Valid Tempo (from 40-220)");
+                messageDialog();
                 tempo.setText("120");
                 tInt = 120;
             }
@@ -72,13 +81,21 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
                 this.getUserInterface().getChordChart().play();
             } else {
                 if (fileName == null) {
-                    fileName = JOptionPane.showInputDialog("Please enter the name of your file:");
+                    fileName = inputDialog(null);
                     if ((fileName != null) && (!fileName.isEmpty()))
                         this.getUserInterface().getChordChart().saveFile(fileName);
                 } else this.getUserInterface().getChordChart().saveFile(fileName);
 
             }
         }
+    }
+
+    protected String inputDialog(Object obj) {
+        return JOptionPane.showInputDialog("Please enter the name of your file:");
+    }
+
+    protected void messageDialog() {
+        JOptionPane.showMessageDialog(null, "Enter Valid Tempo (from 40-220)");
     }
 
     /**
