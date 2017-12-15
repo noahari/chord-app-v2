@@ -75,7 +75,7 @@ public class ChordChart extends Observable {
         chordList.add(index, chord);
     }
 
-    Chordy getChord(int index) {
+    public Chordy getChord(int index) {
         if(getChordList().get(index) instanceof Chordy) {
             return (Chordy) chordList.get(index);
         }

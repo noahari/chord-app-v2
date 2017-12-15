@@ -1,5 +1,6 @@
 package backend;
 
+import org.jfugue.theory.Chord;
 
 class Test {
     public static void main(String[] args){
@@ -17,7 +18,7 @@ class Test {
 
         System.out.println(chordChart);
 
-        chordChart.moveChord(2, 1);
+        chordChart.getChord(1).setExtension(Chord.getChordNames()[5]);
 
         System.out.println(chordChart);
 
