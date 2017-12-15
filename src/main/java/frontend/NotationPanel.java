@@ -69,7 +69,12 @@ public class NotationPanel extends Panel {
         this.tableModel = new DefaultTableModel(
                 this.getUserInterface().getChordChart().toTableArray(),
                 COL_NAMES
-        );
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
     }
 
     private void updateTable() {
