@@ -1,5 +1,6 @@
 package backend;
 
+import org.jfugue.theory.Chord;
 
 class Test {
     public static void main(String[] args){
