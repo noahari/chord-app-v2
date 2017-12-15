@@ -20,6 +20,9 @@ public class ChordChart extends Observable {
     public void setPlayer(Player player) {
         this.player = player;
     }
+    public Player getPlayer() {
+        return this.player;
+    }
 
     //<editor-fold desc="Getters and Setters">
     ArrayList<Useable> getChordList() {
@@ -151,7 +154,11 @@ public class ChordChart extends Observable {
     }
 
     public void play() {
-        player.play(this.toString());
+        try {
+            player.getManagedPlayer().start(player.getSequence(this.toString()));
+        } catch (Exception e) {
+            System.out.println("play sucks");
+        }
     }
 
     public String[][] toTableArray(){

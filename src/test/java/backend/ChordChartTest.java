@@ -129,11 +129,14 @@ public class ChordChartTest {
         chordChart.insertUseable(chordy);
         chordChart.insertUseable(resty);
         chordChart.insertUseable(resty);
-        chordChart.insertUseable(chordy);
 
         chordChart.moveChord(1,2);
 
         assertEquals(chordy, chordChart.getChord(2));
+
+        chordChart.moveChord(2, 0);
+
+        assertEquals(chordy, chordChart.getChord(0));
     }
 
     @Test
