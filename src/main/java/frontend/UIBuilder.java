@@ -12,4 +12,5 @@ public interface UIBuilder {
     public void makeGlobalParamsPanel();
     public GlobalParametersPanel getGlobalParamsPanel();
     public JPanel getPanel();
+    public ButtonsPanel getButtonsPanel();
 }

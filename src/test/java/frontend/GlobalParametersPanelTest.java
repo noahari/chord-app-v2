@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class GlobalParametersPanelTest {
@@ -33,6 +32,7 @@ public class GlobalParametersPanelTest {
     public void actionPerformedTextField() {
         gpp.tempo.setText("100");
         gpp.tempo.postActionEvent();
+        ChordChart chordChart = mock(ChordChart.class);
         when(ui.getChordChart()).thenReturn(chordChart); //its really just this line its returning null not chordChart??
         verify(chordChart).setTempo(100);
     }
