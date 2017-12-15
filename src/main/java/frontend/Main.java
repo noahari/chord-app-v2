@@ -5,7 +5,7 @@ import backend.ChordChart;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 
-class Main {
+public class Main {
     private static final JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView());
     private static final UIBuilder uiBuilder = new GenericUIBuilder();
     private static final JFrame frame = new JFrame("Chordy McChordface");

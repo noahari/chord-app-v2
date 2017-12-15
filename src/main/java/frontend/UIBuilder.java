@@ -2,7 +2,7 @@ package frontend;
 
 import javax.swing.*;
 
-interface UIBuilder {
+public interface UIBuilder {
     void makeNotationPanel();
     NotationPanel getNotationPanel();
     void makeButtonsPanel();

@@ -4,7 +4,7 @@ import org.jfugue.theory.Note;
 
 import javax.swing.*;
 
-class ChordButton extends JButton {
+public class ChordButton extends JButton {
     private String extension;
     private String chord;
 
@@ -39,7 +39,6 @@ class ChordButton extends JButton {
      */
     void resetText(KeyMore key, Note n, int i){
         this.setChord(key.stringCorrect(n));
-        System.out.println(this.toString());
         this.setExtension(key.typeFromKey(i));
         this.setText(this.toString());
     }

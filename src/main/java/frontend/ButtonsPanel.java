@@ -29,12 +29,17 @@ public class ButtonsPanel extends Panel implements ActionListener {
         panel.setPreferredSize(new Dimension(900, 400));
     }
 
+    public ChordButton getFirstButton() {
+        return chordButton1;
+    }
+
     private ArrayList<ChordButton> getUsedButtonList() {
         return usedButtonList;
     }
 
     /**
      * Adds button to chord chart or shows non-diatonic notes
+     *
      * @param evt
      */
     @Override
@@ -76,6 +81,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
     /**
      * Sets usedButtonList to be diatonic buttons and
      * nonUsedButtonList to be non-diatonic notes
+     *
      * @throws IOException
      */
     private void getButtons() throws IOException {
@@ -104,6 +110,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
 
     /**
      * Returns all chromatic notes with enharmonics
+     *
      * @return a Set of these notes
      */
     private static Set<String> getChromaticNotes() {
@@ -119,6 +126,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
 
     /**
      * Groups enharmonic notes together
+     *
      * @param set a set of strings
      * @return an ArrayList with enharmonic notes grouped
      */

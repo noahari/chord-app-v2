@@ -23,9 +23,6 @@ abstract class Panel{
     void setUserInterface(UI ui){userInterface = ui;}
     //</editor-fold>
 
-
-    Panel(){}
-
     Panel(UI userInterface){
 
         this.userInterface = userInterface;
