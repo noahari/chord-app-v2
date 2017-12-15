@@ -165,7 +165,7 @@ public class NotationPanel extends Panel {
         });
     }
 
-    public String[] reverse(String[] array) {
+    private String[] reverse(String[] array) {
         String[] retArray = new String[array.length];
         for (int i = 0; i < array.length; i++) {
             retArray[array.length - 1 - i] = array[i];
@@ -173,13 +173,13 @@ public class NotationPanel extends Panel {
         return retArray;
     }
 
-    public void tableAddRest(Duration dur) {
+    private void tableAddRest(Duration dur) {
         ChordChart cc = getUserInterface().getChordChart();
         cc.insertUseable(new Resty(dur));
         getUserInterface().setChordChart(cc);
     }
 
-    public void resetTable() {
+    private void resetTable() {
         ChordChart cc = getUserInterface().getChordChart();
         getUserInterface().setChordChart(new ChordChart(cc.getTempo()));
     }
