@@ -25,18 +25,13 @@ public enum Duration {
     }
 
     public static Boolean isValidDur(String dur){
-        if(dur.equals("w") ||
+        return dur.equals("w") ||
                 dur.equals("h") ||
                 dur.equals("q") ||
                 dur.equals("i") ||
                 dur.equals("s") ||
                 dur.equals("t") ||
                 dur.equals("x") ||
-                dur.equals("o")) {
-            return true;
-        }
-        else {
-            return false;
-        }
+                dur.equals("o");
     }
 }

@@ -18,7 +18,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
     private ArrayList<String> nonUsedButtonList = new ArrayList<>();
 
     private JPanel panel;
-    private ChordButton chordButton1, chordButton2, chordButton3, chordButton4,
+    protected ChordButton chordButton1, chordButton2, chordButton3, chordButton4,
             chordButton5, chordButton6, chordButton7, extraButton;
 
     boolean inKey = true;

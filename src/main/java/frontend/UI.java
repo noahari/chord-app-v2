@@ -8,12 +8,14 @@ import java.util.Observer;
 public class UI implements Observer {
     // Instance Variables
     private ChordChart chordChart;
+
     private KeyMore key;
+
     private Duration duration = Duration.WHOLE;
 
     private Panel[] panels;
 
-    public void setPanels(Panel[] panels) {
+    void setPanels(Panel[] panels) {
         this.panels = panels;
     }
 

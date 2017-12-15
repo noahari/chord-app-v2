@@ -10,28 +10,25 @@ import java.util.Observable;
 
 public class ChordChart extends Observable {
 
-    private ArrayList<Useable> chordList;
+    private final ArrayList<Useable> chordList;
 
     private int tempo = 120;
 
 
     //<editor-fold desc="Getters and Setters">
-    public ArrayList<Useable> getChordList() {
+    ArrayList<Useable> getChordList() {
         return chordList;
     }
 
-    public ArrayList<Useable> getChordList(int index) {
+    ArrayList<Useable> getChordList(int index) {
         ArrayList<Useable> retList = chordList;
         retList.subList(0, index).clear();
         return retList;
     }
 
+
     public int getTempo() {
         return tempo;
-    }
-
-    public void setChordList(ArrayList<Useable> chordList) {
-        this.chordList = chordList;
     }
 
     public void setTempo(int tempo) {
@@ -45,7 +42,7 @@ public class ChordChart extends Observable {
     }
 
     public ChordChart(int tempo) {
-        this.chordList = new ArrayList<Useable>();
+        this.chordList = new ArrayList<>();
         this.tempo = tempo;
     }
 
@@ -66,19 +63,19 @@ public class ChordChart extends Observable {
     }
     //
 
-    public void incTempo() {
+    void incTempo() {
         tempo++;
     }
-    public void decTempo() { tempo--; }
+    void decTempo() { tempo--; }
 
     public void insertUseable(Useable chord) {
         chordList.add(chord);
     }
-    public void insertUseable(int index, Useable chord) {
+    void insertUseable(int index, Useable chord) {
         chordList.add(index, chord);
     }
 
-    public Chordy getChord(int index) {
+    Chordy getChord(int index) {
         if(getChordList().get(index) instanceof Chordy) {
             return (Chordy) chordList.get(index);
         }
@@ -89,7 +86,7 @@ public class ChordChart extends Observable {
         return getChordList().get(index);
     }
 
-    public void restChord(int index) {
+    void restChord(int index) {
         if(!(getChordList().get(index).isRest())) {
             Chordy c = getChord(index);
             getChordList().set(index, new Resty(c.getDuration()));
@@ -113,7 +110,7 @@ public class ChordChart extends Observable {
         }
     }
 
-    public void toMIDIFile(String path){
+    void toMIDIFile(String path){
         Pattern p = new Pattern(this.toString());
         try {
             MidiFileManager.savePatternToMidi(p, new File(path+"/yourMidi.midi"));
@@ -125,37 +122,32 @@ public class ChordChart extends Observable {
     }
 
     public String toString() {
-        String retString;
+        StringBuilder retString;
 
-        retString = "T" + tempo;
+        retString = new StringBuilder("T" + tempo);
 
         for(Useable chord : chordList) { // should we use this.getChordList() instead?
-            retString += " " + chord.toString();
+            retString.append(" ").append(chord.toString());
         }
 
-        return retString;
+        return retString.toString();
     }
     private String toString(int index) {
-        String retString;
+        StringBuilder retString;
 
-        retString = "T" + tempo;
+        retString = new StringBuilder("T" + tempo);
 
         for(Useable chord : getChordList(index)) {
-            retString += " " + chord.toString();
+            retString.append(" ").append(chord.toString());
         }
 
-        return retString;
+        return retString.toString();
     }
 
     public void play() {
         Player player = new Player();
         System.out.println(this.toString());
         player.play(this.toString());
-    }
-
-    public void play(int index) {
-        Player player = new Player();
-        player.play(this.toString(index));
     }
 
     public String[][] toTableArray(){
@@ -169,17 +161,17 @@ public class ChordChart extends Observable {
     // saves the ChordChart as a .txt file
     public void saveFile(String fileName) {
         // begin file with the tempo
-        String txt = "T" + tempo + "\n";
+        StringBuilder txt = new StringBuilder("T" + tempo + "\n");
 
         // for each item in the chord list, create a new line with all of the data
         for (Useable item : chordList) {
             String[] data = item.getRow();
-            txt += data[0] + " " + data[1] + " " + data[2] + "\n";
+            txt.append(data[0]).append(" ").append(data[1]).append(" ").append(data[2]).append("\n");
         }
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter( fileName + ".chordface"));
-            writer.write(txt);
+            writer.write(txt.toString());
             writer.close();
         } catch (Exception e) {
             System.out.println("ERROR GENERATING FILE");

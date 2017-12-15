@@ -11,6 +11,7 @@ import java.io.IOException;
 
 abstract class Panel{
 
+
     private UI userInterface;
 
     //<editor-fold desc="Getters and Setters">
@@ -19,13 +20,17 @@ abstract class Panel{
         return userInterface;
     }
 
-    public void setUserInterface(UI ui){userInterface = ui;}
+    void setUserInterface(UI ui){userInterface = ui;}
     //</editor-fold>
 
 
+<<<<<<< HEAD
     Panel(){}
 
     Panel(UI userInterface){
+=======
+    public Panel(UI userInterface){
+>>>>>>> f8287a19d9efb8a7235cb266af8f6e13ab5f1bff
         this.userInterface = userInterface;
     }
 
