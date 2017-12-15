@@ -5,7 +5,7 @@ public class Chordy extends Chord implements Useable {
 
     private Duration duration;
     //For easy reference to root
-    private Note root = this.getRoot();
+    private final Note root = this.getRoot();
 
 
     public Chordy(String rootStr, String extension, Duration duration) {

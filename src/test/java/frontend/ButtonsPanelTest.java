@@ -8,8 +8,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.lang.reflect.Field;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -32,29 +30,17 @@ public class ButtonsPanelTest {
 
     @Test
     public void actionPerformed() throws Exception {
-        Field field = ButtonsPanel.class.getDeclaredField("chordButton1");
-        field.setAccessible(true);
-        ChordButton button = (ChordButton)field.get(buttonsPanel);
         when(ui.getChordChart()).thenReturn(chordChart);
-        button.doClick();
+        buttonsPanel.chordButton1.doClick();
         verify(ui).setChordChart(chordChart);
     }
 
     @Test
     public void actionPerformedExtra() throws Exception {
-        Field field = ButtonsPanel.class.getDeclaredField("extraButton");
-        field.setAccessible(true);
-        ChordButton button = (ChordButton)field.get(buttonsPanel);
-        button.doClick();
-
-        Field field2 = ButtonsPanel.class.getDeclaredField("chordButton1");
-        field2.setAccessible(true);
-        ChordButton button1 = (ChordButton)field2.get(buttonsPanel);
-
+        buttonsPanel.extraButton.doClick();
+        ChordButton button1 = buttonsPanel.chordButton1;
         assertEquals("C#/DB", button1.getText());
-
-        button.doClick();
-
+        buttonsPanel.extraButton.doClick();
         assertEquals("C", button1.getText());
     }
 

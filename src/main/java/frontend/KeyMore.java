@@ -7,7 +7,7 @@ import java.util.Observable;
 
 public class KeyMore extends Observable {
 
-    private Key key;
+    private final Key key;
 
     public KeyMore(String s){
         this.key = new Key(s);

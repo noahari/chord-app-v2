@@ -11,13 +11,13 @@ import java.util.Observer;
 
 public class UI implements Observer {
     // Instance Variables
-    ChordChart chordChart;
+    private ChordChart chordChart;
     KeyMore key;
-    Duration duration = Duration.WHOLE;
+    private Duration duration = Duration.WHOLE;
 
     private Panel[] panels;
 
-    public void setPanels(Panel[] panels) {
+    void setPanels(Panel[] panels) {
         this.panels = panels;
     }
 

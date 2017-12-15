@@ -1,6 +1,5 @@
 package backend;
 
-import org.jfugue.theory.Note;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
