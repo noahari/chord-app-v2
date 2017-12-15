@@ -10,7 +10,7 @@ import java.awt.font.TextLayout;
 import java.io.IOException;
 
 
-public abstract class Panel extends JPanel {
+public abstract class Panel{
 
     private UI userInterface;
 
@@ -23,8 +23,8 @@ public abstract class Panel extends JPanel {
     public void setUserInterface(UI ui){userInterface = ui;}
     //</editor-fold>
 
-    // this seems like a null pointer waiting to happen:
-    // public Panel(){}
+
+    public Panel(){}
 
     public Panel(UI userInterface){
         this.userInterface = userInterface;

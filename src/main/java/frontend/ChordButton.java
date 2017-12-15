@@ -32,18 +32,35 @@ public class ChordButton extends JButton {
         this.extension = extension;
     }
 
+    /**
+     * Updates the button's text
+     * @param key Key to interpret
+     * @param n Note to interpret
+     * @param i Scale degree
+     */
     protected void resetText(KeyMore key, Note n, int i){
         this.setChord(key.stringCorrect(n));
+        System.out.println(this.toString());
         this.setExtension(key.typeFromKey(i));
         this.setText(this.toString());
     }
 
+    /**
+     * Updates the button's text
+     * @param chord Specific chord name to interpret
+     * @param extension Extension
+     */
     protected void resetText(String chord, String extension){
         this.setChord(chord);
         this.setExtension(extension);
         this.setText(this.toString());
     }
 
+    /**
+     * Formats ChordButton for string
+     * @return String representation of ChordButton
+     */
+    @Override
     public String toString() {
         String endChord = chord;
         switch(extension){
@@ -56,6 +73,8 @@ public class ChordButton extends JButton {
                 endChord = endChord.toLowerCase();
                 break;
         }
+        if(endChord.length() > 1)
+            if (endChord.charAt(1) == 'B') endChord = endChord.substring(1) + "b";
         return endChord;
     }
 

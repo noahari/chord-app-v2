@@ -63,6 +63,7 @@ public class NotationPanel extends Panel {
                 COL_NAMES
         );
     }
+
     public void updateTable() {
         updateTableModel();
         this.TrackerTable.setModel(this.tableModel);
@@ -120,14 +121,16 @@ public class NotationPanel extends Panel {
 
     public void tableDelChord(int[] array) {
         ChordChart cc = getUserInterface().getChordChart();
-        for(int i = 0; i < array.length; i++) {
-            cc.delChord(array[i]-i);
+        for (int i = 0; i < array.length; i++) {
+            cc.delChord(array[i] - i);
         }
         getUserInterface().setChordChart(cc);
     }
+
     public void tableSetDur(int[] array, Duration duration) {
         ChordChart cc = getUserInterface().getChordChart();
-        for(int i = 0; i < array.length; i++) {
+        getUserInterface().setDuration(duration);
+        for (int i = 0; i < array.length; i++) {
             cc.getUseable(array[i]).setDur(duration);
         }
         getUserInterface().setChordChart(cc);
@@ -142,11 +145,17 @@ public class NotationPanel extends Panel {
      */
     private void $$$setupUI$$$() {
         panel1 = new JPanel();
-        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         scrollPane = new JScrollPane();
-        panel1.add(scrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.add(scrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         TrackerTable = new JTable();
         scrollPane.setViewportView(TrackerTable);
+        durBox = new JComboBox();
+        panel1.add(durBox, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        delButton = new JButton();
+        delButton.setText("Delete Selected");
+        delButton.setToolTipText("delete the chord selected in the Tracker Table");
+        panel1.add(delButton, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -155,5 +164,4 @@ public class NotationPanel extends Panel {
     public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
-
 }

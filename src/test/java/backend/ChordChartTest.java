@@ -1,6 +1,8 @@
 package backend;
 
 import org.jfugue.theory.Note;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -15,6 +17,8 @@ import static org.mockito.Mockito.*;
 
 public class ChordChartTest {
 
+    private ChordChart chordChart;
+
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
@@ -24,11 +28,19 @@ public class ChordChartTest {
      private Resty resty;
      private Duration duration;
 
+     @Before
+     public void setUP(){
+         chordChart = new ChordChart();
+         chordChart.insertUseable(chordy);
+     }
+
+     @After
+     public void tearDown(){
+         chordChart = null;
+     }
+
     @Test
     public void insertUseable() {
-        ChordChart chordChart = new ChordChart();
-
-        chordChart.insertUseable(chordy);
         chordChart.insertUseable(resty);
         chordChart.insertUseable(1, chordy);
 
@@ -53,8 +65,6 @@ public class ChordChartTest {
 
     @Test
     public void getChordListParam() {
-        ChordChart chordChart = new ChordChart();
-        chordChart.insertUseable(chordy);
         chordChart.insertUseable(chordyB);
         ArrayList<Chordy> testList = new ArrayList<>();
         testList.add(chordyB);
@@ -63,8 +73,6 @@ public class ChordChartTest {
 
     @Test
     public void restChord(){
-        ChordChart chordChart = new ChordChart();
-        chordChart.insertUseable(chordy);
         when(chordy.getDuration()).thenReturn(Duration.QUARTER);
         chordChart.restChord(0);
         assertTrue(chordChart.getChordList().get(0).isRest());
@@ -75,9 +83,6 @@ public class ChordChartTest {
 
     @Test
     public void getChord() throws Exception {
-        ChordChart chordChart = new ChordChart();
-
-        chordChart.insertUseable(chordy);
         chordChart.insertUseable(resty);
         chordChart.insertUseable(chordy);
 
@@ -88,9 +93,6 @@ public class ChordChartTest {
 
     @Test
     public void getUseable() throws Exception {
-        ChordChart chordChart = new ChordChart();
-
-        chordChart.insertUseable(chordy);
         chordChart.insertUseable(resty);
         chordChart.insertUseable(chordy);
 
@@ -102,8 +104,6 @@ public class ChordChartTest {
 
     @Test
     public void delChord() throws Exception {
-        ChordChart chordChart = new ChordChart();
-        chordChart.insertUseable(chordy);
         chordChart.insertUseable(resty);
         chordChart.insertUseable(chordy);
 
@@ -114,8 +114,6 @@ public class ChordChartTest {
 
     @Test
     public void moveChord() throws Exception {
-        ChordChart chordChart = new ChordChart();
-        chordChart.insertUseable(chordy);
         chordChart.insertUseable(chordy);
         chordChart.insertUseable(resty);
         chordChart.insertUseable(resty);

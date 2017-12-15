@@ -10,10 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GlobalParametersPanel extends Panel implements ActionListener {
-    private JTextField tempo;
     private JPanel panel;
-    private JComboBox<String> keys;
-    private JButton playButton;
+    protected JComboBox<String> keys;
+    protected JTextField tempo;
+    protected JButton playButton;
     private JButton save;
     private String fileName = null;
 
@@ -35,8 +35,16 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         this.tempo.setText(Integer.toString(tempo));
     }
 
+    /**
+     *
+     * @param arg 0 if key changed
+     */
     public void draw(Object arg) { $$$setupUI$$$(); }
 
+    /**
+     * @param evt the event
+     */
+    @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() instanceof JComboBox) {
             JComboBox cb = (JComboBox) evt.getSource();
@@ -44,7 +52,6 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             getUserInterface().setKey(key);
         } else if (evt.getSource() instanceof JTextField) {
             String tText = tempo.getText();
-            //System.out.println(tText);
             int tInt;
             try {
                 tInt = Integer.parseInt(tText);
@@ -72,6 +79,9 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         }
     }
 
+    /**
+     * Intellij method to create components
+     */
     private void createUIComponents() {
         // TODO: place custom component creation code here
         keys = new JComboBox<>(ALLKEYS);

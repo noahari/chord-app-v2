@@ -1,6 +1,7 @@
 package frontend;
 import backend.ChordChart;
 import org.jfugue.theory.Note;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.junit.Rule;
@@ -14,26 +15,26 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 public class PanelTest {
-
-    //C has no sharps or flats, however none of its notes need correction
-    //so its values should evaluate to the default i.e. True.
-    private static final String[] SHARPKEYS = {"C", "G", "D", "A", "E", "B", "F#", "C#"};
-
-    private static final String[] FLATKEYS = {"F", "BB", "EB", "AB", "DB", "GB", "CB"};
-
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock
-    UI userInterface;
+    private UI userInterface;
+    @Mock
+    private KeyMore key;
+    @Mock
+    private Note note;
 
     @Spy
-    Panel panel;
+    private Panel panel;
+
+    @Before
+    public void setUp(){
+        panel.setUserInterface(userInterface);
+    }
 
     @Test
     public void getKeyTest(){
-        panel.setUserInterface(userInterface);
-        KeyMore key = mock(KeyMore.class);
         when(userInterface.getKey()).thenReturn(key);
         assertEquals(panel.getKey(), key);
     }
@@ -47,9 +48,6 @@ public class PanelTest {
 
     @Test
     public void toButtonATest(){
-        panel.setUserInterface(userInterface);
-        Note note = mock(Note.class);
-        KeyMore key = mock(KeyMore.class);
         when(userInterface.getKey()).thenReturn(key);
         when(key.stringCorrect(note)).thenReturn("A");
         ChordButton button = null;
@@ -64,9 +62,6 @@ public class PanelTest {
 
     @Test
     public void toButtonBTest(){
-        panel.setUserInterface(userInterface);
-        Note note = mock(Note.class);
-        KeyMore key = mock(KeyMore.class);
         when(userInterface.getKey()).thenReturn(key);
         when(key.stringCorrect(note)).thenReturn("A");
         when(key.typeFromKey(1)).thenReturn("MIN");
