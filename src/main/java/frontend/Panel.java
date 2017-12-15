@@ -55,7 +55,7 @@ abstract class Panel{
     }
 
     private ChordButton toIcon(String nStr, String extension) {
-        ImageIcon icon = new ImageIcon("resources/images/Button.png");
+        ImageIcon icon = new ImageIcon("src/main/resources/images/Button.png");
         ChordButton button = new ChordButton(nStr, extension);
         button.setIcon(icon);
         Font fonty = new Font("ARIAL", Font.PLAIN, 36);
