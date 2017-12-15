@@ -32,7 +32,7 @@ class Main {
     }
 
     private static void initializeUI() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setContentPane(uiBuilder.getPanel());
         frame.pack();
         frame.setVisible(true);

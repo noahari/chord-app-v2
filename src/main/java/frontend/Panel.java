@@ -6,8 +6,6 @@ import org.jfugue.theory.Note;
 import javax.swing.*;
 import java.awt.*;
 
-import java.io.IOException;
-
 
 abstract class Panel{
 
@@ -22,7 +20,6 @@ abstract class Panel{
 
     void setUserInterface(UI ui){userInterface = ui;}
     //</editor-fold>
-
 
     Panel(){}
 
@@ -47,12 +44,12 @@ abstract class Panel{
     }
 
 
-    ChordButton toButton(Note n, int i) throws IOException{
+    ChordButton toButton(Note n, int i) {
         String nStr = getKey().stringCorrect(n);
         return toIcon(nStr, getKey().typeFromKey(i));
     }
 
-    ChordButton toButton(Note n) throws IOException {
+    ChordButton toButton(Note n) {
         String nStr = getKey().stringCorrect(n);
         return toIcon(nStr, "MAJ");
     }

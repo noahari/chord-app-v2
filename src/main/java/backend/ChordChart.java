@@ -146,7 +146,6 @@ public class ChordChart extends Observable {
 
     public void play() {
         Player player = new Player();
-        System.out.println(this.toString());
         player.play(this.toString());
     }
 

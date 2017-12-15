@@ -25,6 +25,10 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         panel.setPreferredSize(new Dimension(500, 200));
     }
 
+    public JComboBox<String> getKeys() {
+        return keys;
+    }
+
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }

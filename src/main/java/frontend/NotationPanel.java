@@ -20,7 +20,7 @@ public class NotationPanel extends Panel {
     private JButton shiftUpButton;
     private final String[] COL_NAMES = new String[]{"Root", "Extension", "Duration"};
     private DefaultTableModel tableModel;
-    private final DefaultComboBoxModel<Duration> DB_MODEL = new DefaultComboBoxModel<Duration>(new Duration[]{
+    private final DefaultComboBoxModel<Duration> DB_MODEL = new DefaultComboBoxModel<>(new Duration[]{
             Duration.WHOLE,
             Duration.HALF,
             Duration.QUARTER,
@@ -130,8 +130,8 @@ public class NotationPanel extends Panel {
     private void tableSetDur(int[] array, Duration duration) {
         ChordChart cc = getUserInterface().getChordChart();
         getUserInterface().setDuration(duration);
-        for (int i = 0; i < array.length; i++) {
-            cc.getUseable(array[i]).setDur(duration);
+        for (int anArray : array) {
+            cc.getUseable(anArray).setDur(duration);
         }
         getUserInterface().setChordChart(cc);
     }

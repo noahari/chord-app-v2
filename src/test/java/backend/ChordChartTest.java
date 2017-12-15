@@ -78,6 +78,10 @@ public class ChordChartTest {
 
         chordChart.restChord(0);
         assertTrue(chordChart.getChordList().get(0).isRest());
+
+        chordChart.insertUseable(chordy);
+        chordChart.restChord(1);
+        assertTrue(chordChart.getChordList().get(0).isRest());
     }
 
     @Test
