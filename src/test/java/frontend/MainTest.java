@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
@@ -19,10 +19,16 @@ public class MainTest {
     private Main main;
 
     @Test
-    public void main() throws Exception {
-        Mockito.when(main.ask()).thenReturn(0);
+    public void main0() throws Exception {
+        doReturn(0).when(Main.ask());
+        verify(main).initializeUI();
+    }
 
-        Mockito.verify(main, Mockito.times(0)).loadFile();
+    @Test
+    public void main1() throws Exception{
+        doReturn(1).when(Main.ask());
+        verify(main).loadFile();
+        verify(main).initializeUI();
     }
 
 }
