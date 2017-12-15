@@ -2,7 +2,6 @@ package frontend;
 
 import backend.ChordChart;
 import backend.Duration;
-import com.sun.demo.jvmti.hprof.Tracker;
 import org.jfugue.theory.Chord;
 
 import javax.swing.*;
@@ -12,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("Convert2Lambda")
 public class NotationPanel extends Panel {
     //private ArrayList<DrawnChord> drawnChordList;
     private JPanel panel1;
@@ -25,6 +25,7 @@ public class NotationPanel extends Panel {
     private JPanel generalTab;
     private JComboBox<String> extBox;
     private JList<String> extList;
+    private JButton resetButton;
     private JTable extTable;
     private final String[] COL_NAMES = new String[]{"Root", "Extension", "Duration"};
     private DefaultTableModel tableModel;
@@ -68,7 +69,12 @@ public class NotationPanel extends Panel {
         this.tableModel = new DefaultTableModel(
                 this.getUserInterface().getChordChart().toTableArray(),
                 COL_NAMES
-        );
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
     }
 
     private void updateTable() {
@@ -82,13 +88,11 @@ public class NotationPanel extends Panel {
         durBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (TrackerTable.getSelectedRows().length > 0) {
-                    int placeholder = TrackerTable.getSelectedRow();
-                    //int endholder = TrackerTable.getSelectedRows()[TrackerTable.getSelectedRows().length - 1];
-                    tableSetDur(TrackerTable.getSelectedRows(), (Duration) durBox.getSelectedItem());
-                    TrackerTable.changeSelection(placeholder, 2, false, false);
-                    //TrackerTable.changeSelection(endholder, 2, false, true);
-                }
+                int placeholder = TrackerTable.getSelectedRow();
+                //int endholder = TrackerTable.getSelectedRows()[TrackerTable.getSelectedRows().length - 1];
+                tableSetDur(TrackerTable.getSelectedRows(), (Duration) durBox.getSelectedItem());
+                TrackerTable.changeSelection(placeholder, 2, false, false);
+                //TrackerTable.changeSelection(endholder, 2, false, true);
             }
         });
 
@@ -129,7 +133,7 @@ public class NotationPanel extends Panel {
         });
 
         // set up extension list:
-        this.extList.setListData(Chord.getChordNames());
+        this.extList.setListData(reverse(Chord.getChordNames()));
         this.extList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
@@ -142,17 +146,37 @@ public class NotationPanel extends Panel {
                 }
             }
         });
+
+        this.resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                resetTable();
+            }
+        });
     }
 
-    public void tableSetExt(String ext, int[] array) {
-        ChordChart cc = getUserInterface().getChordChart();
+    public String[] reverse(String[] array) {
+        String[] retArray = new String[array.length];
         for (int i = 0; i < array.length; i++) {
-            cc.getChord(array[i]).setExtension(ext);
+            retArray[array.length - 1 - i] = array[i];
+        }
+        return retArray;
+    }
+
+    public void resetTable() {
+        ChordChart cc = getUserInterface().getChordChart();
+        getUserInterface().setChordChart(new ChordChart(cc.getTempo()));
+    }
+
+    private void tableSetExt(String ext, int[] array) {
+        ChordChart cc = getUserInterface().getChordChart();
+        for (int anArray : array) {
+            cc.getChord(anArray).setExtension(ext);
         }
         getUserInterface().setChordChart(cc);
     }
 
-    public void tableShiftDown(int i) {
+    private void tableShiftDown(int i) {
         ChordChart cc = getUserInterface().getChordChart();
         cc.moveChord(i, i + 1);
         getUserInterface().setChordChart(cc);
@@ -198,7 +222,7 @@ public class NotationPanel extends Panel {
         tabbedPane1 = new JTabbedPane();
         panel1.add(tabbedPane1, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         generalTab = new JPanel();
-        generalTab.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        generalTab.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabbedPane1.addTab("General", generalTab);
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -215,6 +239,9 @@ public class NotationPanel extends Panel {
         generalTab.add(delButton, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         durBox = new JComboBox();
         generalTab.add(durBox, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        resetButton = new JButton();
+        resetButton.setText("Reset");
+        generalTab.add(resetButton, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
         tabbedPane1.addTab("Extensions", scrollPane1);
         extList = new JList();

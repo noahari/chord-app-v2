@@ -67,16 +67,16 @@ public class ButtonsPanel extends Panel implements ActionListener {
         } else {
             if (inKey) {
                 for (int i = 0; i < nonUsedButtonList.size(); i++) {
-                    buttons[i].resetText(nonUsedButtonList.get(i), "MAJ");
+                    try {
+                        buttons[i].resetText(nonUsedButtonList.get(i), "MAJ");
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        i++;
+                    }
                 }
                 inKey = false;
             } else {
                 inKey = true;
-                try {
-                    getButtons();
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                }
+                getButtons();
                 for (int i = 0; i < buttons.length; i++) {
                     buttons[i].resetText(usedButtonList.get(i).getChord(), usedButtonList.get(i).getExtension());
                 }
@@ -90,7 +90,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
      *
      * @throws IOException
      */
-    private void getButtons() throws IOException {
+    private void getButtons() {
         if (inKey) {
             nonUsedButtonList = new ArrayList<>();
             Set<String> chromaticNotes = ButtonsPanel.getChromaticNotes();
@@ -153,11 +153,7 @@ public class ButtonsPanel extends Panel implements ActionListener {
      */
     public void draw(Object arg) {
         if (arg.equals(0)) inKey = true;
-        try {
-            this.getButtons();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+        this.getButtons();
     }
 
     /**

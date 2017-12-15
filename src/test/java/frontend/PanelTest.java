@@ -8,8 +8,6 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.io.IOException;
-
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 

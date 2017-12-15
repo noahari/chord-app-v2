@@ -9,19 +9,18 @@ import java.awt.event.ActionListener;
 
 public class GlobalParametersPanel extends Panel implements ActionListener {
     private JPanel panel;
-    protected JComboBox<String> keys;
-    protected JTextField tempo;
-    protected JButton playButton;
+    JComboBox<String> keys;
+    JTextField tempo;
+    JButton playButton;
 
     protected JButton save;
+    private JButton midiExportButton;
     private String fileName = null;
 
     private final String[] ALLKEYS = {"CMaj", "GMaj", "DMaj", "AMaj", "EMaj", "BMaj", "F#Maj", "C#Maj",
             "FMaj", "BBMaj", "EBMaj", "ABMaj", "DBMaj", "GBMaj", "CBMaj", "amin", "emin", "bmin", "f#min", "c#min", "g#min", "d#min",
             "a#min", "dmin", "gmin", "cmin", "fmin", "bBmin", "eBmin", "aBmin"};
 
-    public GlobalParametersPanel() {
-    }
 
     public GlobalParametersPanel(UI userInterface) {
         super(userInterface);
@@ -79,22 +78,23 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             JButton buttonHit = (JButton) (evt.getSource());
             if (buttonHit.getText().equals("Play")) {
                 this.getUserInterface().getChordChart().play();
-            } else {
+            } else if (buttonHit.getText().equals("Save")) {
                 if (fileName == null) {
-                    fileName = inputDialog(null);
+                    fileName = inputDialog();
                     if ((fileName != null) && (!fileName.isEmpty()))
                         this.getUserInterface().getChordChart().saveFile(fileName);
                 } else this.getUserInterface().getChordChart().saveFile(fileName);
-
+            } else {
+                this.getUserInterface().getChordChart().toMIDIFile();
             }
         }
     }
 
-    protected String inputDialog(Object obj) {
+    private String inputDialog() {
         return JOptionPane.showInputDialog("Please enter the name of your file:");
     }
 
-    protected void messageDialog() {
+    private void messageDialog() {
         JOptionPane.showMessageDialog(null, "Enter Valid Tempo (from 40-220)");
     }
 
@@ -112,6 +112,8 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
         playButton.addActionListener(this);
         save = new JButton("Save");
         save.addActionListener(this);
+        midiExportButton = new JButton("Midi Export");
+        midiExportButton.addActionListener(this);
     }
 
     /**
@@ -124,13 +126,15 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     private void $$$setupUI$$$() {
         createUIComponents();
         panel = new JPanel();
-        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
-        panel.add(keys, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        panel.add(tempo, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(50, 24), null, 0, false));
+        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 5, new Insets(0, 0, 0, 0), -1, -1));
+        panel.add(keys, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel.add(tempo, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(50, 24), null, 0, false));
         playButton.setText("Play");
-        panel.add(playButton, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel.add(playButton, new com.intellij.uiDesigner.core.GridConstraints(0, 4, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         save.setText("Save");
         panel.add(save, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        midiExportButton.setText("Midi Export");
+        panel.add(midiExportButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

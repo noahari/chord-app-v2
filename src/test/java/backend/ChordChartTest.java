@@ -1,5 +1,6 @@
 package backend;
 
+import org.jfugue.player.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -51,6 +52,14 @@ public class ChordChartTest {
         testArray.add(resty);
 
         assertEquals(testArray, chordChart.getChordList());
+    }
+
+    @Test
+    public void play(){
+        Player player = mock(Player.class);
+        chordChart.setPlayer(player);
+        chordChart.play();
+        verify(player).play(anyString());
     }
 
     @Test
@@ -149,9 +158,8 @@ public class ChordChartTest {
     public void toMIDIFile(){
         ChordChart chordChart = new ChordChart();
         chordChart.insertUseable(new Chordy("C","maj",Duration.QUARTER));
-        String path = System.getProperty("user.home")+"/Downloads/";
-        chordChart.toMIDIFile(path);
-        assertTrue(new File(path+"/yourMidi.midi").exists());
+        chordChart.toMIDIFile();
+        assertTrue(new File("yourMidi.midi").exists());
     }
 
     @Test
@@ -165,7 +173,7 @@ public class ChordChartTest {
 
     @Test
     public void fileToChart() {
-        assertTrue(ChordChart.fileToChart("test.chordface") instanceof ChordChart);
+        assertTrue(ChordChart.fileToChart("test.chordface") != null);
     }
 
 }
