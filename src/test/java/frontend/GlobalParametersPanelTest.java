@@ -39,6 +39,7 @@ public class GlobalParametersPanelTest {
 
     @Test
     public void actionPerformedComboBox(){
+        this.gpp = new GlobalParametersPanel(ui);
         gpp.keys.setSelectedIndex(1);
         verify(ui).setKey(any());
     }
