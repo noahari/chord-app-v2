@@ -27,7 +27,7 @@ public class ChordFaceIT {
         ButtonsPanel buttonsPanel = builder.getButtonsPanel();
         buttonsPanel.getFirstButton().doClick();
         ChordChart chart = builder.getUI().getChordChart();
-        assertEquals("C4MAJWHOLE", chart.getUseable(0).toString());
+        assertEquals("CMAJWHOLE", chart.getUseable(0).toString());
     }
 
     @Test
