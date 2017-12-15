@@ -26,8 +26,7 @@ public class PanelTest {
     private Note note;
 
     @Spy
-    Panel panel;
-
+    private Panel panel;
 
     @Before
     public void setUp(){

@@ -1,5 +1,6 @@
 package backend;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -11,6 +12,8 @@ import static org.junit.Assert.*;
 
 public class ChordyTest {
 
+    private Chordy sChord;
+
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
@@ -18,6 +21,11 @@ public class ChordyTest {
     private Chordy chordy;
     private String dur;
     private Duration duration;
+
+    @Before
+    public void setUp(){
+        sChord = new Chordy("C5", "maj7", Duration.ONETWENTYEIGHTH);
+    }
 
     @Test
     public void decDur() throws Exception {
@@ -35,13 +43,9 @@ public class ChordyTest {
 
     @Test
     public void incDur() throws Exception {
-        //test chordy
-        Chordy sChord = new Chordy("C", "maj7", Duration.ONETWENTYEIGHTH);
-
         for(int i = 0; i < 7; i++) {
             sChord.incDur();
         }
-
 
         assertEquals(Duration.WHOLE, sChord.getDuration());
         //should add more JUnit tests for each case
@@ -49,16 +53,11 @@ public class ChordyTest {
 
     @Test
     public void detNote(){
-        //test chordy
-        Chordy sChord = new Chordy("C5", "maj7", Duration.ONETWENTYEIGHTH);
-
         assertEquals("C", sChord.detNote());
     }
 
     @Test
     public void getOctTest(){
-        //test chordy
-        Chordy sChord = new Chordy("C5", "maj7", Duration.ONETWENTYEIGHTH);
         assertEquals(5, sChord.getOct());
 
         Chordy aChord = new Chordy("C" , "maj", Duration.ONETWENTYEIGHTH);
@@ -67,8 +66,6 @@ public class ChordyTest {
 
     @Test
     public void incOct() throws Exception {
-        //test chordy
-        Chordy sChord = new Chordy("C5", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.incOct();
         assertEquals("C6", sChord.getRoot().getToneString());
 
@@ -83,8 +80,6 @@ public class ChordyTest {
 
     @Test
     public void incOctParam() throws Exception {
-        //test chordy
-        Chordy sChord = new Chordy("C5", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.incOct(2);
         assertEquals("C7", sChord.getRoot().getToneString());
 
@@ -95,8 +90,6 @@ public class ChordyTest {
 
     @Test
     public void decOct() throws Exception {
-        //test chordy
-        Chordy sChord = new Chordy("C5", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.decOct();
         assertEquals("C4", sChord.getRoot().getToneString());
 
@@ -111,8 +104,6 @@ public class ChordyTest {
 
     @Test
     public void decOctParam() throws Exception {
-        //test chordy
-        Chordy sChord = new Chordy("C5", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.decOct(2);
         assertEquals("C3", sChord.getRoot().getToneString());
 
@@ -123,9 +114,8 @@ public class ChordyTest {
 
     @Test
     public void decRoot() throws Exception {
-        Chordy sChord = new Chordy("C4", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.decRoot();
-        assertEquals("B3", sChord.getRoot().getToneString());
+        assertEquals("B4", sChord.getRoot().getToneString());
 
         Chordy aChord = new Chordy("C0", "maj7", Duration.ONETWENTYEIGHTH);
         sChord.decRoot();
@@ -153,7 +143,6 @@ public class ChordyTest {
 
     @Test
     public void getDurationString() throws Exception{
-        Chordy sChord = new Chordy("B", "maj7", Duration.ONETWENTYEIGHTH);
         assertEquals("o", sChord.getDurationString());
     }
 
