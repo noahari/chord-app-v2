@@ -161,6 +161,10 @@ public class ChordChart extends Observable {
         }
     }
 
+    public void stop() {
+        player.getManagedPlayer().finish();
+    }
+
     public String[][] toTableArray(){
         String[][] retArray = new String[chordList.size()][3];
         for(int i = 0; i < chordList.size(); i++){

@@ -88,7 +88,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
             } else if (buttonHit.getText().equals("Midi Export")) {
                 this.getUserInterface().getChordChart().toMIDIFile();
             } else {
-                this.getUserInterface().getChordChart().getPlayer().getManagedPlayer().finish();
+                this.getUserInterface().getChordChart().stop();
             }
         }
     }
