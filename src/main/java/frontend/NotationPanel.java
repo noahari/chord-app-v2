@@ -1,7 +1,6 @@
 package frontend;
 
 import backend.ChordChart;
-import backend.Chordy;
 import backend.Duration;
 import backend.Resty;
 import org.jfugue.theory.Chord;

@@ -14,7 +14,7 @@ public class GlobalParametersPanel extends Panel implements ActionListener {
     JButton playButton;
     //private String tempoStr = "120";
 
-    protected JButton save;
+    JButton save;
     private JButton midiExportButton;
     private String fileName = null;
 

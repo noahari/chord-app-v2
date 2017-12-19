@@ -23,7 +23,7 @@ class Main {
         initializeUI();
     }
 
-     static int ask() {
+     private static int ask() {
         Object[] options = {"New", "Load"};
         return JOptionPane.showOptionDialog(frame,
                 "Load or Create a chart",
@@ -34,14 +34,14 @@ class Main {
                 options,  //the titles of buttons
                 options[1]); //default button title
     }
-    static void initializeUI() {
+    private static void initializeUI() {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setContentPane(uiBuilder.getPanel());
         frame.pack();
         frame.setVisible(true);
     }
 
-    static void loadFile() {
+    private static void loadFile() {
         fc.setDialogTitle("Select a chart");
         fc.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Chordface Files",
